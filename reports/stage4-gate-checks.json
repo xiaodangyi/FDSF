@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-23",
+  "training_started": false,
+  "checks": [
+    {
+      "command": "python -m deskvision.train",
+      "exit_code": 1,
+      "last_message": "ValueError: 数据集尚未获准训练：杯子、瓶子、书、橡皮和螺丝刀样本较少；五金目前只有透明袋场景，尚需补充多场景桌面照片及确认的负样本。",
+      "expected_blocked": true
+    },
+    {
+      "command": "python -m deskvision.audit_data build --name desk8-train-v1",
+      "exit_code": 1,
+      "last_message": "ValueError: 数据集尚未获准训练：杯子、瓶子、书、橡皮和螺丝刀样本较少；五金目前只有透明袋场景，尚需补充多场景桌面照片及确认的负样本。",
+      "expected_blocked": true
+    },
+    {
+      "command": "python -m deskvision.audit_data verify-export --name desk8-review-v3",
+      "exit_code": 1,
+      "last_message": "ValueError: 数据集尚未获准训练：杯子、瓶子、书、橡皮和螺丝刀样本较少；五金目前只有透明袋场景，尚需补充多场景桌面照片及确认的负样本。",
+      "expected_blocked": true
+    }
+  ],
+  "phase": "上一轮准备阶段、用户启动第四阶段之前的拒绝记录",
+  "note": "历史快照，不代表当前状态；用户启动第四阶段后，已批准仅三轮试跑，见当前复核配置及实际训练报告。"
+}

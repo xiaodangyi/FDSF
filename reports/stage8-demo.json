@@ -1,0 +1,18 @@
+{
+  "format": "真实界面截图序列演示，非连续录屏；无配音，停留时长不代表推理耗时",
+  "path": "runs/stage8-demo/验收演示.mp4",
+  "codec": "H.264/yuv420p",
+  "frames_decoded": 360,
+  "fps": 10.0,
+  "seconds": 36.0,
+  "width": 1280,
+  "height": 720,
+  "sha256": "baa57ddf5f76511140d4781ac26486f984660c23f9f1d69ec9f6483970ee4d65",
+  "source_screenshots": [
+    "01-start.png",
+    "02-input.png",
+    "03-sam.png",
+    "04-deepseek.png",
+    "05-comparison.png"
+  ]
+}

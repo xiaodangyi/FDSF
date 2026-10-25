@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "run_name": "desk8-pilot-20261023-192025",
+  "purpose": "三轮链路试跑后的验证，不是最终验收",
+  "split": "val",
+  "test_evaluated": false,
+  "training_scope": {
+    "purpose": "three_epoch_pilot",
+    "maximum_epochs": 3,
+    "authorization": "用户于 2026-10-23 明确要求“现在开始第四阶段”；仅批准当前 64 张复核样本的三轮训练链路试跑。",
+    "note": "图像与标签复核已通过；桌面场景、负样本和样本量缺口继续保留，不表示正式训练或泛化验收就绪。"
+  },
+  "generalization_limitations": [
+    "杯子、瓶子、书、橡皮和螺丝刀样本较少；五金目前只有透明袋场景，尚需补充多场景桌面照片及确认的负样本。"
+  ],
+  "training_config": {
+    "schema_version": 1,
+    "dataset": "data/desk8-train-v1",
+    "model": "yolov8n",
+    "epochs": 3,
+    "image_size": 640,
+    "batch_size": 4,
+    "workers": 0,
+    "device": 0,
+    "amp": false,
+    "cache": false,
+    "seed": 42,
+    "save_period": 1,
+    "output_dir": "runs/train"
+  },
+  "dataset_manifest_sha256": "e10c04b4b7cb57a6af157b207dee413d331c9c95b100754c99fce9136f942cc8",
+  "best_weights": "runs/train/desk8-pilot-20261023-192025/weights/best.pt",
+  "best_weights_sha256": "f6919381c8a9e784b50faebab7d13fdd3797dd105e2aa1ab63b503d6571756d0",
+  "last_weights": "runs/train/desk8-pilot-20261023-192025/weights/last.pt",
+  "last_weights_sha256": "f6919381c8a9e784b50faebab7d13fdd3797dd105e2aa1ab63b503d6571756d0",
+  "model_names": {
+    "0": "cup",
+    "1": "bottle",
+    "2": "book",
+    "3": "eraser",
+    "4": "screwdriver",
+    "5": "screw",
+    "6": "nut",
+    "7": "washer"
+  },
+  "epochs_from_csv": [
+    {
+      "epoch": 1.0,
+      "time": 3.90212,
+      "train/box_loss": 1.00788,
+      "train/cls_loss": 4.12743,
+      "train/dfl_loss": 1.24915,
+      "metrics/precision(B)": 0.00429,
+      "metrics/recall(B)": 0.65625,
+      "metrics/mAP50(B)": 0.14121,
+      "metrics/mAP50-95(B)": 0.08285,
+      "val/box_loss": 0.48823,
+      "val/cls_loss": 4.07936,
+      "val/dfl_loss": 0.91985,
+      "lr/pg0": 8.33e-05,
+      "lr/pg1": 8.33e-05,
+      "lr/pg2": 8.33e-05
+    },
+    {
+      "epoch": 2.0,
+      "time": 6.02091,
+      "train/box_loss": 0.88025,
+      "train/cls_loss": 3.95996,
+      "train/dfl_loss": 1.16302,
+      "metrics/precision(B)": 0.0053,
+      "metrics/recall(B)": 0.65625,
+      "metrics/mAP50(B)": 0.1483,
+      "metrics/mAP50-95(B)": 0.12799,
+      "val/box_loss": 0.49051,
+      "val/cls_loss": 4.04787,
+      "val/dfl_loss": 0.92272,
+      "lr/pg0": 0.000117203,
+      "lr/pg1": 0.000117203,
+      "lr/pg2": 0.000117203
+    },
+    {
+      "epoch": 3.0,
+      "time": 8.18986,
+      "train/box_loss": 0.89828,
+      "train/cls_loss": 3.66767,
+      "train/dfl_loss": 1.18968,
+      "metrics/precision(B)": 0.00571,
+      "metrics/recall(B)": 0.65625,
+      "metrics/mAP50(B)": 0.19021,
+      "metrics/mAP50-95(B)": 0.15869,
+      "val/box_loss": 0.51949,
+      "val/cls_loss": 4.03491,
+      "val/dfl_loss": 0.94752,
+      "lr/pg0": 9.06304e-05,
+      "lr/pg1": 9.06304e-05,
+      "lr/pg2": 9.06304e-05
+    }
+  ],
+  "validation": {
+    "images": 13,
+    "instances": 35,
+    "confidence_floor": 0.001,
+    "nms_iou": 0.7,
+    "class_agnostic_nms": false,
+    "metrics": {
+      "metrics/precision(B)": 0.006329042995196132,
+      "metrics/recall(B)": 0.671875,
+      "metrics/mAP50(B)": 0.17777348388845632,
+      "metrics/mAP50-95(B)": 0.14244382112451012,
+      "fitness": 0.14244382112451012
+    },
+    "per_class": [
+      {
+        "Class": "cup",
+        "Images": 3,
+        "Instances": 4,
+        "Box-P": 0.005229,
+        "Box-R": 1.0,
+        "Box-F1": 0.010403,
+        "mAP50": 0.098409,
+        "mAP50-95": 0.064211
+      },
+      {
+        "Class": "bottle",
+        "Images": 3,
+        "Instances": 3,
+        "Box-P": 0.007177,
+        "Box-R": 1.0,
+        "Box-F1": 0.014252,
+        "mAP50": 0.9125,
+        "mAP50-95": 0.763331
+      },
+      {
+        "Class": "book",
+        "Images": 1,
+        "Instances": 1,
+        "Box-P": 0.001783,
+        "Box-R": 1.0,
+        "Box-F1": 0.003559,
+        "mAP50": 0.199,
+        "mAP50-95": 0.1592
+      },
+      {
+        "Class": "eraser",
+        "Images": 1,
+        "Instances": 1,
+        "Box-P": 0.009901,
+        "Box-R": 1.0,
+        "Box-F1": 0.019608,
+        "mAP50": 0.090455,
+        "mAP50-95": 0.072364
+      },
+      {
+        "Class": "screwdriver",
+        "Images": 2,
+        "Instances": 2,
+        "Box-P": 0.011765,
+        "Box-R": 1.0,
+        "Box-F1": 0.023256,
+        "mAP50": 0.099167,
+        "mAP50-95": 0.064198
+      },
+      {
+        "Class": "screw",
+        "Images": 4,
+        "Instances": 8,
+        "Box-P": 0.014778,
+        "Box-R": 0.375,
+        "Box-F1": 0.028436,
+        "mAP50": 0.022658,
+        "mAP50-95": 0.016247
+      },
+      {
+        "Class": "nut",
+        "Images": 4,
+        "Instances": 8,
+        "Box-P": 0.0,
+        "Box-R": 0.0,
+        "Box-F1": 0.0,
+        "mAP50": 0.0,
+        "mAP50-95": 0.0
+      },
+      {
+        "Class": "washer",
+        "Images": 4,
+        "Instances": 8,
+        "Box-P": 0.0,
+        "Box-R": 0.0,
+        "Box-F1": 0.0,
+        "mAP50": 0.0,
+        "mAP50-95": 0.0
+      }
+    ],
+    "batch_size": 4,
+    "half_precision": false,
+    "image_size": 640
+  },
+  "interpretation": "本报告采用保存权重、FP32、batch 4 的独立验证协议；训练内置最终验证指标另列，验证批处理设置不同，数值不完全一致。以 0.001 分数下限收集预测后计算阈值曲线，不能当作默认 0.25 推理阈值的计数成绩。",
+  "training_final_validation_metrics": {
+    "metrics/precision(B)": 0.00577,
+    "metrics/recall(B)": 0.65625,
+    "metrics/mAP50(B)": 0.19017,
+    "metrics/mAP50-95(B)": 0.15884
+  }
+}

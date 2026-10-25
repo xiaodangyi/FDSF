@@ -1,0 +1,7 @@
+{
+  "ai_cuda_root": "C:/请填写/ai-cuda",
+  "yolo_weights": "D:/请填写/yolov8n.pt",
+  "sam2_weights": "models/sam2.1_hiera_tiny.pt",
+  "smoke_image": "D:/请填写/已有测试图片.jpg",
+  "smoke_dataset": "D:/请填写/coco8"
+}

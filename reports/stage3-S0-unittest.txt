@@ -1,0 +1,103 @@
+S0 offline unittest output; local absolute paths redacted.
+正在读取已有权重并执行检测；此命令不训练、不下载模型。
+正在按原图检测框生成 SAM 2 掩膜；分类与计数沿用 YOLO。
+
+test_all_failed_has_no_error_or_timing_estimate (test_acceptance.AcceptanceTests.test_all_failed_has_no_error_or_timing_estimate) ... ok
+test_failure_is_not_zero_and_denominator_is_all_images (test_acceptance.AcceptanceTests.test_failure_is_not_zero_and_denominator_is_all_images) ... ok
+test_invalid_success_and_wrong_image_are_rejected (test_acceptance.AcceptanceTests.test_invalid_success_and_wrong_image_are_rejected) ... ok
+test_resume_checks_protocol_sample_and_report_digest (test_acceptance.AcceptanceTests.test_resume_checks_protocol_sample_and_report_digest) ... ok
+test_started_entry_is_preserved_without_fake_result (test_acceptance.AcceptanceTests.test_started_entry_is_preserved_without_fake_result) ... ok
+test_clipped_box_stays_in_original_image_coordinates (test_baseline.BaselineContractTests.test_clipped_box_stays_in_original_image_coordinates) ... ok
+test_empty_result_keeps_untrained_categories_unknown (test_baseline.BaselineContractTests.test_empty_result_keeps_untrained_categories_unknown) ... ok
+test_finetuned_ids_are_project_ids_and_all_classes_have_counts (test_baseline.BaselineContractTests.test_finetuned_ids_are_project_ids_and_all_classes_have_counts) ... ok
+test_source_ids_map_to_project_ids_without_losing_precision (test_baseline.BaselineContractTests.test_source_ids_map_to_project_ids_without_losing_precision) ... ok
+test_unicode_path_and_invalid_image_are_distinguished (test_baseline.BaselineContractTests.test_unicode_path_and_invalid_image_are_distinguished) ... ok
+test_unrequested_or_invalid_model_output_is_rejected (test_baseline.BaselineContractTests.test_unrequested_or_invalid_model_output_is_rejected) ... ok
+test_invalid_classes_coordinates_and_empty_boxes_are_rejected (test_data.TrainingDataContractTests.test_invalid_classes_coordinates_and_empty_boxes_are_rejected) ... ok
+test_loco_needs_second_review_bound_to_image_and_final_labels (test_data.TrainingDataContractTests.test_loco_needs_second_review_bound_to_image_and_final_labels) ... ok
+test_only_known_yolo_split_caches_are_excluded_from_label_inventory (test_data.TrainingDataContractTests.test_only_known_yolo_split_caches_are_excluded_from_label_inventory) ... ok
+test_quarantined_source_cannot_be_approved (test_data.TrainingDataContractTests.test_quarantined_source_cannot_be_approved) ... ok
+test_same_group_or_image_cannot_cross_splits (test_data.TrainingDataContractTests.test_same_group_or_image_cannot_cross_splits) ... ok
+test_same_mug_hierarchy_box_is_counted_once (test_data.TrainingDataContractTests.test_same_mug_hierarchy_box_is_counted_once) ... ok
+test_self_consistent_export_must_match_current_approved_boxes (test_data.TrainingDataContractTests.test_self_consistent_export_must_match_current_approved_boxes) ... ok
+test_stale_review_is_rejected (test_data.TrainingDataContractTests.test_stale_review_is_rejected) ... ok
+test_unapproved_empty_annotation_cannot_be_used_as_negative (test_data.TrainingDataContractTests.test_unapproved_empty_annotation_cannot_be_used_as_negative) ... ok
+test_unready_dataset_cannot_enter_training (test_data.TrainingDataContractTests.test_unready_dataset_cannot_enter_training) ... ok
+test_bad_model_output_fails_and_releases_image_features (test_segmentation.SegmentationContractTests.test_bad_model_output_fails_and_releases_image_features) ... ok
+test_cli_segmentation_failure_has_failed_status_and_preserves_detections (test_segmentation.SegmentationContractTests.test_cli_segmentation_failure_has_failed_status_and_preserves_detections) ... 处理失败（segmentation）：SAM 2 failure
+输出未完成，失败记录与部分产物位于：C:\Users\LENOVO\AppData\Local\Temp\tmpxn3f0izz\cli\20261025-194024-d7078e00
+ok
+test_contour_hierarchy_preserves_washer_hole (test_segmentation.SegmentationContractTests.test_contour_hierarchy_preserves_washer_hole) ... ok
+test_invalid_prompt_is_rejected_before_loading (test_segmentation.SegmentationContractTests.test_invalid_prompt_is_rejected_before_loading) ... ok
+test_no_detections_skips_model_and_keeps_counts (test_segmentation.SegmentationContractTests.test_no_detections_skips_model_and_keeps_counts) ... ok
+test_original_coordinates_rgb_instance_mapping_and_empty_mask (test_segmentation.SegmentationContractTests.test_original_coordinates_rgb_instance_mapping_and_empty_mask) ... ok
+test_same_model_can_encode_a_new_image_after_failure (test_segmentation.SegmentationContractTests.test_same_model_can_encode_a_new_image_after_failure) ... ok
+test_best_checkpoint_validation_does_not_add_a_training_epoch (test_train.TrainingEntryTests.test_best_checkpoint_validation_does_not_add_a_training_epoch) ... ok
+test_full_training_is_explicit_and_does_not_change_pilot_scope (test_train.TrainingEntryTests.test_full_training_is_explicit_and_does_not_change_pilot_scope) ... ok
+test_full_training_rejects_missing_authorization_or_unbound_dataset (test_train.TrainingEntryTests.test_full_training_rejects_missing_authorization_or_unbound_dataset) ... ok
+test_pilot_config_rejects_invalid_or_unreviewed_parameters (test_train.TrainingEntryTests.test_pilot_config_rejects_invalid_or_unreviewed_parameters) ... ok
+test_training_requires_visible_terminal_marker (test_train.TrainingEntryTests.test_training_requires_visible_terminal_marker) ... ok
+test_unready_data_stops_before_environment_or_model_loading (test_train.TrainingEntryTests.test_unready_data_stops_before_environment_or_model_loading) ... ok
+test_count_diff_does_not_turn_unsupported_into_zero (test_ui.UiTests.test_count_diff_does_not_turn_unsupported_into_zero) ... ok
+test_gradio_demo_builds_without_loading_models (test_ui.UiTests.test_gradio_demo_builds_without_loading_models) ... <LOCAL_PATH>\Lib\asyncio\base_events.py:730: ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<LOCAL_PATH>\Lib\asyncio\base_events.py:730: ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<LOCAL_PATH>\Lib\asyncio\base_events.py:730: ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<LOCAL_PATH>\Lib\asyncio\base_events.py:730: ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<LOCAL_PATH>\Lib\asyncio\base_events.py:730: ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<LOCAL_PATH>\Lib\asyncio\base_events.py:730: ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_import_does_not_load_model_frameworks (test_ui.UiTests.test_import_does_not_load_model_frameworks) ... ok
+test_input_changed_during_inference_discards_stale_outputs (test_ui.UiTests.test_input_changed_during_inference_discards_stale_outputs) ... ok
+test_mismatched_images_and_failures_are_never_compared (test_ui.UiTests.test_mismatched_images_and_failures_are_never_compared) ... ok
+test_new_input_resets_both_reports_and_mode_sets_correct_weights (test_ui.UiTests.test_new_input_resets_both_reports_and_mode_sets_correct_weights) ... ok
+test_one_route_failure_does_not_block_the_other_route (test_ui.UiTests.test_one_route_failure_does_not_block_the_other_route) ... ok
+test_queued_old_parameters_do_not_start_inference (test_ui.UiTests.test_queued_old_parameters_do_not_start_inference) ... ok
+test_route_writes_yolo_result_without_vlm (test_ui.UiTests.test_route_writes_yolo_result_without_vlm) ... ok
+test_segmentation_failure_keeps_detection_report_and_image (test_ui.UiTests.test_segmentation_failure_keeps_detection_report_and_image) ... ok
+test_vlm_route_receives_original_path_and_keeps_reports_separate (test_ui.UiTests.test_vlm_route_receives_original_path_and_keeps_reports_separate) ... ok
+test_zip_includes_masks_and_never_reads_files_outside_ui_runs (test_ui.UiTests.test_zip_includes_masks_and_never_reads_files_outside_ui_runs) ... ok
+test_api_errors_do_not_retry_leak_credentials_or_forge_zero_counts (test_vlm.VlmContractTests.test_api_errors_do_not_retry_leak_credentials_or_forge_zero_counts) ... ok
+test_cli_config_check_does_not_call_api_or_show_key (test_vlm.VlmContractTests.test_cli_config_check_does_not_call_api_or_show_key) ... ok
+test_cli_failures_return_nonzero_without_forging_success (test_vlm.VlmContractTests.test_cli_failures_return_nonzero_without_forging_success) ... ok
+test_invalid_types_unknown_classes_and_inconsistent_counts_fail (test_vlm.VlmContractTests.test_invalid_types_unknown_classes_and_inconsistent_counts_fail) ... ok
+test_local_config_separates_key_and_rejects_wrong_models_and_hosts (test_vlm.VlmContractTests.test_local_config_separates_key_and_rejects_wrong_models_and_hosts) ... ok
+test_original_file_bytes_and_real_mime_are_preserved (test_vlm.VlmContractTests.test_original_file_bytes_and_real_mime_are_preserved) ... ok
+test_real_sdk_serialization_and_saved_result_have_independent_counts (test_vlm.VlmContractTests.test_real_sdk_serialization_and_saved_result_have_independent_counts) ... ok
+test_request_contains_one_original_image_and_no_prior_results (test_vlm.VlmContractTests.test_request_contains_one_original_image_and_no_prior_results) ... ok
+test_timeout_fails_once_and_missing_image_never_sends (test_vlm.VlmContractTests.test_timeout_fails_once_and_missing_image_never_sends) ... ok
+test_truncation_refusal_empty_content_and_bad_json_are_failures (test_vlm.VlmContractTests.test_truncation_refusal_empty_content_and_bad_json_are_failures) ... ok
+test_valid_empty_and_nonempty_outputs_are_distinguished (test_vlm.VlmContractTests.test_valid_empty_and_nonempty_outputs_are_distinguished) ... ok
+test_diff_counts_categories_instead_of_absolute_count_error (test_web.WorkbenchTests.test_diff_counts_categories_instead_of_absolute_count_error) ... ok
+test_empty_page_disables_inference_and_exposes_three_result_tabs (test_web.WorkbenchTests.test_empty_page_disables_inference_and_exposes_three_result_tabs) ... <LOCAL_PATH>\Lib\asyncio\base_events.py:730: ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<LOCAL_PATH>\Lib\asyncio\base_events.py:730: ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<LOCAL_PATH>\Lib\asyncio\base_events.py:730: ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<LOCAL_PATH>\Lib\asyncio\base_events.py:730: ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_missing_and_failed_results_do_not_forge_zero_counts (test_web.WorkbenchTests.test_missing_and_failed_results_do_not_forge_zero_counts) ... ok
+test_remote_model_text_is_escaped_and_failure_is_visible (test_web.WorkbenchTests.test_remote_model_text_is_escaped_and_failure_is_visible) ... ok
+test_unknown_counts_and_different_images_cannot_produce_agreement (test_web.WorkbenchTests.test_unknown_counts_and_different_images_cannot_produce_agreement) ... ok
+
+----------------------------------------------------------------------
+Ran 62 tests in 9.760s
+
+OK

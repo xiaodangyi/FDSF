@@ -1,0 +1,489 @@
+{
+  "source_repository": "https://github.com/xiaodangyi/123",
+  "source_head": "47bceeb0c402a2518d62901322a2c268d14b0e3a",
+  "destination_repository": "https://github.com/xiaodangyi/FDSF",
+  "date": "2026-10-25",
+  "description": "从现有工作区导入复用基线；包含尚未在123提交的web展示层，不代表新增训练或云端部署。原提交历史保留在123仓库。",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "62379e6775d4236735806bd0286322d37a45cab327ef97b09ece01e573681d48",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "7a5c8dabfc0519f9ee712f8095ac82692fc98051644a6688f793c1397bfaba3b",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "configs/classes.yaml",
+      "sha256": "2414791e86e35b79963756c3d4386bbdae1ef95ec9c4082cc80c2b27e5eca953",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "configs/data_review.json",
+      "sha256": "2d2c8b5aed9e2605c401650cda169e9f863cc673f7619c34a550cca3ef7255b9",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "configs/data_sources.json",
+      "sha256": "277a669e9cda58a2c973459d06a956ee1158783c9d0480a54ba9f04ed4302301",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "configs/local.example.json",
+      "sha256": "b29a8ac4732fda5c0739efd4fb777eab702f4f571823c479056546130bace889",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "configs/training-full.yaml",
+      "sha256": "cbc2278e85f42178cae515184053296cab10086b8ea282b0c336a7a32ee47a4b",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "configs/training.yaml",
+      "sha256": "1cd8ea8b573fea2828fb03bde488c07f8eec3726c4a9c549ebd95e1c4d2e0ded",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "configs/vlm-system-prompt.txt",
+      "sha256": "619fdee141b1f36fa1072501a237c6597c9379184e6fdeb7442423b4c7e7cb79",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "configs/vlm.example.json",
+      "sha256": "27f970d9881da6f90c49e6d7065949a30dc62f2911e765ff463c699a5ed3a23f",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/__init__.py",
+      "sha256": "1ed48efefc0613fad7f12bb657c7db474b41d82e6cc0f16b7e9aa48a78021fdc",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/__main__.py",
+      "sha256": "ad71c7e40f1d20ba0236560172a357b517d67237c4fabcc9b447f5479a55f46b",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/acceptance.py",
+      "sha256": "c996600cd8eda98f1e8f39176000cb80881fd8d8e5269f72be280ab3a227c8c7",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/audit_data.py",
+      "sha256": "fe7d4cc2a32043f8bc27c23674c775f9c71db6be7ea8f8a5d7dc9fb7988dca9e",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/config.py",
+      "sha256": "b69a8aae50359e7d5e627d7867f1c39463e04e472db85475435c7933ef7fc2ae",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/data.py",
+      "sha256": "97c209ad05592550fe88695ff13260dcf69eba55281f952898203b01f2dc76f5",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/detector.py",
+      "sha256": "0a794901f5b8758f8c5aeeea283a9518872851931c37ff292a24495f077de525",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/evaluate.py",
+      "sha256": "e1924a37f401dbad06fb1ff83e56a8d7a7d823f17caa80eb3e939714ecf9136f",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/prepare_data.py",
+      "sha256": "2bdcd491a4df512399963beced5209995a054a5764a047d2bbf3bbd65e83fda4",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/render.py",
+      "sha256": "b8ea71c4cb1bee2e3443e6b4b5f82b7bf00d17420709faa9c3b0a79f0971cf96",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/segmentation.py",
+      "sha256": "f0a0cb8b67dddb88d9e1256ee57686603a80a3dd501a9b76e32673ed9e2c4346",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/train.py",
+      "sha256": "a293faf36cdc62002e594ac9b70c5923f5fe4d8bbc428a1393aea11a88eda3fd",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/ui.py",
+      "sha256": "a125af5bc22631aa7b66bd49f73d76647a2f38bf4608ebbbff357e53d2cf8866",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/vision_language.py",
+      "sha256": "198c845bbde80e1b42c614647702cb0fd51b42e50c6baaa61237811382c9c7e3",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/vlm.py",
+      "sha256": "591c88c6b95b303dc707e7733f6676cab39c04d3b34c068691e0093875265033",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/vlm_config.py",
+      "sha256": "2b0e49022137b9d9c227f50492c1085fa6da035352a198751276d6a17b7eb024",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "deskvision/web/__init__.py",
+      "sha256": "d009bdcc4af1304ce5d30a354e545971175633c4b8c0da64c59cac0a00130c88",
+      "source_state": "untracked_worktree"
+    },
+    {
+      "path": "deskvision/web/__main__.py",
+      "sha256": "688785f6a01d5e9335b0926545a52f82c526b5d3e631cf2388b6f6e7c3c345f6",
+      "source_state": "untracked_worktree"
+    },
+    {
+      "path": "deskvision/web/app.py",
+      "sha256": "a4cda9f62e420b62b2cb1c270508185413c0316309512de1686a243c59ee5616",
+      "source_state": "untracked_worktree"
+    },
+    {
+      "path": "deskvision/web/styles.css",
+      "sha256": "1679c1ef84dbcc2f082b18d64a987e57ecc7b4b651f4a97976b5bef953157d95",
+      "source_state": "untracked_worktree"
+    },
+    {
+      "path": "docs/基线使用说明.md",
+      "sha256": "765717e4b3a13a183d80d1a0673c73527468f1072ecd0fdc7ff97fa208939669",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/学习记录.md",
+      "sha256": "3794c27e7841ed2fc9ac8a65ef9d6bc6892e68297cdc92e60f33957e1e91863e",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/开发记录.md",
+      "sha256": "0fe12ca0c2cdeb079e7a13b8aa2a8c3c83a3ac43695b5b3b6fe8049a4f9b5e50",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/开发路线.md",
+      "sha256": "04799b47d0badd46a57b06ad3fecb835de5d13e0d0c2ed3ef966e11a2e3df52b",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/数据准备说明.md",
+      "sha256": "aaa39bba0bbcf9efac2aa693ee1da1caee7c855dfcd8ea624e0cb62b9ef2a8bb",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/标注规范.md",
+      "sha256": "d71e7d178333076af8f18a2481983e1b4696c0665e5c58dc26047a24df59d562",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/桌面样本补充计划.md",
+      "sha256": "badf3c2204747909869cedcd885ebc84a17abaeb63f47da82b69ae691df47a86",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/界面优化说明.md",
+      "sha256": "003b2096ee2ec0395b43be2df01938bee971a672f167e19f999984081adf1a48",
+      "source_state": "untracked_worktree"
+    },
+    {
+      "path": "docs/第七阶段界面说明.md",
+      "sha256": "b4c89239a46deec691ca600aeacb129fc44116f6c5e49b1970d2cec521f303f9",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/第五阶段分割说明.md",
+      "sha256": "a9c0f224c0a695a4b4137a2a698efc642c719a45cfd7c873f5f10c6d38886691",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/第八阶段实验报告.md",
+      "sha256": "e3ab93ab225a8fa3ff00fc4bd365ba89416b5890c4692a5908d85093710bc7e5",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/第六阶段视觉大模型说明.md",
+      "sha256": "f7f6c01de773c1c28e4bc915e2abc3834a966f586f17a8b008c4036e837e3730",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/第四阶段准备说明.md",
+      "sha256": "ea1769580efc082aad78e5b6e13ee35d5ad89046646b8d17316286e8a56924bb",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/第四阶段试跑记录.md",
+      "sha256": "3ab1bc2cdc717676de4ab43c393b7f9a501b6acac6ba7a5271dbb68fb3f9276e",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/第四阶段长训练记录.md",
+      "sha256": "b2d64b30f263945102417cf58109c3ca99179a88a7f0f765ad1cb11269524333",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/项目介绍与个人总结.md",
+      "sha256": "d4bd31836350d0117f8b9efd7e78d45b5d17e159d681fbb0403b7bcfad93dccd",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/验收与复现指南.md",
+      "sha256": "77d4955e313684bebdd7bbd5d510f32fcf66493373b55faffafef4e53a4979fc",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "docs/验收口播与终端操作.md",
+      "sha256": "694267eb22539ddd773856d535c2f5d47b70494c305b387eaf44f95931c6eccf",
+      "source_state": "untracked_worktree"
+    },
+    {
+      "path": "docs/验收清单.md",
+      "sha256": "0526bdf06a2a1f90610a4d1bda7ffd5f26c57a6709b8dd953ffaae5f95dce976",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/README.md",
+      "sha256": "cb5dfeb0c0ac23fb824424455d70f3dab4425cfba29377719f4ef4537a7281ce",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/activate-ai-cuda.ps1",
+      "sha256": "5483ae76dd30f8961892d7c5fd09858da500481980c799d70a063d7f8c73b4d6",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/constraints.txt",
+      "sha256": "a66a5587b5b77eae2e17586c684c9e454e06feffb04153d0363dff1fbca12574",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/create_acceptance_media.py",
+      "sha256": "2da76ac27c298aa7dcdc9e1c5ebe2e383bbd508ebd3c7d003922f18f3417a24a",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/package_acceptance.py",
+      "sha256": "969bcb1ea2d23427379b4abc171d165461cba2347542f9d5ed6bed411a5af072",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/project_config.py",
+      "sha256": "0451adfb4c1367b3ceeb5011b425c7a4ced7d101226d5fae438df5fc9a1ccbaa",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/requirements.lock.txt",
+      "sha256": "1f6592088a715c5ab10f063bc2259374ce31f180d702fa90d20e63992c327996",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/requirements.txt",
+      "sha256": "d92497cdbd93f7a6dd3ca33bd2bc808dee0e4947d2a05826da69ede0eb7c6571",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/start-training.ps1",
+      "sha256": "330e1eb0751946e078b1d864f3556c9da06261d72791d3e5b07f1de71e51f9f9",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/verify_environment.py",
+      "sha256": "5e5fcdd5e2a40d961fcddc7f7f7d60002081f7f87a2d35ddda0e725b0c5d1496",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/verify_project.py",
+      "sha256": "97856a5f69eee6dc93a0fb8d536d629bee91816471da0ac573c8025273676522",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "environment/verify_training.py",
+      "sha256": "334b5cbacabb63bfb5b27fac1bdaf43871bced092e63330e2c9635e66fb00e84",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "notes/参考项目理解.md",
+      "sha256": "9a7723ac95d427b190ec3b2654a530da8e9d117ba3b6011b057ce082d1537923",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "notes/数据来源初查.md",
+      "sha256": "1311817971f834edfcf98bc181ea7545a13768cb3e9e92e56225da98e4a8ff99",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "notes/数据集补充调查.md",
+      "sha256": "d7aa461e5ee45909cdcc60bfb46c9f0b734a66d81c78ea22bf7e11efb1b7119e",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/assets/README.md",
+      "sha256": "8d1a23b3c803a92d0b17f873b25a760f038a74a3637fa4028c34ad96f6c61e05",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/assets/error-book.png",
+      "sha256": "17595730e9e86dda5ecd464c9d0cec3c20bb0ed3e0ceb1d174eb6fe922ca8b19",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/assets/error-screwdriver.png",
+      "sha256": "17f3738cc869cccb617fd026d7646ce3f1af6669b1bfd7e57bcc50b02720b2d8",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/assets/ui-03-sam.png",
+      "sha256": "eb13a84cfbf654d9ad836e5fa528a5d34d88df1cff7f03872df60a510302d0a6",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/assets/ui-04-deepseek.png",
+      "sha256": "703c60e7edb86a4de3a4c8410100ee713ae7980350f457f5d667953cbbd9e341",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/assets/ui-05-comparison.png",
+      "sha256": "3bdf2d5e8ff7cb4ad04f0db22d979dba7dd921910d824b57091a0e2e27eb8746",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/baseline/README.md",
+      "sha256": "7b20c01426354523b2c230ad0f90205fe99e0dca7d96f198909d65fe174fbd4c",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/baseline/baseline_000000000127.json",
+      "sha256": "d71b64e8f906d5996e02dfdc9c55f6a0a0847037cd31e764ea5206ef7c058b2a",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/baseline/baseline_000000000142.json",
+      "sha256": "765094adb5d8834be8638cc320eba247077de61b2a42407aabda82feab264f06",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/baseline/baseline_blank_cpu.json",
+      "sha256": "fc04010e8365d747e4e22d364a76ddfc94638d4d793181998463c79b0a090800",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/baseline/before_nms_000000000142.json",
+      "sha256": "443c7e2e746dee8a5086eeeab1c22de9e437411404bfb09efb6ad25a984cd845",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/data-preparation.json",
+      "sha256": "bcd8723f70bcbcc4b0573f5caf10de11cf57b1e35fe546b1c2edcce630f38504",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/desk8-full-20261023-204546-inference.json",
+      "sha256": "1928cee84e86979010acb49e35c9630e03aa44227ddf05294f77992841e8c529",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/desk8-full-20261023-204546-validation.json",
+      "sha256": "b1eb03e60cadfa89de011cdba685390da889b38be122c4841bbeaa227acb4c4c",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/desk8-pilot-20261023-192025-validation.json",
+      "sha256": "27e7c4e349529e6d87f898f71ac1ac661981db34c221dde571e7468b6ac696e7",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/stage4-gate-checks.json",
+      "sha256": "fcbca3b0d8a6b95439332e8fb53484a497e993f3bbbfc935eb67b67aacc46a53",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/stage4-inference-checks.json",
+      "sha256": "d1dcdcd29b88b07b6026bb22ec87baa0b0ab20bab91d76ce3b7d4d8cb13b3e49",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/stage5-segmentation-checks.json",
+      "sha256": "5d4a4ae1feda554b54649e92e7399952db74c0305d65424d9ff696f2ae149ee8",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/stage6-vlm-checks.json",
+      "sha256": "8421153eddff05a1b76c0a629797d5a15c61a396462ab417566991b0975988fe",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/stage7-ui-checks.json",
+      "sha256": "b21d98eef35c8e05d71893c5966896b09c7a04745ddc58eb7a79c8c20aec2669",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/stage8-checks.json",
+      "sha256": "4dd3aa7c179efcfee043c6f9591b945b207076131ce3e2f292c1a90314d77525",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/stage8-demo.json",
+      "sha256": "84b9edfcbf8addde70d362087137b967552251a7fe7752505f8c9ff22f9df4fd",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/stage8-protocol.json",
+      "sha256": "b268185811c39f10a456b1bcefeb7f531a00cc9c2425fa20087c0f34a69a8da5",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "reports/stage8-results.json",
+      "sha256": "33825a3fd624f492cff7db6d08abe1861f7713197f0c5db809759d432aa7a568",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "tests/test_acceptance.py",
+      "sha256": "d2d911160fade5ab663cf320a0e7e4c8fb203157741f227acc891e661a918ea3",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "tests/test_baseline.py",
+      "sha256": "ce814743368f8648947eedc18b370031f5e79f27b7899725ed8bd6d2f8c154f4",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "tests/test_data.py",
+      "sha256": "32adce532d4d0c3554447f08ac31926877be2616b41e088e0743c7845125d8ae",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "tests/test_segmentation.py",
+      "sha256": "4746d00410ab430eb08a9306f5ade4bd73c6e6cb6051cc06b84164c34aaebdee",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "tests/test_train.py",
+      "sha256": "df1bec9b01085acb0ede7c4a7b99a8353ead2202babbaba5615a502e23043585",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "tests/test_ui.py",
+      "sha256": "4b7c67c54811cd3661b48440ef2b1d3d28b487701875664825e852f3992b6162",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "tests/test_vlm.py",
+      "sha256": "104f0c9c6c120920862b2dd8efd89373f5cdfbb6ffebd00ce0f269d1ebeb8949",
+      "source_state": "tracked_worktree"
+    },
+    {
+      "path": "tests/test_web.py",
+      "sha256": "855b36802f6d32f322f2102dac4544c66369d40a22c8ffcbe84ed17c7bd76170",
+      "source_state": "untracked_worktree"
+    }
+  ]
+}

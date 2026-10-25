@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "stage": 6,
+  "created_at": "2026-10-24T00:19:07.345354+08:00",
+  "route": "deepseek_vision_independent",
+  "provider": "DeepSeek official",
+  "base_url": "https://api.deepseek.com",
+  "model": "deepseek-flash",
+  "real_model_requests": 2,
+  "automatic_retries": 0,
+  "test_split_evaluated": false,
+  "training_performed": false,
+  "weights_modified": false,
+  "prior_results_sent": false,
+  "examples": [
+    {
+      "image": "data/desk8-train-v1/images/val/loco_val_000.png",
+      "image_sha256": "1a4168b939b52003b071883b4fb0549833b8bc8d161a6b76506ddf2929cad438",
+      "split": "val",
+      "vlm_result": "runs/vlm/20261023-235820-d29b13c9/result.json",
+      "vlm_result_sha256": "dae3b0e65d272d14fd1c34f3115853e5f6ca9097b6d02328a6258dea2710bf53",
+      "request_summary_sha256": "0a0d226382bf2d6d0bf42203526734a3aa4f00e102f40af3a69cfd16ef6135f0",
+      "request_sha256": "3c9e07c00410bf7d9e304c1f0a03183868b14fd8314f8564fff79e918695b0d6",
+      "response_text_sha256": "69db55ed1fb75a03b5277840898126dcc246a2ed608a9c274ef2f4ee3be9db7f",
+      "requested_model": "deepseek-flash",
+      "returned_model": "deepseek-flash",
+      "prompt": {
+        "version": "desk8-independent-v1",
+        "sha256": "619fdee141b1f36fa1072501a237c6597c9379184e6fdeb7442423b4c7e7cb79"
+      },
+      "counts": {
+        "cup": 0,
+        "bottle": 0,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 2,
+        "nut": 2,
+        "washer": 2
+      },
+      "true_counts": {
+        "cup": 0,
+        "bottle": 0,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 2,
+        "nut": 2,
+        "washer": 2
+      },
+      "counts_exact": true,
+      "yolo_counts": {
+        "cup": 0,
+        "bottle": 0,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 2,
+        "nut": 2,
+        "washer": 2
+      },
+      "yolo_result_sha256": "1ef1d72110dfb65f9964a5ee27a871d02fe5d431b2af28cc603e8e2623ee36bb",
+      "timings_ms": {
+        "input_preparation": 171.856,
+        "api_wall": 4015.888,
+        "total_wall": 4192.043
+      },
+      "usage": {
+        "prompt_tokens": 1668,
+        "completion_tokens": 189,
+        "total_tokens": 1857
+      },
+      "uncertain_items": 0,
+      "notes": "垫圈为弹簧垫圈，按垫圈计；袋内物品与包装袋面印刷图案不重复计数。",
+      "positions_evaluated": false
+    },
+    {
+      "image": "data/desk8-train-v1/images/val/oi_38451ec391f20ab5.jpg",
+      "image_sha256": "8ef910f0fc1047daf64d7e4bb228805c158b5866b55286df44637465ae55a01c",
+      "split": "val",
+      "vlm_result": "runs/vlm/20261024-000140-259a0332/result.json",
+      "vlm_result_sha256": "e39c91247a1d69008c2e8758c46be12537bcb6740a2628f0c048a988e4ede09a",
+      "request_summary_sha256": "e2ceffbece02c168968409e4f8200104bb5b4e7b290ee4e6aa4a436dcd89a62a",
+      "request_sha256": "5f1ba8c66262e384e75cfff3e6d22ab5e3781182975c63e4ed09452bdf7c80f6",
+      "response_text_sha256": "01d4b7ba8bcfa95ddd9fef1543f8e74f4ac49051ac5b14252c0223ac35b11a4b",
+      "requested_model": "deepseek-flash",
+      "returned_model": "deepseek-flash",
+      "prompt": {
+        "version": "desk8-independent-v1",
+        "sha256": "619fdee141b1f36fa1072501a237c6597c9379184e6fdeb7442423b4c7e7cb79"
+      },
+      "counts": {
+        "cup": 1,
+        "bottle": 1,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      },
+      "true_counts": {
+        "cup": 1,
+        "bottle": 1,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      },
+      "counts_exact": true,
+      "yolo_counts": {
+        "cup": 0,
+        "bottle": 2,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      },
+      "yolo_result_sha256": "548958a8c7096f3aaa0e5f9b3449c99cb53aa7ae8dbd34c9a38e30e5c466c52b",
+      "timings_ms": {
+        "input_preparation": 65.477,
+        "api_wall": 2979.287,
+        "total_wall": 3073.543
+      },
+      "usage": {
+        "prompt_tokens": 1154,
+        "completion_tokens": 81,
+        "total_tokens": 1235
+      },
+      "uncertain_items": 0,
+      "notes": "",
+      "positions_evaluated": false
+    }
+  ],
+  "local_failure_check": {
+    "result": "runs/vlm/20261024-000939-2a5e3393/result.json",
+    "sha256": "d1873389f2385d02cc4724d90338869849d2507283282be00849a5eee0d3a7ea",
+    "error": {
+      "stage": "input",
+      "code": "invalid_image",
+      "message": "输入图片不存在。",
+      "http_status": null
+    },
+    "request_sent": false,
+    "no_forged_zero_counts": true
+  },
+  "fresh_process_import_check": {
+    "ultralytics_loaded": false,
+    "sam2_loaded": false,
+    "torch_loaded": false
+  },
+  "verification": {
+    "unit_tests_passed": 40,
+    "vlm_unit_tests_passed": 11,
+    "live_config_ready": true,
+    "api_key_saved_in_report": false
+  },
+  "limitations": [
+    "两张已用于开发的验证图，仅验证接口和计数契约，不构成独立精度评估。",
+    "八类未全覆盖；不报告检测 mAP、分割准确率或总体优势。",
+    "计数一致不能证明位置与细分描述正确；五金附加说明仍需人工复核。",
+    "记录实际 token 与 API 网络生成耗时；没有推算费用或稳定帧率。"
+  ],
+  "official_sources": [
+    "https://api-docs.deepseek.com/zh-cn/guides/vision/",
+    "https://api-docs.deepseek.com/zh-cn/guides/json_mode",
+    "https://api-docs.deepseek.com/zh-cn/guides/thinking_mode"
+  ]
+}

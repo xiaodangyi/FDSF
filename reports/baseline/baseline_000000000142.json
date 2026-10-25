@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "status": "ok",
+  "coordinate_system": "原图像素坐标，左上角为原点，xyxy",
+  "image_size": {
+    "width": 480,
+    "height": 640
+  },
+  "detections": [
+    {
+      "instance_id": 1,
+      "category_id": 1,
+      "category_key": "bottle",
+      "category_name": "瓶子",
+      "source_class_id": 39,
+      "detection_confidence": 0.7549372315406799,
+      "bbox_xyxy": [
+        87.1206283569336,
+        0.271881103515625,
+        269.1152648925781,
+        366.7303771972656
+      ]
+    },
+    {
+      "instance_id": 2,
+      "category_id": 1,
+      "category_key": "bottle",
+      "category_name": "瓶子",
+      "source_class_id": 39,
+      "detection_confidence": 0.6049738526344299,
+      "bbox_xyxy": [
+        258.63031005859375,
+        84.39864349365234,
+        418.96453857421875,
+        340.2084045410156
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "category_id": 0,
+      "category_name": "杯子",
+      "status": "supported",
+      "status_text": "基线支持",
+      "count": 0
+    },
+    {
+      "category_id": 1,
+      "category_name": "瓶子",
+      "status": "supported",
+      "status_text": "基线支持",
+      "count": 2
+    },
+    {
+      "category_id": 2,
+      "category_name": "书",
+      "status": "supported",
+      "status_text": "基线支持",
+      "count": 0
+    },
+    {
+      "category_id": 3,
+      "category_name": "橡皮",
+      "status": "not_trained",
+      "status_text": "尚未训练",
+      "count": null
+    },
+    {
+      "category_id": 4,
+      "category_name": "螺丝刀",
+      "status": "not_trained",
+      "status_text": "尚未训练",
+      "count": null
+    },
+    {
+      "category_id": 5,
+      "category_name": "螺丝",
+      "status": "not_trained",
+      "status_text": "尚未训练",
+      "count": null
+    },
+    {
+      "category_id": 6,
+      "category_name": "螺母",
+      "status": "not_trained",
+      "status_text": "尚未训练",
+      "count": null
+    },
+    {
+      "category_id": 7,
+      "category_name": "垫圈",
+      "status": "not_trained",
+      "status_text": "尚未训练",
+      "count": null
+    }
+  ],
+  "total_supported_detections": 2,
+  "message": "结果只覆盖预训练支持的三类，需人工核对漏检和误检。",
+  "model": {
+    "route": "yolov8_coco_baseline",
+    "weights_name": "yolov8n.pt",
+    "weights_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+    "device": "cuda:0",
+    "gpu_name": "NVIDIA GeForce RTX 5070 Laptop GPU"
+  },
+  "parameters": {
+    "confidence_threshold": 0.25,
+    "nms_iou_threshold": 0.7,
+    "image_size": 640,
+    "max_detections": 300,
+    "half_precision": false,
+    "class_agnostic_nms": true
+  },
+  "counting_note": "八类按互斥物品处理，跨类别抑制高度重叠框；严重重叠的不同实物仍可能漏检。",
+  "timings_ms": {
+    "model_load_and_transfer": 100.437,
+    "prediction_wall": 475.65,
+    "model_preprocess": 2.151,
+    "model_inference": 22.442,
+    "model_postprocess": 109.792,
+    "image_decode": 1.677
+  },
+  "timing_note": "单张调用耗时，首张包含推理器初始化与预热；不能视为稳定吞吐率。",
+  "created_at": "2026-10-23T12:57:18.106348+08:00",
+  "input": {
+    "file_name": "000000000142.jpg",
+    "sha256": "3c852dc71abcf6cf06ed58202d1b2c850bb783553f05c63cd6ca511936b431aa"
+  },
+  "versions": {
+    "torch": "2.7.1+cu128",
+    "torchvision": "0.22.1+cu128",
+    "ultralytics": "8.3.203",
+    "opencv-python": "4.11.0.86",
+    "Pillow": "11.3.0"
+  },
+  "category_config": {
+    "sha256": "2414791e86e35b79963756c3d4386bbdae1ef95ec9c4082cc80c2b27e5eca953",
+    "mapping": [
+      {
+        "id": 0,
+        "key": "cup",
+        "name": "杯子",
+        "coco_id": 41
+      },
+      {
+        "id": 1,
+        "key": "bottle",
+        "name": "瓶子",
+        "coco_id": 39
+      },
+      {
+        "id": 2,
+        "key": "book",
+        "name": "书",
+        "coco_id": 73
+      },
+      {
+        "id": 3,
+        "key": "eraser",
+        "name": "橡皮",
+        "coco_id": null
+      },
+      {
+        "id": 4,
+        "key": "screwdriver",
+        "name": "螺丝刀",
+        "coco_id": null
+      },
+      {
+        "id": 5,
+        "key": "screw",
+        "name": "螺丝",
+        "coco_id": null
+      },
+      {
+        "id": 6,
+        "key": "nut",
+        "name": "螺母",
+        "coco_id": null
+      },
+      {
+        "id": 7,
+        "key": "washer",
+        "name": "垫圈",
+        "coco_id": null
+      }
+    ]
+  },
+  "artifacts": {
+    "visualization": "annotated.png",
+    "result": "result.json"
+  }
+}

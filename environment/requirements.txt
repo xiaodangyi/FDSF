@@ -1,0 +1,22 @@
+# 先按环境说明安装官方 cu128 的 torch 与 torchvision。
+ultralytics==8.3.203
+opencv-python==4.11.0.86
+# 业务模块直接使用图像数组和中文绘图，显式记录依赖。
+numpy==1.26.4
+Pillow==11.3.0
+hydra-core==1.3.2
+iopath==0.1.10
+tqdm>=4.66.1,<5
+pycocotools==2.0.10
+gradio==5.49.1
+openai==2.16.0
+httpx==0.28.1
+python-dotenv==1.2.1
+tzdata
+# 脚本直接读取 YAML 配置，显式声明依赖。
+PyYAML==6.0.3
+# 数据准备器直接使用 requests 与 urllib3 重试策略。
+requests==2.34.2
+urllib3==2.8.0
+# SAM 2 按环境说明从下列官方固定提交单独安装：
+# https://github.com/facebookresearch/sam2/commit/2b90b9f5ceec907a1c18123530e92e794ad901a4

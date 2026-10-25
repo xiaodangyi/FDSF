@@ -1,0 +1,14 @@
+# 第四阶段首轮小批试跑；完成后根据验证集决定是否安排正式训练。
+schema_version: 1
+dataset: data/desk8-train-v1
+model: yolov8n
+epochs: 3
+image_size: 640
+batch_size: 4
+workers: 0
+device: 0
+amp: false
+cache: false
+seed: 42
+save_period: 1
+output_dir: runs/train

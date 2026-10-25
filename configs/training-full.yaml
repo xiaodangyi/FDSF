@@ -1,0 +1,18 @@
+# 用户于 2026-10-23 要求停止试跑，直接进行大轮训练。
+# 延用已复核的 64 张数据，不将未补标的新候选混入；旧试跑配置和数据摘要保持可追溯。
+schema_version: 2
+dataset: data/desk8-train-v1
+dataset_manifest_sha256: e10c04b4b7cb57a6af157b207dee413d331c9c95b100754c99fce9136f942cc8
+authorization: 用户明确要求“别试跑了，找到训练集直接开始大轮训练”；本次沿用已复核数据进行长训练。
+model: yolov8n
+epochs: 100
+patience: 20
+image_size: 640
+batch_size: 4
+workers: 0
+device: 0
+amp: false
+cache: false
+seed: 42
+save_period: 10
+output_dir: runs/train

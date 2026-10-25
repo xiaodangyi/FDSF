@@ -1,0 +1,46 @@
+# 本机配置与密钥
+.local/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# 权重、数据与运行产物不通过普通 Git 上传
+models/
+data/
+datasets/
+runs/
+outputs/
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.zip
+*.tar
+*.gz
+
+# 环境与缓存
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.idea/
+.vscode/
+Ultralytics/
+environment/ultralytics-settings/
+environment/matplotlib-cache/
+environment/training-smoke*/
+environment/*verification.json
+environment/conda-before.txt
+environment/pip-before.txt
+environment/cleanup*.json
+# 保留本机旧环境调查备查，当前环境以 environment/README.md 为准
+notes/grounded-sam2-environment-research.md
+
+# 系统临时文件
+Thumbs.db
+Desktop.ini
+*.log

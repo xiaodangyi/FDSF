@@ -1,0 +1,16 @@
+{
+  "stage": "S0",
+  "started_at": "2026-10-25T19:40:12.231742+08:00",
+  "finished_at": "2026-10-25T19:40:35.224258+08:00",
+  "command": "python -m unittest discover -s tests -v",
+  "python_version": "3.12.15",
+  "exit_code": 0,
+  "tests_run": 62,
+  "status": "passed",
+  "log": "runs/stage3/S0/20261025-194012-231742/unittest.txt",
+  "scope": "离线契约与界面构建，不代表模型、Linux、Docker或云端验收。",
+  "warnings": [
+    "ResourceWarning: Enable tracemalloc to get the object allocation traceback",
+    "ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>"
+  ]
+}

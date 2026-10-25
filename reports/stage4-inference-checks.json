@@ -1,0 +1,79 @@
+{
+  "run_name": "desk8-pilot-20261023-192025",
+  "examples": [
+    {
+      "id": "loco_val_000",
+      "split": "val",
+      "confidence": 0.25,
+      "predicted_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0
+      },
+      "true_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 2,
+        "6": 2,
+        "7": 2
+      },
+      "result": "runs/finetuned/20261023-192823-80f81190/result.json",
+      "visualization": "runs/finetuned/20261023-192823-80f81190/annotated.png",
+      "result_sha256": "52222bd3447be07a9afdf21400bb00dc7a8f482dd50087c43b33b195e497f05c"
+    },
+    {
+      "id": "oi_38451ec391f20ab5",
+      "split": "val",
+      "confidence": 0.25,
+      "predicted_counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0
+      },
+      "true_counts": {
+        "0": 1,
+        "1": 1,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0
+      },
+      "result": "runs/finetuned/20261023-192829-0b104046/result.json",
+      "visualization": "runs/finetuned/20261023-192829-0b104046/annotated.png",
+      "result_sha256": "ef17ef76677ad6da0e998cb7e3a9b5bfa4c5592df5837abb07c16148de0807fb"
+    }
+  ],
+  "wrong_mode_checks": [
+    {
+      "arguments": [
+        "--weights",
+        "runs/train/desk8-pilot-20261023-192025/weights/best.pt"
+      ],
+      "exit_code": 1,
+      "message": "检测失败：权重类别不是预期的 COCO 字典；请选择八类微调模式或正确权重。"
+    },
+    {
+      "arguments": [
+        "--mode",
+        "finetuned"
+      ],
+      "exit_code": 1,
+      "message": "检测失败：微调模式必须通过 --weights 显式选择八类权重。"
+    }
+  ]
+}

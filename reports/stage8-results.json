@@ -1,0 +1,853 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-24T11:11:43.778617+08:00",
+  "protocol_sha256": "b268185811c39f10a456b1bcefeb7f531a00cc9c2425fa20087c0f34a69a8da5",
+  "routes": {
+    "yolo": {
+      "metrics": {
+        "images": 9,
+        "successful": 9,
+        "failed_or_missing": 0,
+        "exact_images": 7,
+        "exact_rate_all": 0.7777777777777778,
+        "exact_rate_successful": 0.7777777777777778,
+        "absolute_error_per_class": {
+          "cup": 0,
+          "bottle": 0,
+          "book": 1,
+          "eraser": 2,
+          "screwdriver": 1,
+          "screw": 0,
+          "nut": 0,
+          "washer": 0
+        },
+        "total_absolute_error": 4,
+        "mae_per_image_category": 0.05555555555555555,
+        "normalized_absolute_error": 0.13793103448275862,
+        "truth_instances_on_successful": 29,
+        "total_wall_ms": {
+          "median": 1253.93,
+          "min": 1006.971,
+          "max": 13017.629
+        },
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "total_tokens": 0
+        },
+        "responses_with_usage": 0
+      },
+      "samples": [
+        {
+          "id": "loco_test_000",
+          "image_sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "error": null,
+          "timings_ms": {
+            "model_load_and_transfer": 203.307,
+            "prediction_wall": 722.914,
+            "model_preprocess": 2.941,
+            "model_inference": 37.022,
+            "model_postprocess": 180.213,
+            "image_decode": 34.717,
+            "sam2_load_and_transfer": 797.967,
+            "sam2_image_encoding": 282.623,
+            "sam2_mask_decoding": 190.311,
+            "sam2_artifact_write": 126.761,
+            "total_wall": 13017.629
+          },
+          "usage": {},
+          "report_sha256": "ab6e743da8549374b9cf780eb56e585667f82655a9dc348c565b2413684e9ac3",
+          "segmentation": {
+            "status": "completed",
+            "nonempty_masks": 6,
+            "empty_masks": 0
+          }
+        },
+        {
+          "id": "loco_test_010",
+          "image_sha256": "0070df93203f689ef6bf3ce5e30b7ecb856e3484f26076f9b09927d5936fa43d",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "error": null,
+          "timings_ms": {
+            "model_load_and_transfer": 73.783,
+            "prediction_wall": 135.632,
+            "model_preprocess": 1.962,
+            "model_inference": 9.133,
+            "model_postprocess": 79.004,
+            "image_decode": 35.699,
+            "sam2_load_and_transfer": 518.285,
+            "sam2_image_encoding": 57.088,
+            "sam2_mask_decoding": 77.06,
+            "sam2_artifact_write": 125.153,
+            "total_wall": 1991.662
+          },
+          "usage": {},
+          "report_sha256": "aeedb25014fc9282a86c96a5e7725c5b20c2626f86ca5bc66303fe5b67af6c66",
+          "segmentation": {
+            "status": "completed",
+            "nonempty_masks": 6,
+            "empty_masks": 0
+          }
+        },
+        {
+          "id": "loco_test_020",
+          "image_sha256": "0f795c9dabf6404a12169e88e215b17ea6dc703ee89edb6c32d928e48b8a85e8",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "error": null,
+          "timings_ms": {
+            "model_load_and_transfer": 50.13,
+            "prediction_wall": 56.87,
+            "model_preprocess": 1.941,
+            "model_inference": 9.995,
+            "model_postprocess": 3.799,
+            "image_decode": 35.762,
+            "sam2_load_and_transfer": 554.201,
+            "sam2_image_encoding": 43.542,
+            "sam2_mask_decoding": 80.038,
+            "sam2_artifact_write": 126.674,
+            "total_wall": 1912.916
+          },
+          "usage": {},
+          "report_sha256": "ebe78299e2496acebcab1c240c78636595caae326270197d3f70fb68667041ec",
+          "segmentation": {
+            "status": "completed",
+            "nonempty_masks": 6,
+            "empty_masks": 0
+          }
+        },
+        {
+          "id": "loco_test_030",
+          "image_sha256": "6478243511450b23a31c2861f6fb754c1c721cf182f70b02a60faa5111d50762",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "error": null,
+          "timings_ms": {
+            "model_load_and_transfer": 52.141,
+            "prediction_wall": 56.615,
+            "model_preprocess": 1.864,
+            "model_inference": 11.915,
+            "model_postprocess": 1.729,
+            "image_decode": 34.966,
+            "sam2_load_and_transfer": 532.357,
+            "sam2_image_encoding": 39.726,
+            "sam2_mask_decoding": 90.229,
+            "sam2_artifact_write": 137.088,
+            "total_wall": 1907.379
+          },
+          "usage": {},
+          "report_sha256": "8dde79fdcbf02b44c11157b33fff0e783e3e59a44ce93fe80e73c8597797702f",
+          "segmentation": {
+            "status": "completed",
+            "nonempty_masks": 6,
+            "empty_masks": 0
+          }
+        },
+        {
+          "id": "oi_02a90407e6bf3ef8",
+          "image_sha256": "34288f232dccfa9853ef88929a49881cf08a2eebaaa92fd83e5bc414e3e21082",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 1,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 1,
+            "screwdriver": 1,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "error": null,
+          "timings_ms": {
+            "model_load_and_transfer": 142.712,
+            "prediction_wall": 46.628,
+            "model_preprocess": 1.853,
+            "model_inference": 7.271,
+            "model_postprocess": 1.782,
+            "image_decode": 7.319,
+            "sam2_load_and_transfer": 527.483,
+            "sam2_image_encoding": 36.209,
+            "sam2_mask_decoding": 28.722,
+            "sam2_artifact_write": 40.674,
+            "total_wall": 1253.93
+          },
+          "usage": {},
+          "report_sha256": "8a1af571f711011021e58b84b8df1b0d7759826fb49202972e77b491b47ad48d",
+          "segmentation": {
+            "status": "completed",
+            "nonempty_masks": 2,
+            "empty_masks": 0
+          }
+        },
+        {
+          "id": "oi_0b92046dc7f1f249",
+          "image_sha256": "200beefb66aeedd46c507f2ccd9e42d34a771378e34f2e986f035dbb8e908a97",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 1,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 1,
+            "screwdriver": 1,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "error": null,
+          "timings_ms": {
+            "model_load_and_transfer": 66.912,
+            "prediction_wall": 90.663,
+            "model_preprocess": 1.712,
+            "model_inference": 35.313,
+            "model_postprocess": 2.126,
+            "image_decode": 7.483,
+            "sam2_load_and_transfer": 418.558,
+            "sam2_image_encoding": 35.53,
+            "sam2_mask_decoding": 26.924,
+            "sam2_artifact_write": 57.673,
+            "total_wall": 1180.294
+          },
+          "usage": {},
+          "report_sha256": "8291c90dd9466d82e2017a71538bb460c9016fb82b782832c2e6c8d687b8606f",
+          "segmentation": {
+            "status": "completed",
+            "nonempty_masks": 2,
+            "empty_masks": 0
+          }
+        },
+        {
+          "id": "oi_1088928dd27d2299",
+          "image_sha256": "0862e475a04214f824dbafdf6d1212640afdcd5f8d95d179e41a29ab51b69194",
+          "truth": {
+            "cup": 1,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 1,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "error": null,
+          "timings_ms": {
+            "model_load_and_transfer": 45.777,
+            "prediction_wall": 130.908,
+            "model_preprocess": 1.482,
+            "model_inference": 91.843,
+            "model_postprocess": 2.415,
+            "image_decode": 3.537,
+            "sam2_load_and_transfer": 445.261,
+            "sam2_image_encoding": 33.954,
+            "sam2_mask_decoding": 10.841,
+            "sam2_artifact_write": 23.799,
+            "total_wall": 1087.775
+          },
+          "usage": {},
+          "report_sha256": "8008f5dd0d6c6ae9f90a330a71a073e174960661abd4bf54e8ee9fe8ac6c8386",
+          "segmentation": {
+            "status": "completed",
+            "nonempty_masks": 1,
+            "empty_masks": 0
+          }
+        },
+        {
+          "id": "oi_2f47847a26b41b63",
+          "image_sha256": "018769173e1928d52140beec4388d185e1284ece8bdd72072ecdd3c13abcb024",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 1,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 1,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "error": null,
+          "timings_ms": {
+            "model_load_and_transfer": 44.352,
+            "prediction_wall": 46.052,
+            "model_preprocess": 1.545,
+            "model_inference": 8.274,
+            "model_postprocess": 1.55,
+            "image_decode": 6.24,
+            "sam2_load_and_transfer": 424.575,
+            "sam2_image_encoding": 37.028,
+            "sam2_mask_decoding": 11.001,
+            "sam2_artifact_write": 20.138,
+            "total_wall": 1006.971
+          },
+          "usage": {},
+          "report_sha256": "9cdba1bd4974440c3606947c52df1a529a6b5d1fe514de2a9efab630f0a92d7c",
+          "segmentation": {
+            "status": "completed",
+            "nonempty_masks": 1,
+            "empty_masks": 0
+          }
+        },
+        {
+          "id": "oi_fe400557382a38aa",
+          "image_sha256": "64d2225165aaf32e2da0a847892d8b4286fe0e2b9e0aa8205f8f4a71a880904b",
+          "truth": {
+            "cup": 0,
+            "bottle": 1,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 1,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "error": null,
+          "timings_ms": {
+            "model_load_and_transfer": 47.056,
+            "prediction_wall": 51.03,
+            "model_preprocess": 1.691,
+            "model_inference": 8.272,
+            "model_postprocess": 1.498,
+            "image_decode": 6.751,
+            "sam2_load_and_transfer": 419.583,
+            "sam2_image_encoding": 37.09,
+            "sam2_mask_decoding": 11.296,
+            "sam2_artifact_write": 11.547,
+            "total_wall": 1048.4
+          },
+          "usage": {},
+          "report_sha256": "be72c778f36019c83519a11ab0dedfb325e6a5d2852ccf141e2968756ffcb8cc",
+          "segmentation": {
+            "status": "completed",
+            "nonempty_masks": 1,
+            "empty_masks": 0
+          }
+        }
+      ]
+    },
+    "deepseek": {
+      "metrics": {
+        "images": 9,
+        "successful": 9,
+        "failed_or_missing": 0,
+        "exact_images": 9,
+        "exact_rate_all": 1.0,
+        "exact_rate_successful": 1.0,
+        "absolute_error_per_class": {
+          "cup": 0,
+          "bottle": 0,
+          "book": 0,
+          "eraser": 0,
+          "screwdriver": 0,
+          "screw": 0,
+          "nut": 0,
+          "washer": 0
+        },
+        "total_absolute_error": 0,
+        "mae_per_image_category": 0.0,
+        "normalized_absolute_error": 0.0,
+        "truth_instances_on_successful": 29,
+        "total_wall_ms": {
+          "median": 2476.175,
+          "min": 1516.237,
+          "max": 3995.187
+        },
+        "usage": {
+          "prompt_tokens": 12184,
+          "completion_tokens": 1169,
+          "total_tokens": 13353
+        },
+        "responses_with_usage": 9
+      },
+      "samples": [
+        {
+          "id": "loco_test_000",
+          "image_sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "error": null,
+          "timings_ms": {
+            "input_preparation": 89.99,
+            "api_wall": 3896.946,
+            "total_wall": 3995.187,
+            "ui_total_wall": 3999.676
+          },
+          "usage": {
+            "prompt_tokens": 1668,
+            "completion_tokens": 190,
+            "total_tokens": 1858
+          },
+          "report_sha256": "a214c771afe426ad526ee489590c6d18db38ae754e253fe8d95e38e6560722e8",
+          "returned_model": "deepseek-flash"
+        },
+        {
+          "id": "loco_test_010",
+          "image_sha256": "0070df93203f689ef6bf3ce5e30b7ecb856e3484f26076f9b09927d5936fa43d",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "error": null,
+          "timings_ms": {
+            "input_preparation": 93.7,
+            "api_wall": 2528.733,
+            "total_wall": 2623.597,
+            "ui_total_wall": 2628.372
+          },
+          "usage": {
+            "prompt_tokens": 1668,
+            "completion_tokens": 178,
+            "total_tokens": 1846
+          },
+          "report_sha256": "d1bc6bb998add329dd0a8345508ca504b01e70f85dc19e2258ee4d1acbe8c45c",
+          "returned_model": "deepseek-flash"
+        },
+        {
+          "id": "loco_test_020",
+          "image_sha256": "0f795c9dabf6404a12169e88e215b17ea6dc703ee89edb6c32d928e48b8a85e8",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "error": null,
+          "timings_ms": {
+            "input_preparation": 93.564,
+            "api_wall": 2559.53,
+            "total_wall": 2655.225,
+            "ui_total_wall": 2669.196
+          },
+          "usage": {
+            "prompt_tokens": 1668,
+            "completion_tokens": 178,
+            "total_tokens": 1846
+          },
+          "report_sha256": "c6401e58d8653d608ed4aca10f1d1bd2e782c204c0a9e9a2611b7bfb35f1f01b",
+          "returned_model": "deepseek-flash"
+        },
+        {
+          "id": "loco_test_030",
+          "image_sha256": "6478243511450b23a31c2861f6fb754c1c721cf182f70b02a60faa5111d50762",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 2,
+            "nut": 2,
+            "washer": 2
+          },
+          "error": null,
+          "timings_ms": {
+            "input_preparation": 89.284,
+            "api_wall": 3141.837,
+            "total_wall": 3233.336,
+            "ui_total_wall": 3244.025
+          },
+          "usage": {
+            "prompt_tokens": 1668,
+            "completion_tokens": 185,
+            "total_tokens": 1853
+          },
+          "report_sha256": "dca4a10a17ebc4e0205c95ae187c97f7a08b31ddc3834ef5b01c1f92e4b8bb96",
+          "returned_model": "deepseek-flash"
+        },
+        {
+          "id": "oi_02a90407e6bf3ef8",
+          "image_sha256": "34288f232dccfa9853ef88929a49881cf08a2eebaaa92fd83e5bc414e3e21082",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 1,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 1,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "error": null,
+          "timings_ms": {
+            "input_preparation": 30.186,
+            "api_wall": 2242.901,
+            "total_wall": 2283.259,
+            "ui_total_wall": 2290.413
+          },
+          "usage": {
+            "prompt_tokens": 1096,
+            "completion_tokens": 98,
+            "total_tokens": 1194
+          },
+          "report_sha256": "dbec007dd9e250cdc30c66684e45a6dabdc62b3abd2c020e4053b10369827097",
+          "returned_model": "deepseek-flash"
+        },
+        {
+          "id": "oi_0b92046dc7f1f249",
+          "image_sha256": "200beefb66aeedd46c507f2ccd9e42d34a771378e34f2e986f035dbb8e908a97",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 1,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 1,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "error": null,
+          "timings_ms": {
+            "input_preparation": 28.267,
+            "api_wall": 1919.843,
+            "total_wall": 1949.941,
+            "ui_total_wall": 1956.121
+          },
+          "usage": {
+            "prompt_tokens": 1154,
+            "completion_tokens": 102,
+            "total_tokens": 1256
+          },
+          "report_sha256": "62d9870d779f1de0ed7ad31d31ee4712ea196129c537dd3f0ac65373e01a192a",
+          "returned_model": "deepseek-flash"
+        },
+        {
+          "id": "oi_1088928dd27d2299",
+          "image_sha256": "0862e475a04214f824dbafdf6d1212640afdcd5f8d95d179e41a29ab51b69194",
+          "truth": {
+            "cup": 1,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 1,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "error": null,
+          "timings_ms": {
+            "input_preparation": 18.133,
+            "api_wall": 1496.983,
+            "total_wall": 1516.237,
+            "ui_total_wall": 1529.163
+          },
+          "usage": {
+            "prompt_tokens": 1070,
+            "completion_tokens": 83,
+            "total_tokens": 1153
+          },
+          "report_sha256": "c7318c00e5f439a19044c3e68917451f371dac5823e32307136e05af6d43003e",
+          "returned_model": "deepseek-flash"
+        },
+        {
+          "id": "oi_2f47847a26b41b63",
+          "image_sha256": "018769173e1928d52140beec4388d185e1284ece8bdd72072ecdd3c13abcb024",
+          "truth": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 1,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 0,
+            "book": 0,
+            "eraser": 1,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "error": null,
+          "timings_ms": {
+            "input_preparation": 27.689,
+            "api_wall": 2447.412,
+            "total_wall": 2476.175,
+            "ui_total_wall": 2480.404
+          },
+          "usage": {
+            "prompt_tokens": 1096,
+            "completion_tokens": 71,
+            "total_tokens": 1167
+          },
+          "report_sha256": "017b4af502291ceb71a8faa3251a1b5333bc7029efe4d68b787524ce3bfec1d1",
+          "returned_model": "deepseek-flash"
+        },
+        {
+          "id": "oi_fe400557382a38aa",
+          "image_sha256": "64d2225165aaf32e2da0a847892d8b4286fe0e2b9e0aa8205f8f4a71a880904b",
+          "truth": {
+            "cup": 0,
+            "bottle": 1,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "status": "ok",
+          "counts": {
+            "cup": 0,
+            "bottle": 1,
+            "book": 0,
+            "eraser": 0,
+            "screwdriver": 0,
+            "screw": 0,
+            "nut": 0,
+            "washer": 0
+          },
+          "error": null,
+          "timings_ms": {
+            "input_preparation": 25.822,
+            "api_wall": 1889.059,
+            "total_wall": 1925.109,
+            "ui_total_wall": 1931.658
+          },
+          "usage": {
+            "prompt_tokens": 1096,
+            "completion_tokens": 84,
+            "total_tokens": 1180
+          },
+          "report_sha256": "f5d24f0d920c82774f250595a4dddd1aa96a9b491212584d9669d27fe64a8969",
+          "returned_model": "deepseek-flash"
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "仅9张、29个实例，前五类各仅1张1实例，五金仅4张固定工业背景。",
+    "缺真实桌面、遮挡、密集小物、负样本；人工标签由同一助手复核，仍需人工抽审。",
+    "无人工像素掩膜，不报分割精度；DeepSeek无像素框，不计算其mAP。",
+    "云端服务可能更新，固定请求不能保证未来答案逐字相同。"
+  ],
+  "cost_note": "汇总API返回token用量；无已核实价格和账单，不估算金额；本地硬件电费未测。"
+}

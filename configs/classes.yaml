@@ -1,0 +1,35 @@
+# 这些编号是项目标签的固定含义，不可随意调换。
+schema_version: 1
+classes:
+  - id: 0
+    key: cup
+    name: 杯子
+    coco_id: 41
+  - id: 1
+    key: bottle
+    name: 瓶子
+    coco_id: 39
+  - id: 2
+    key: book
+    name: 书
+    coco_id: 73
+  - id: 3
+    key: eraser
+    name: 橡皮
+    coco_id: null
+  - id: 4
+    key: screwdriver
+    name: 螺丝刀
+    coco_id: null
+  - id: 5
+    key: screw
+    name: 螺丝
+    coco_id: null
+  - id: 6
+    key: nut
+    name: 螺母
+    coco_id: null
+  - id: 7
+    key: washer
+    name: 垫圈
+    coco_id: null

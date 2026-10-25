@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "status": "ok",
+  "coordinate_system": "原图像素坐标，左上角为原点，xyxy",
+  "image_size": {
+    "width": 480,
+    "height": 640
+  },
+  "detections": [
+    {
+      "instance_id": 1,
+      "category_id": 1,
+      "category_key": "bottle",
+      "category_name": "瓶子",
+      "source_class_id": 39,
+      "detection_confidence": 0.7549372315406799,
+      "bbox_xyxy": [
+        87.1206283569336,
+        0.271881103515625,
+        269.1152648925781,
+        366.7303771972656
+      ]
+    },
+    {
+      "instance_id": 2,
+      "category_id": 1,
+      "category_key": "bottle",
+      "category_name": "瓶子",
+      "source_class_id": 39,
+      "detection_confidence": 0.6049738526344299,
+      "bbox_xyxy": [
+        258.63031005859375,
+        84.39864349365234,
+        418.96453857421875,
+        340.2084045410156
+      ]
+    },
+    {
+      "instance_id": 3,
+      "category_id": 0,
+      "category_key": "cup",
+      "category_name": "杯子",
+      "source_class_id": 41,
+      "detection_confidence": 0.3882902264595032,
+      "bbox_xyxy": [
+        258.3629455566406,
+        85.47918701171875,
+        419.4136657714844,
+        339.9844970703125
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "category_id": 0,
+      "category_name": "杯子",
+      "status": "supported",
+      "status_text": "基线支持",
+      "count": 1
+    },
+    {
+      "category_id": 1,
+      "category_name": "瓶子",
+      "status": "supported",
+      "status_text": "基线支持",
+      "count": 2
+    },
+    {
+      "category_id": 2,
+      "category_name": "书",
+      "status": "supported",
+      "status_text": "基线支持",
+      "count": 0
+    },
+    {
+      "category_id": 3,
+      "category_name": "橡皮",
+      "status": "not_trained",
+      "status_text": "尚未训练",
+      "count": null
+    },
+    {
+      "category_id": 4,
+      "category_name": "螺丝刀",
+      "status": "not_trained",
+      "status_text": "尚未训练",
+      "count": null
+    },
+    {
+      "category_id": 5,
+      "category_name": "螺丝",
+      "status": "not_trained",
+      "status_text": "尚未训练",
+      "count": null
+    },
+    {
+      "category_id": 6,
+      "category_name": "螺母",
+      "status": "not_trained",
+      "status_text": "尚未训练",
+      "count": null
+    },
+    {
+      "category_id": 7,
+      "category_name": "垫圈",
+      "status": "not_trained",
+      "status_text": "尚未训练",
+      "count": null
+    }
+  ],
+  "total_supported_detections": 3,
+  "message": "结果只覆盖预训练支持的三类，需人工核对漏检和误检。",
+  "model": {
+    "route": "yolov8_coco_baseline",
+    "weights_name": "yolov8n.pt",
+    "weights_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+    "device": "cuda:0",
+    "gpu_name": "NVIDIA GeForce RTX 5070 Laptop GPU"
+  },
+  "parameters": {
+    "confidence_threshold": 0.25,
+    "nms_iou_threshold": 0.7,
+    "image_size": 640,
+    "max_detections": 300,
+    "half_precision": false
+  },
+  "timings_ms": {
+    "model_load_and_transfer": 104.293,
+    "prediction_wall": 466.976,
+    "model_preprocess": 1.337,
+    "model_inference": 20.182,
+    "model_postprocess": 129.812,
+    "image_decode": 3.238
+  },
+  "timing_note": "单张调用耗时，首张包含推理器初始化与预热；不能视为稳定吞吐率。",
+  "created_at": "2026-10-23T12:55:30.407376+08:00",
+  "input": {
+    "file_name": "000000000142.jpg",
+    "sha256": "3c852dc71abcf6cf06ed58202d1b2c850bb783553f05c63cd6ca511936b431aa"
+  },
+  "versions": {
+    "torch": "2.7.1+cu128",
+    "torchvision": "0.22.1+cu128",
+    "ultralytics": "8.3.203",
+    "opencv-python": "4.11.0.86",
+    "Pillow": "11.3.0"
+  },
+  "artifacts": {
+    "visualization": "annotated.png",
+    "result": "result.json"
+  }
+}

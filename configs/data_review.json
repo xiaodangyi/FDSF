@@ -1,0 +1,2752 @@
+{
+  "schema_version": 1,
+  "reviewer": "本次开发中的逐图视觉复核",
+  "training_ready": true,
+  "training_blockers": [],
+  "source_decisions": {
+    "fasteners": {
+      "status": "quarantined",
+      "note": "抽查联系表首9张后发现缺少真实螺纹且部分物体难辨；整批300张不进入当前数据集，未声称逐张复核。"
+    }
+  },
+  "records": {
+    "oi_02a90407e6bf3ef8": {
+      "status": "approved",
+      "image_sha256": "34288f232dccfa9853ef88929a49881cf08a2eebaaa92fd83e5bc414e3e21082",
+      "label_sha256": "75c58a24334ac2c235717cc4c665a84bd0728cc8ed635df2d79d7b2847ebe348",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_02d71cd1cb9f57bc": {
+      "status": "approved",
+      "image_sha256": "112e423963cc5d1cf8ad44d963b329c0382158464e8ba0982521663c6548fc43",
+      "label_sha256": "6c2e84a34c443f5a8719b89c01ef2c284150cf6daa1f3a854908baa374167f6a",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_039d98c90d183417": {
+      "status": "approved",
+      "image_sha256": "785666dc799a2e18eb228c05077def41f4011e6722a641f2d7ce4254f3495cae",
+      "label_sha256": "dc41c00707ab8d390ddcf9c387edc7f62ce466694a8066a312c1b841d10d207d",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_0ad0ed2329a481ed": {
+      "status": "approved",
+      "image_sha256": "59708df8b994074917c00a9144eaadc7f87690ebf1f47e46c8140d4cb2bc917e",
+      "label_sha256": "02666bdfe77d9dc14462cf37a388da0617c327961a549420106b1c34d1ab4ace",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_0b92046dc7f1f249": {
+      "status": "approved",
+      "image_sha256": "200beefb66aeedd46c507f2ccd9e42d34a771378e34f2e986f035dbb8e908a97",
+      "label_sha256": "64d31ee608c81bbedfbcf4079bdbffe926bdd5b816c237b1f088d87cbf4a521b",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。",
+      "split": "test"
+    },
+    "oi_0c83f3e3d6a4fd85": {
+      "status": "approved",
+      "image_sha256": "e45b85ea7cfe9ebd69336419f2b9777c9c959f7d65568478aaf0ee9ca71ad8df",
+      "label_sha256": "bab120be34dd8e43e6d5c18e6f2420e0fc9efffa5de89d825ae5550c779e2731",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_0cb9988fa613635b": {
+      "status": "approved",
+      "image_sha256": "53bf881809b7103d06b8bf8b2d6b8a19b980b5edb5b3fa27356439ce288c6c71",
+      "label_sha256": "81a8ebbb839d42ed99304e71806506d6934931a8734da37528252198efdc9b68",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_1088928dd27d2299": {
+      "status": "approved",
+      "image_sha256": "0862e475a04214f824dbafdf6d1212640afdcd5f8d95d179e41a29ab51b69194",
+      "label_sha256": "f371630efe2af168c1695daf8a7254bf1f1365133db54fef1842b1ce78e4d162",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_10a79e15508daa7d": {
+      "status": "approved",
+      "image_sha256": "dc43809042c9bb7bdf5c502daca86b5ae14247ffe40878efc3dd007e97b379b5",
+      "label_sha256": "dac53c1beacbc7d87988e9d4859a89c17b054c29df373f83ee9a6f92a08f3e97",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_134f5428710fad6b": {
+      "status": "approved",
+      "image_sha256": "8836418ca19fb62d3bffa072132e1453ea707a360fea63eb013a9625c45a64cd",
+      "label_sha256": "5b4a8f63a5905b3a694d5a874880ea1cee157f02da44e2c0323db8900d1a06f0",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_274112131556f171": {
+      "status": "approved",
+      "image_sha256": "75e5c796dfe07a1707ec60718465284947125c47b079710bbe14b336c9a83948",
+      "label_sha256": "c360e3c56892cbeef7062a0aefdce4a62b32d39107e6f801bf2041bd5ee958f4",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_2f47847a26b41b63": {
+      "status": "approved",
+      "image_sha256": "018769173e1928d52140beec4388d185e1284ece8bdd72072ecdd3c13abcb024",
+      "label_sha256": "31cf65902af946f42fb701d7aa32de3675d1731fd88ea20b3e5aa66449cfbe66",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_37edd6f7690580cb": {
+      "status": "approved",
+      "image_sha256": "c5609a901e36d7c6664801a3c3d63e42eaa5eee5b5aa7e64c2d686856e2a1735",
+      "label_sha256": "6556b5789f5edac18ee2cc2bf9550f3f1f242a837c2bc7899bb6a806398c8854",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_38cf55592ebb90d7": {
+      "status": "approved",
+      "image_sha256": "6f26842171ecf3cc7d53ee6c2bb1a69e41c841f6fe8480afaa7df2516403115f",
+      "label_sha256": "cc5c2275b56524b9df3050e1e262962ea5a34bd3732703fa7099bc8cd41dfecf",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_4d12119c6fd24511": {
+      "status": "approved",
+      "image_sha256": "e820ed5dc2e09cf387e96cbe76f94eac178311d9c23a0a22c3278d0390006342",
+      "label_sha256": "cc676c3532e6f8cf014d2ba911d11f7e89717f8e17e512d242a545f5893b5590",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。",
+      "split": "val"
+    },
+    "oi_5663a7b25b71ad28": {
+      "status": "approved",
+      "image_sha256": "67c14a2d9f7066b904a705b1f350748292e2bc29f269f3b5e59294e95c8c8944",
+      "label_sha256": "3c1d68c9b27208a7f20067fcf1b574d208d15cc10c55474fda6f001603ba2d6e",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_5feb08a8c1ab5a05": {
+      "status": "approved",
+      "image_sha256": "5ac18081d95df08c46ecc934ce753a918b15b018cf4412da4be512f5793956c4",
+      "label_sha256": "02e1e6057047fbd8c92ea1d50f1cbc5d1f90ec81ea50ace3f05d205586f2af27",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_66a3beb56e4ca812": {
+      "status": "approved",
+      "image_sha256": "4c2914debb9bb4b97b8728e78a4a04274b892a720fc43a94ea572147080421ee",
+      "label_sha256": "9a8bbe15fa759a90a464dc2453a44781027d45a5227df2e3fc48ace681f7ddb0",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_6a99002bbdc9cbf0": {
+      "status": "approved",
+      "image_sha256": "d50af91b61972cad4abbf8d24c16f75b31ace4510dad23a5d1716b7aa1c64d8b",
+      "label_sha256": "10c6d0829723e24c8672e5de346a6e1e54d08ecd41eee3ee24094e836a4db8cf",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_74a16a6fad18e878": {
+      "status": "approved",
+      "image_sha256": "9a7c54ce431ff374ba4c8f6bc1117016ae1d2399e5f33b1e6ba006185abc158f",
+      "label_sha256": "cc03467986e212613e256328a773b1a054a13409d36ab246e9278c4315b52fc0",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_7748c1a164e026a1": {
+      "status": "approved",
+      "image_sha256": "c8b649afe92b15f051e0f632df3d47aecba3870eef4599bcb15eb55f746f16a6",
+      "label_sha256": "3cde11cb00402797ff43564fa5782db5d60a859ffa624d4a884f053cf8f4510a",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_7bf5e8fbaffb02d5": {
+      "status": "approved",
+      "image_sha256": "0d708a2898cff57c7ded680aff9435129e6ab114cc847eece9c6193e7b443806",
+      "label_sha256": "9743b5257b50d8c4f23736d69978330b129af08a8afd92973af9ca5b9f5826e7",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_7d6d1b8eee193386": {
+      "status": "approved",
+      "image_sha256": "ff44f86ed63ad44f0be0689b323728abd8d1d45fc2c7674de1a307cbc5ebb81c",
+      "label_sha256": "4d1cd6ff2be22a9ed0cf972b2197f19bda9adfe85174514ba8ff6f1b608fc2a4",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_8abe387edad1ab14": {
+      "status": "approved",
+      "image_sha256": "4afa497b9a96bf35370b80b974748f7895c495865767593e73f4ffc8e6bc3c00",
+      "label_sha256": "dfd6e6527dc18d082f8472f2fd9b79689fd6372cd1c078e98f5bb7e42ba77c57",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_9fc2a10f6293d3a4": {
+      "status": "approved",
+      "image_sha256": "97c590d8ad25fb3a86b709fe420468c01a87aaef4e634b59914f856fdbf6dc5e",
+      "label_sha256": "d88e80536d80f742eba98a8a0d52cd40e1f9693111cc4f2d3d154ebd6c383a6e",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_a1012e1e2ef1d642": {
+      "status": "approved",
+      "image_sha256": "2a5923b01a4963a03183b11adc9b0bb1630f07a2b978315610dc4908c24a5fe6",
+      "label_sha256": "c98da8d87f9e7b876fa9a31a72193287e15f593e24a71b87600411514768bd34",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_a6cae0a6ad7a8850": {
+      "status": "approved",
+      "image_sha256": "0028e7ca136e8fce9dce6298879b6753074ddacc0101db3142586546c68047e1",
+      "label_sha256": "d2d8a8203bd4b6da8adf5d267e667560819ceb46d77aaa72e371a0e4c4aa6ae9",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_a9d66a1b45a08632": {
+      "status": "approved",
+      "image_sha256": "e6e1235b2c77f0b88988f83c0239370d7e8d59f18db5fdb8981c48fefd374912",
+      "label_sha256": "d16021c79e5ba2e729358ae094234ace20b060ebb087564dffba94fa73f0ce15",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_c1fb638b9938a284": {
+      "status": "approved",
+      "image_sha256": "8db89acb17288e8c077a027bf27957ddfca4d509e4ac3f57104e10e50663447f",
+      "label_sha256": "938ab8cf208d063f496f6b827d606bac85d46741df192a4f41675dabd1ec290b",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_c3b082feb511227d": {
+      "status": "approved",
+      "image_sha256": "57ff566391879b6c3604291aa82c8d0b3d17c80f665b2d9143ac8d765856ff51",
+      "label_sha256": "4d60ef562a2d90ed994109dfee6dfa2d07a91308d0ed3173dc66f8cfe7032bb5",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_e3bfb71bef1818af": {
+      "status": "approved",
+      "image_sha256": "d3b0b2975ca6d103eb998709b294223c74f74984d6817276214a6d74411e7b10",
+      "label_sha256": "a68a4cdf3fdf816cda93f6932304bdb1ee7a842f561c9a66a4abf05031c329f8",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_e9ec03e6bc94aa5e": {
+      "status": "approved",
+      "image_sha256": "eaa4fbe83dde887f2c25854b9498febce7f26aef0348445dc34c6eec1e0b4e7d",
+      "label_sha256": "5c581cc8d9efe8770075f5924f0c745bed77e9c81b639fb241e2558340ecb808",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_efa0605194b3740b": {
+      "status": "approved",
+      "image_sha256": "05b9ef1a58960044b05fd55382423d1338f3730dc83975c31802970e6cbd8c1b",
+      "label_sha256": "c4b4166ce76334c87c8c7259e6a39f9f13b3b3443541cce968b4d6b7e45221a9",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_f80d7cf9b0152949": {
+      "status": "approved",
+      "image_sha256": "89be791198afee379260fe28368bc82bec36959642827689b10ab3d853676880",
+      "label_sha256": "6bdd38102baa7cac83b4578614521f6d8c78ffea7ddf7872b30c1ca7fa7d7e6f",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。",
+      "split": "val"
+    },
+    "oi_fcf7f9649af05c3f": {
+      "status": "approved",
+      "image_sha256": "cd696f2970a080126a4348339c4679271c2a4e5892892db3f1621aa2805bd4b9",
+      "label_sha256": "71d394f1841248173ec230b268c6e8a94173a9954c20b7fb17e63d7ebc227831",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。"
+    },
+    "oi_fe400557382a38aa": {
+      "status": "approved",
+      "image_sha256": "64d2225165aaf32e2da0a847892d8b4286fe0e2b9e0aa8205f8f4a71a880904b",
+      "label_sha256": "db985bcc5cafeb56f2619db02c2dddf03f519b7b6f646af407ffffc2a24e1732",
+      "all_eight_classes_checked": true,
+      "note": "逐图查看联系表，确认目标类别、可见框和八类完整性；仅用于首轮公开数据实验。",
+      "split": "test"
+    },
+    "oi_00d9a083e1cba929": {
+      "status": "rejected",
+      "image_sha256": "108eb4a0e866514694347f73f1bddae79ff0f263133a12956ed7312e01c8e5b9",
+      "label_sha256": "4f81c3619e482b66e51f071a23675b4b5ef3540fce446c943b84ca1d49488527",
+      "note": "同图另有疑似瓶形物体，先待完整补标。"
+    },
+    "oi_01e80d7cf80f3921": {
+      "status": "rejected",
+      "image_sha256": "7a6308b810a236528c267a4c88ac68274dc6967dcf4bb424e5d54d269bce141b",
+      "label_sha256": "13a5f90f18b92dbddfd99af381d3fce6d26d392daaadb3ec1d59dfa88cae6b71",
+      "note": "同图多个散落小螺丝未标注，需要另补框。"
+    },
+    "oi_022a0165221738a4": {
+      "status": "rejected",
+      "image_sha256": "b5fc86d919538990dc387833205defe5b178546df1053eb288448ce9f43ad26a",
+      "label_sha256": "3f302b77cf49b576cf29768fc87902df1b8e8fec37431b4cd8fff6d99eb55eca",
+      "note": "昏暗背景中有多个漏标的杯子、瓶子。"
+    },
+    "oi_05c875fdc13a93cb": {
+      "status": "rejected",
+      "image_sha256": "d655704831832f56b617d2e8b2ebe6993417d07af04d846ebd15fa21bb07c9c0",
+      "label_sha256": "627e75c7b3700a56cb01abd3bee8ecb25c8cd1644ac69c64ea30a5c22d167d7d",
+      "note": "实为门把手，不是螺丝刀。"
+    },
+    "oi_07bdf29162677236": {
+      "status": "rejected",
+      "image_sha256": "a91334126fbd9066350bd57cc612b468341ff5a0ce4f6d06427f32a593beb5bb",
+      "label_sha256": "cbc9b7438a6940bf1c8a07d956b4fd2b0e417d8957a8f67873ec497c46619877",
+      "note": "实为电动工具，不符合完整手动螺丝刀定义。"
+    },
+    "oi_087c92920936e155": {
+      "status": "rejected",
+      "image_sha256": "5059c6130170f56912aaaacc08c46b4aeb6a029475a967b7de3dc903167fc177",
+      "label_sha256": "eb22cffa822f449696f47731f63d8c74d369e8d60bb6ac83eb64a3785d34f562",
+      "note": "杆端指向左侧杯体，杯体未标注。"
+    },
+    "oi_0d093c70beb931fc": {
+      "status": "rejected",
+      "image_sha256": "1508f5e2acd46f703479fc1579e1272976ff9fd93b7af0d725167a1f73065348",
+      "label_sha256": "75f2967312602e4ce9f98ca6aa8cf26d8299466c88f7e9a274e00fdffc426fb4",
+      "note": "背景杯子存在漏标，暂不使用。"
+    },
+    "oi_17d6f78d2d84f9eb": {
+      "status": "rejected",
+      "image_sha256": "2f4636d4405be8f001848d2606b5e6b0b9d9b17f588eac3de1ce4a44544e4994",
+      "label_sha256": "2d0a8edfa4b43c023d3b30904a7f518bd4ca5c43a58ef4ce8ea9e51876b174d4",
+      "note": "刻刀手柄被误标橡皮，需重新标注。"
+    },
+    "oi_252cf2e2c20c4873": {
+      "status": "rejected",
+      "image_sha256": "bc2c872aa0b1f245cc2076cbf45ed99556d34f8bf11374394dd194f2ed004642",
+      "label_sha256": "c2ceaa3efb9f453ffab8a066941094ed6afe97c57ccb74a51129200da0756abe",
+      "note": "背景第二只杯子未标注。"
+    },
+    "oi_27fe462517cc2469": {
+      "status": "rejected",
+      "image_sha256": "bce5aac73a8ebd0d4d5a3d5fe88539d8542f379c7dcb912e4f88ac08ab8b3aea",
+      "label_sha256": "ccab50893580c79f978b44c7ffdbe3ca8583280ad806cf25775f51f67892ed4e",
+      "note": "手柄与杆外观有歧义，先隔离。"
+    },
+    "oi_34e4a5693e3a6501": {
+      "status": "rejected",
+      "image_sha256": "0bf2ad2072d6fd913e1c3679ccb2d51f469795c94d90cd6aaee80ec956f206b9",
+      "label_sha256": "42b7646f8416984f65989dbe1976893cec265cf61237e2db30467bb56eb85bb9",
+      "note": "木柄锥具与螺丝刀边界不确定。"
+    },
+    "oi_42c756b50a3653b7": {
+      "status": "rejected",
+      "image_sha256": "e3b059b94283f174d2c1fc2fd9a83d4a5d1d0b083aa8c6eed5bd3bb5095488d1",
+      "label_sha256": "bed28b660cd03690e993ce7ba3619a9a6427219645d644ba8c0a0f0454714fd4",
+      "note": "背景有装订笔记本未标注。"
+    },
+    "oi_5818a1ee4b9dec10": {
+      "status": "rejected",
+      "image_sha256": "ebbaa20822ddb47b21f4b6fd18acb282c20e8509f74c3702249e03bd06ed097a",
+      "label_sha256": "bbcc993d379ce1c323ecd7b9ece668a298f12ef238727564aecb1a8fc406a26b",
+      "note": "桌面书籍和可能的杯具漏标。"
+    },
+    "oi_76ea9a13370df92a": {
+      "status": "rejected",
+      "image_sha256": "d04527ee8aec0faf3f7db79d2755dcbb883c531334a45df624bdd7e05718a676",
+      "label_sha256": "102136e2f706b7f182a1140e6cbd64e15ca834c285d7f0cad00f5b6e11a2d791",
+      "note": "拼图展示同一橡皮不同视图，不适合逐件计数。"
+    },
+    "oi_7849d6c6b33156cd": {
+      "status": "rejected",
+      "image_sha256": "a1a4519dcd4e472accc4381ec63b7aaafd490180651c494e476f08809255af43",
+      "label_sha256": "a6553030482c7df890e681a02b978c9598dbdaf9fa2888df0c02d1b03d914ecf",
+      "note": "餐厅背景含多处未标注目标。"
+    },
+    "oi_785ae77bd265dcb9": {
+      "status": "rejected",
+      "image_sha256": "cc4e1e0d603d28f18446a65b7c8a878ade1c98e51e6c28aba79fadaaebebe73b",
+      "label_sha256": "1d4ee602044fe453159b03e2aa75f8cb6114fa0df9bf96b9a34465adba9a138e",
+      "note": "旁边饮水杯未标注。"
+    },
+    "oi_7bddd8020e088b07": {
+      "status": "rejected",
+      "image_sha256": "8572768a611093d70261c062e7fdc1132edb6610cc11ab55453c6ee0ff16cd65",
+      "label_sha256": "25496ab4ccdf1369529fa651051eaf82c6c0459eb6aee848c0eff0116ededb1d",
+      "note": "实为飞镖，不是螺丝刀。"
+    },
+    "oi_847e277c728ea051": {
+      "status": "rejected",
+      "image_sha256": "c76830be25ecf64da615d592d4d68db4d9808d417232a6244e083102a6ad1159",
+      "label_sha256": "456117c26c6d1f06d5b015242941ea4408e60f646f7ca5bd1045030a757b78d6",
+      "note": "铅笔形状仿螺丝刀的创意图，不纳入。"
+    },
+    "oi_85e18911d236590b": {
+      "status": "rejected",
+      "image_sha256": "54a3ed7ff4454822896955655e72c92464e0c04daf4bb680ccf432a30738cd24",
+      "label_sha256": "35a4c34d6efaead4be68c03855e6f9041d3f1eacc7f6de5dd6ab8158b9d7b8c9",
+      "note": "实为凿子，不是螺丝刀。"
+    },
+    "oi_89cee6fd1dfe4ab2": {
+      "status": "rejected",
+      "image_sha256": "13893d0528cca369aa6ae2dcf288d7b64c388236e2214947b2e371fc22b6d78b",
+      "label_sha256": "3a6c4aceaf0183eb82f8eef5a67e9bdd809278d10f0317fb2878e7ffb6bfff7c",
+      "note": "场景目标太小且可能漏标，不纳入首轮。"
+    },
+    "oi_b49dd7f7d3765931": {
+      "status": "rejected",
+      "image_sha256": "a10a33c5e01d6b6bf5ea47effade67adc26c4e173cd0b8b31e7399588bdc508b",
+      "label_sha256": "f054f436c04652ad6c4abb3031528616d9afa8dbbe2f0282c83754d815fa0023",
+      "note": "广告拼图及瓶盖范围有歧义。"
+    },
+    "oi_b8485b0626321cbf": {
+      "status": "rejected",
+      "image_sha256": "0cdadaa14218db090795c515ca72553e8076ac767123d38c6dfca06b0da3d5d7",
+      "label_sha256": "219a58f3b2907f9965f5b1ea16e74e762faa053a6577dfe785d0468e5d65d727",
+      "note": "左侧疑似杯体漏标。"
+    },
+    "oi_bddff45b4ecd2de8": {
+      "status": "rejected",
+      "image_sha256": "389bbc4b940d82a3f5c34868716bdd2ee882cd6bf3848c84fc2a05d5b5e48017",
+      "label_sha256": "d8ee43cf298d2f8da3a804128fb1f2aef93df944390a42f3f31754333ed97b8b",
+      "note": "货架多只瓶子漏标。"
+    },
+    "oi_e374045a80e99928": {
+      "status": "rejected",
+      "image_sha256": "b154c0073671a1f5ca7b9e6de0e34f6d64490397f78f8341acde89dc4d617863",
+      "label_sha256": "c4b150dd1e79d324a15ff8a964145dc084da8645e0965abc2f366f5792dbe7ae",
+      "note": "同一螺丝刀的重复框待修正。"
+    },
+    "oi_ed78d9af55c9920e": {
+      "status": "rejected",
+      "image_sha256": "c0ce2db76cea054736fe3eea9ebd07f572e0beff9a61942ef9a9ec575c73d364",
+      "label_sha256": "c0bb81b4a9d65d1fe2bd5c9cd26a19d2fe8f85d13beb8d5d0c9db55e997cd812",
+      "note": "远景多本书以组框标注，不适合逐件计数。"
+    },
+    "oi_f1f0e4592b32ad14": {
+      "status": "rejected",
+      "image_sha256": "2e8d2f53923b3ffad400be18d0d877189adc2c9dd3021642cf8c635a7eb17c9c",
+      "label_sha256": "a2c81dbc8398f448cbd845275f7476ff8266c90b8c3ce06c3cf234d011167e62",
+      "note": "同图另有小螺丝刀和散落五金未标注。"
+    },
+    "oi_27753d996a207805": {
+      "status": "rejected",
+      "image_sha256": "009f474f33c2be69fb23b605398e06932a7694961a2ebae5104d380f74d1e2d4",
+      "label_sha256": "04d08100272aca592b920628a71fc06df3314e2983399526a908f257b7b4b6e6",
+      "note": "与另一透明柄螺丝刀照片为近重复候选，为避免跨用途泄漏而剔除。"
+    },
+    "oi_0df4e11666c3a5bd": {
+      "status": "rejected",
+      "image_sha256": "2c3da7bfe2d2619b44cadae0b067b2264fd3d5552498aa8d27bf9afab540e20d",
+      "label_sha256": "d25e3af64d8085ca7514db3221197d0431567359bf1378ef21c60875bcbb4044",
+      "note": "铅笔尾橡皮不在本项目独立块状橡皮定义内，部分还含重复错误框。"
+    },
+    "oi_0f256f1dcc257fc4": {
+      "status": "rejected",
+      "image_sha256": "af3f4fe27530a65183565f69f6839dfaa280c008697565efe2ea8b8dc86ce348",
+      "label_sha256": "2bea87c3bc91a9995bad59395739933cc3ae259146e894981f438c857c501d2b",
+      "note": "铅笔尾橡皮不在本项目独立块状橡皮定义内，部分还含重复错误框。"
+    },
+    "oi_84826457b3bd6d69": {
+      "status": "rejected",
+      "image_sha256": "31de27c77d69d1bcda6d10a9bde6e860b5bf23d8ebc02cbdd3f15d06bddede6d",
+      "label_sha256": "ba9606998dee577e59290a09f70c4fc7586d9dc15b8aa8c3f51092a9b8c5d16a",
+      "note": "铅笔尾橡皮不在本项目独立块状橡皮定义内，部分还含重复错误框。"
+    },
+    "oi_8d9f311acc990110": {
+      "status": "rejected",
+      "image_sha256": "8ed2f7dfb375c35c14f1378a686a323b952b7390f96ae0ad28794299f9a8dcac",
+      "label_sha256": "6142a79fe779b1dd341e523c22af8e3db4dcce07462cf101e8fb8e9976ef6597",
+      "note": "铅笔尾橡皮不在本项目独立块状橡皮定义内，部分还含重复错误框。"
+    },
+    "oi_965a6c1f0ae10819": {
+      "status": "rejected",
+      "image_sha256": "615ae94a283302dfc4030f12f2888b9651cb4202393d9671918dd93299315a5c",
+      "label_sha256": "950096bc9310b25b5161ea021d948373dbc3e3a254a3ce4646bfa57f0efb5e84",
+      "note": "铅笔尾橡皮不在本项目独立块状橡皮定义内，部分还含重复错误框。"
+    },
+    "oi_9b6c06bdf61514cb": {
+      "status": "rejected",
+      "image_sha256": "4230dd3e954ec1762c01e66f3e774733f46c9d5a02a18292f85e3d183c6e4851",
+      "label_sha256": "b6e05a3ea1d2777193945bdfaa403cd9da08fabe03ef697989e29f50153bfcc2",
+      "note": "铅笔尾橡皮不在本项目独立块状橡皮定义内，部分还含重复错误框。"
+    },
+    "oi_bdcf9925856c4f32": {
+      "status": "rejected",
+      "image_sha256": "672e37df64c0a9dfea16e66e4303a12198546f852c8206fb9af19981adc34761",
+      "label_sha256": "7f0d4e65fbd9b205729d8c24dec2389b52d9024f16da47767d2ce617cf3143bc",
+      "note": "铅笔尾橡皮不在本项目独立块状橡皮定义内，部分还含重复错误框。"
+    },
+    "oi_c0c8fd2d3219ed36": {
+      "status": "rejected",
+      "image_sha256": "6802ad37481b14098c21851c647bd822230a15f50c4230d2b371894ed77841f7",
+      "label_sha256": "2cca3fed0eef324ae7022b26aa98ecbd1936c1e17f3cc2ac6a9789d76c04dbf7",
+      "note": "铅笔尾橡皮不在本项目独立块状橡皮定义内，部分还含重复错误框。"
+    },
+    "loco_test_000": {
+      "status": "approved",
+      "image_sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.29125,
+          0.4018181818181818,
+          0.2125,
+          0.23636363636363636
+        ],
+        [
+          5,
+          0.3425,
+          0.4581818181818182,
+          0.135,
+          0.3418181818181818
+        ],
+        [
+          6,
+          0.1575,
+          0.4209090909090909,
+          0.055,
+          0.07818181818181819
+        ],
+        [
+          6,
+          0.173125,
+          0.5527272727272727,
+          0.05625,
+          0.08363636363636363
+        ],
+        [
+          7,
+          0.288125,
+          0.34545454545454546,
+          0.05375,
+          0.08363636363636363
+        ],
+        [
+          7,
+          0.345,
+          0.6536363636363637,
+          0.055,
+          0.08181818181818182
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+        "label_sha256": "2d886d606006add7029ab204f219c7c2e47efafc3739cae043289908b4aced73",
+        "boxes": [
+          [
+            5,
+            0.329375,
+            0.41818181818181815,
+            0.14125,
+            0.2581818181818182
+          ],
+          [
+            5,
+            0.39625,
+            0.4690909090909091,
+            0.2175,
+            0.3054545454545455
+          ],
+          [
+            6,
+            0.23,
+            0.42272727272727273,
+            0.075,
+            0.10363636363636364
+          ],
+          [
+            6,
+            0.176875,
+            0.57,
+            0.07625,
+            0.10363636363636364
+          ],
+          [
+            7,
+            0.293125,
+            0.3518181818181818,
+            0.07625,
+            0.11454545454545455
+          ],
+          [
+            7,
+            0.345625,
+            0.6527272727272727,
+            0.07625,
+            0.10909090909090909
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_1.jpg",
+        "evidence_sha256": "1f86d9bb6a3e86c73834574d3f0b64f0e75a855a984d53958994930ea8dbd2cb"
+      }
+    },
+    "loco_test_010": {
+      "status": "approved",
+      "image_sha256": "0070df93203f689ef6bf3ce5e30b7ecb856e3484f26076f9b09927d5936fa43d",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.41375,
+          0.46,
+          0.22,
+          0.09818181818181818
+        ],
+        [
+          5,
+          0.466875,
+          0.5618181818181818,
+          0.28125,
+          0.12727272727272726
+        ],
+        [
+          6,
+          0.375625,
+          0.3290909090909091,
+          0.05625,
+          0.09454545454545454
+        ],
+        [
+          6,
+          0.4425,
+          0.33090909090909093,
+          0.055,
+          0.09818181818181818
+        ],
+        [
+          7,
+          0.13625,
+          0.5581818181818182,
+          0.0575,
+          0.09090909090909091
+        ],
+        [
+          7,
+          0.2,
+          0.5790909090909091,
+          0.0525,
+          0.0890909090909091
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "0070df93203f689ef6bf3ce5e30b7ecb856e3484f26076f9b09927d5936fa43d",
+        "label_sha256": "71397ce29c3354c9412252cc8ce2d358f7b752a2aed649174d7774da5973e32f",
+        "boxes": [
+          [
+            5,
+            0.2475,
+            0.48727272727272725,
+            0.1825,
+            0.13090909090909092
+          ],
+          [
+            5,
+            0.48625,
+            0.5827272727272728,
+            0.26,
+            0.20909090909090908
+          ],
+          [
+            6,
+            0.343125,
+            0.4481818181818182,
+            0.07625,
+            0.10727272727272727
+          ],
+          [
+            6,
+            0.445,
+            0.4481818181818182,
+            0.0725,
+            0.10727272727272727
+          ],
+          [
+            7,
+            0.18,
+            0.5772727272727273,
+            0.0775,
+            0.11454545454545455
+          ],
+          [
+            7,
+            0.25625,
+            0.5845454545454546,
+            0.0775,
+            0.10727272727272727
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_1.jpg",
+        "evidence_sha256": "1f86d9bb6a3e86c73834574d3f0b64f0e75a855a984d53958994930ea8dbd2cb"
+      }
+    },
+    "loco_test_020": {
+      "status": "approved",
+      "image_sha256": "0f795c9dabf6404a12169e88e215b17ea6dc703ee89edb6c32d928e48b8a85e8",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.391875,
+          0.5263636363636364,
+          0.24875,
+          0.27090909090909093
+        ],
+        [
+          5,
+          0.378125,
+          0.4309090909090909,
+          0.19625,
+          0.2290909090909091
+        ],
+        [
+          6,
+          0.6075,
+          0.2863636363636364,
+          0.06,
+          0.09272727272727273
+        ],
+        [
+          6,
+          0.514375,
+          0.67,
+          0.05625,
+          0.08545454545454545
+        ],
+        [
+          7,
+          0.145625,
+          0.5590909090909091,
+          0.05625,
+          0.08181818181818182
+        ],
+        [
+          7,
+          0.34375,
+          0.39090909090909093,
+          0.055,
+          0.08
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "0f795c9dabf6404a12169e88e215b17ea6dc703ee89edb6c32d928e48b8a85e8",
+        "label_sha256": "01351c78e63728ce1f29654aea6382f67549fae5cf441bcbd26562e5b0dc66c4",
+        "boxes": [
+          [
+            5,
+            0.391875,
+            0.5254545454545455,
+            0.24125,
+            0.2581818181818182
+          ],
+          [
+            5,
+            0.51375,
+            0.4072727272727273,
+            0.1825,
+            0.19636363636363635
+          ],
+          [
+            6,
+            0.623125,
+            0.30272727272727273,
+            0.07375,
+            0.10727272727272727
+          ],
+          [
+            6,
+            0.5225,
+            0.6963636363636364,
+            0.0725,
+            0.10909090909090909
+          ],
+          [
+            7,
+            0.38375,
+            0.44,
+            0.075,
+            0.11272727272727273
+          ],
+          [
+            7,
+            0.6025,
+            0.49727272727272726,
+            0.0775,
+            0.11090909090909092
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_1.jpg",
+        "evidence_sha256": "1f86d9bb6a3e86c73834574d3f0b64f0e75a855a984d53958994930ea8dbd2cb"
+      }
+    },
+    "loco_test_030": {
+      "status": "approved",
+      "image_sha256": "6478243511450b23a31c2861f6fb754c1c721cf182f70b02a60faa5111d50762",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.415625,
+          0.44,
+          0.14375,
+          0.23272727272727273
+        ],
+        [
+          5,
+          0.461875,
+          0.5081818181818182,
+          0.30125,
+          0.18727272727272729
+        ],
+        [
+          6,
+          0.57625,
+          0.39454545454545453,
+          0.0625,
+          0.09818181818181818
+        ],
+        [
+          6,
+          0.44625,
+          0.57,
+          0.0625,
+          0.09272727272727273
+        ],
+        [
+          7,
+          0.624375,
+          0.28454545454545455,
+          0.05625,
+          0.07818181818181819
+        ],
+        [
+          7,
+          0.299375,
+          0.6363636363636364,
+          0.05875,
+          0.08727272727272728
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "6478243511450b23a31c2861f6fb754c1c721cf182f70b02a60faa5111d50762",
+        "label_sha256": "c053ab36c50ebbce48ecf4c048c629725c420d6b636b7e8c5b8800ef5d611593",
+        "boxes": [
+          [
+            5,
+            0.4225,
+            0.4890909090909091,
+            0.265,
+            0.13090909090909092
+          ],
+          [
+            5,
+            0.3625,
+            0.5936363636363636,
+            0.1675,
+            0.23454545454545456
+          ],
+          [
+            6,
+            0.6,
+            0.41,
+            0.0725,
+            0.10363636363636364
+          ],
+          [
+            6,
+            0.46875,
+            0.59,
+            0.075,
+            0.10727272727272727
+          ],
+          [
+            7,
+            0.64,
+            0.3145454545454546,
+            0.0775,
+            0.11272727272727273
+          ],
+          [
+            7,
+            0.326875,
+            0.64,
+            0.07875,
+            0.10909090909090909
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_1.jpg",
+        "evidence_sha256": "1f86d9bb6a3e86c73834574d3f0b64f0e75a855a984d53958994930ea8dbd2cb"
+      }
+    },
+    "loco_train_000": {
+      "status": "approved",
+      "image_sha256": "9296c9fc87831f544c9a4caed616a54cfd4484aff87b62714753fc11e90029c9",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.43125,
+          0.44,
+          0.3,
+          0.13818181818181818
+        ],
+        [
+          5,
+          0.50625,
+          0.4954545454545455,
+          0.2625,
+          0.15454545454545454
+        ],
+        [
+          6,
+          0.22625,
+          0.4209090909090909,
+          0.0575,
+          0.08545454545454545
+        ],
+        [
+          6,
+          0.495625,
+          0.42454545454545456,
+          0.05625,
+          0.08545454545454545
+        ],
+        [
+          7,
+          0.286875,
+          0.3381818181818182,
+          0.05375,
+          0.08
+        ],
+        [
+          7,
+          0.36125,
+          0.6218181818181818,
+          0.055,
+          0.08
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "9296c9fc87831f544c9a4caed616a54cfd4484aff87b62714753fc11e90029c9",
+        "label_sha256": "56cdc68753d018d6927cad29fb9ebfe2b5496a4b87256119a5cdbcb25a8b993a",
+        "boxes": [
+          [
+            5,
+            0.45375,
+            0.4772727272727273,
+            0.26,
+            0.19454545454545455
+          ],
+          [
+            5,
+            0.533125,
+            0.5272727272727272,
+            0.18375,
+            0.13818181818181818
+          ],
+          [
+            6,
+            0.591875,
+            0.3290909090909091,
+            0.07125,
+            0.10909090909090909
+          ],
+          [
+            6,
+            0.664375,
+            0.33545454545454545,
+            0.07625,
+            0.11454545454545455
+          ],
+          [
+            7,
+            0.516875,
+            0.3472727272727273,
+            0.07875,
+            0.10909090909090909
+          ],
+          [
+            7,
+            0.29125,
+            0.53,
+            0.0775,
+            0.11454545454545455
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_2.jpg",
+        "evidence_sha256": "1f2aa5ae60c10de65f98cffbae8fe1dc5ba18ae125f7a21fb76321665bbf72b1"
+      }
+    },
+    "loco_train_010": {
+      "status": "approved",
+      "image_sha256": "404031807c740170f965d90564da7def774132dc2526f857423c28b4cdab2a8a",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.429375,
+          0.4627272727272727,
+          0.25375,
+          0.09636363636363636
+        ],
+        [
+          5,
+          0.443125,
+          0.5727272727272728,
+          0.23875,
+          0.2727272727272727
+        ],
+        [
+          6,
+          0.329375,
+          0.5318181818181819,
+          0.05875,
+          0.08545454545454545
+        ],
+        [
+          6,
+          0.5,
+          0.34363636363636363,
+          0.055,
+          0.08363636363636363
+        ],
+        [
+          7,
+          0.380625,
+          0.6409090909090909,
+          0.05625,
+          0.08181818181818182
+        ],
+        [
+          7,
+          0.56875,
+          0.32636363636363636,
+          0.055,
+          0.08181818181818182
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "404031807c740170f965d90564da7def774132dc2526f857423c28b4cdab2a8a",
+        "label_sha256": "a9517d924dce1465d2e9f166a976c23926ec5ab086f166874aeab70c853a22a5",
+        "boxes": [
+          [
+            5,
+            0.413125,
+            0.4318181818181818,
+            0.26125,
+            0.10727272727272727
+          ],
+          [
+            5,
+            0.30875,
+            0.54,
+            0.175,
+            0.1709090909090909
+          ],
+          [
+            6,
+            0.469375,
+            0.35545454545454547,
+            0.07625,
+            0.10363636363636364
+          ],
+          [
+            6,
+            0.24875,
+            0.5936363636363636,
+            0.075,
+            0.11090909090909092
+          ],
+          [
+            7,
+            0.569375,
+            0.3427272727272727,
+            0.07875,
+            0.11454545454545455
+          ],
+          [
+            7,
+            0.291875,
+            0.68,
+            0.07875,
+            0.11272727272727273
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_2.jpg",
+        "evidence_sha256": "1f2aa5ae60c10de65f98cffbae8fe1dc5ba18ae125f7a21fb76321665bbf72b1"
+      }
+    },
+    "loco_train_020": {
+      "status": "approved",
+      "image_sha256": "73c35f3be9a1e7066890d4a9699d5675be968e9146477ce474f3f5f9f1df8b33",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.2025,
+          0.4636363636363636,
+          0.0575,
+          0.26181818181818184
+        ],
+        [
+          5,
+          0.389375,
+          0.46454545454545454,
+          0.23375,
+          0.2672727272727273
+        ],
+        [
+          6,
+          0.35,
+          0.45181818181818184,
+          0.0575,
+          0.0890909090909091
+        ],
+        [
+          6,
+          0.624375,
+          0.4527272727272727,
+          0.05375,
+          0.09090909090909091
+        ],
+        [
+          7,
+          0.149375,
+          0.600909090909091,
+          0.05875,
+          0.08545454545454545
+        ],
+        [
+          7,
+          0.375625,
+          0.38636363636363635,
+          0.05625,
+          0.08181818181818182
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "73c35f3be9a1e7066890d4a9699d5675be968e9146477ce474f3f5f9f1df8b33",
+        "label_sha256": "060b231f2d2dfa6cef5c1436beb2c4a1a6477384f5ecd7b650e86470e29c6ae5",
+        "boxes": [
+          [
+            5,
+            0.229375,
+            0.49272727272727274,
+            0.06625,
+            0.26545454545454544
+          ],
+          [
+            5,
+            0.41125,
+            0.49,
+            0.2375,
+            0.2636363636363636
+          ],
+          [
+            6,
+            0.346875,
+            0.44727272727272727,
+            0.07375,
+            0.10909090909090909
+          ],
+          [
+            6,
+            0.630625,
+            0.4690909090909091,
+            0.07375,
+            0.10909090909090909
+          ],
+          [
+            7,
+            0.1575,
+            0.6409090909090909,
+            0.08,
+            0.11454545454545455
+          ],
+          [
+            7,
+            0.42,
+            0.4109090909090909,
+            0.0775,
+            0.11272727272727273
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_2.jpg",
+        "evidence_sha256": "1f2aa5ae60c10de65f98cffbae8fe1dc5ba18ae125f7a21fb76321665bbf72b1"
+      }
+    },
+    "loco_train_030": {
+      "status": "approved",
+      "image_sha256": "0573935b0ff5feda81e998b5e16533985714ed70c599b98563045529eec8f803",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.415625,
+          0.4354545454545454,
+          0.14875,
+          0.23454545454545456
+        ],
+        [
+          5,
+          0.4625,
+          0.5045454545454545,
+          0.3075,
+          0.20909090909090908
+        ],
+        [
+          6,
+          0.433125,
+          0.5481818181818182,
+          0.06375,
+          0.09272727272727273
+        ],
+        [
+          6,
+          0.579375,
+          0.5436363636363636,
+          0.06375,
+          0.09454545454545454
+        ],
+        [
+          7,
+          0.550625,
+          0.44272727272727275,
+          0.06125,
+          0.08545454545454545
+        ],
+        [
+          7,
+          0.631875,
+          0.5372727272727272,
+          0.06375,
+          0.09272727272727273
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "0573935b0ff5feda81e998b5e16533985714ed70c599b98563045529eec8f803",
+        "label_sha256": "d8dd5203a2458d9a636e38e2c28a9f8cd633a56e4d387862909a937ef4199250",
+        "boxes": [
+          [
+            5,
+            0.3575,
+            0.42363636363636364,
+            0.1875,
+            0.16
+          ],
+          [
+            5,
+            0.500625,
+            0.40636363636363637,
+            0.24625,
+            0.24909090909090909
+          ],
+          [
+            6,
+            0.255,
+            0.5836363636363636,
+            0.075,
+            0.10909090909090909
+          ],
+          [
+            6,
+            0.515625,
+            0.5790909090909091,
+            0.07875,
+            0.10727272727272727
+          ],
+          [
+            7,
+            0.35375,
+            0.5145454545454545,
+            0.0775,
+            0.11636363636363636
+          ],
+          [
+            7,
+            0.5175,
+            0.4718181818181818,
+            0.08,
+            0.11090909090909092
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_2.jpg",
+        "evidence_sha256": "1f2aa5ae60c10de65f98cffbae8fe1dc5ba18ae125f7a21fb76321665bbf72b1"
+      }
+    },
+    "loco_train_040": {
+      "status": "approved",
+      "image_sha256": "d7370351dbf1484a1acb38fa5f1b14de71484d95999825aacbb1d0126ab37196",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.4475,
+          0.38636363636363635,
+          0.22,
+          0.25272727272727274
+        ],
+        [
+          5,
+          0.501875,
+          0.4409090909090909,
+          0.18875,
+          0.2781818181818182
+        ],
+        [
+          6,
+          0.58625,
+          0.6281818181818182,
+          0.06,
+          0.08545454545454545
+        ],
+        [
+          6,
+          0.651875,
+          0.6554545454545454,
+          0.05875,
+          0.08545454545454545
+        ],
+        [
+          7,
+          0.730625,
+          0.3463636363636364,
+          0.06875,
+          0.1
+        ],
+        [
+          7,
+          0.5875,
+          0.7381818181818182,
+          0.065,
+          0.09454545454545454
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "d7370351dbf1484a1acb38fa5f1b14de71484d95999825aacbb1d0126ab37196",
+        "label_sha256": "31b51e3a8926046e9851d62db37da87b609400be0fe9f7238252604fb62a24bc",
+        "boxes": [
+          [
+            5,
+            0.454375,
+            0.3563636363636364,
+            0.17375,
+            0.19272727272727272
+          ],
+          [
+            5,
+            0.49,
+            0.46090909090909093,
+            0.1925,
+            0.3472727272727273
+          ],
+          [
+            6,
+            0.581875,
+            0.6409090909090909,
+            0.07625,
+            0.11090909090909092
+          ],
+          [
+            6,
+            0.654375,
+            0.6672727272727272,
+            0.07625,
+            0.11272727272727273
+          ],
+          [
+            7,
+            0.731875,
+            0.3490909090909091,
+            0.07875,
+            0.11636363636363636
+          ],
+          [
+            7,
+            0.594375,
+            0.7454545454545455,
+            0.08125,
+            0.11636363636363636
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_3.jpg",
+        "evidence_sha256": "b7bfd37d4f3437812ae23d9c652d43f07f6271001d7a2279d1112eab6ad6914d"
+      }
+    },
+    "loco_train_050": {
+      "status": "approved",
+      "image_sha256": "348812859f105c0d17240ee4f1067ee84ce4b20b285eaea79677884573b506bf",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.424375,
+          0.4781818181818182,
+          0.19125,
+          0.12
+        ],
+        [
+          5,
+          0.48125,
+          0.6763636363636364,
+          0.3,
+          0.12363636363636364
+        ],
+        [
+          6,
+          0.38875,
+          0.31727272727272726,
+          0.0575,
+          0.08545454545454545
+        ],
+        [
+          6,
+          0.489375,
+          0.31727272727272726,
+          0.05625,
+          0.08545454545454545
+        ],
+        [
+          7,
+          0.124375,
+          0.5554545454545454,
+          0.06125,
+          0.08545454545454545
+        ],
+        [
+          7,
+          0.1875,
+          0.5736363636363636,
+          0.06,
+          0.0890909090909091
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "348812859f105c0d17240ee4f1067ee84ce4b20b285eaea79677884573b506bf",
+        "label_sha256": "7c576c63a22423bc0765baef39046a8eb48ca99ee867bae0d822db76d5451f58",
+        "boxes": [
+          [
+            5,
+            0.42,
+            0.6409090909090909,
+            0.1825,
+            0.11818181818181818
+          ],
+          [
+            5,
+            0.46375,
+            0.6918181818181818,
+            0.2625,
+            0.12181818181818181
+          ],
+          [
+            6,
+            0.229375,
+            0.5972727272727273,
+            0.07625,
+            0.10727272727272727
+          ],
+          [
+            6,
+            0.240625,
+            0.6945454545454546,
+            0.07625,
+            0.10909090909090909
+          ],
+          [
+            7,
+            0.15,
+            0.5263636363636364,
+            0.0775,
+            0.11454545454545455
+          ],
+          [
+            7,
+            0.163125,
+            0.6318181818181818,
+            0.07875,
+            0.11090909090909092
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_3.jpg",
+        "evidence_sha256": "b7bfd37d4f3437812ae23d9c652d43f07f6271001d7a2279d1112eab6ad6914d"
+      }
+    },
+    "loco_train_060": {
+      "status": "approved",
+      "image_sha256": "c084d6f37ab09677101926194c3b6624e0b4daa899ef9396e5eef220688106fe",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.2025,
+          0.5045454545454545,
+          0.0575,
+          0.18727272727272729
+        ],
+        [
+          5,
+          0.38,
+          0.4636363636363636,
+          0.2325,
+          0.24363636363636362
+        ],
+        [
+          6,
+          0.324375,
+          0.45181818181818184,
+          0.05875,
+          0.08545454545454545
+        ],
+        [
+          6,
+          0.62625,
+          0.45181818181818184,
+          0.0575,
+          0.08545454545454545
+        ],
+        [
+          7,
+          0.125625,
+          0.6018181818181818,
+          0.05875,
+          0.08363636363636363
+        ],
+        [
+          7,
+          0.36875,
+          0.38181818181818183,
+          0.0575,
+          0.08363636363636363
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "c084d6f37ab09677101926194c3b6624e0b4daa899ef9396e5eef220688106fe",
+        "label_sha256": "3e22d12aa2fc9da51918e5bd0ed5f83a85bcf82171ac5ea5eaba33768a90429a",
+        "boxes": [
+          [
+            5,
+            0.295625,
+            0.5272727272727272,
+            0.26625,
+            0.10181818181818182
+          ],
+          [
+            5,
+            0.615,
+            0.4263636363636364,
+            0.1325,
+            0.26
+          ],
+          [
+            6,
+            0.3175,
+            0.6336363636363637,
+            0.0775,
+            0.11090909090909092
+          ],
+          [
+            6,
+            0.50875,
+            0.5863636363636363,
+            0.0775,
+            0.11090909090909092
+          ],
+          [
+            7,
+            0.53,
+            0.46090909090909093,
+            0.0825,
+            0.11818181818181818
+          ],
+          [
+            7,
+            0.6375,
+            0.5590909090909091,
+            0.08,
+            0.11454545454545455
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_3.jpg",
+        "evidence_sha256": "b7bfd37d4f3437812ae23d9c652d43f07f6271001d7a2279d1112eab6ad6914d"
+      }
+    },
+    "loco_train_070": {
+      "status": "approved",
+      "image_sha256": "63c325aa7078ac740d19275e1c8f085e4542e4d7a06b64ab44471728e6073041",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.565,
+          0.4636363636363636,
+          0.24,
+          0.10545454545454545
+        ],
+        [
+          5,
+          0.4625,
+          0.5,
+          0.195,
+          0.20727272727272728
+        ],
+        [
+          6,
+          0.529375,
+          0.49,
+          0.06125,
+          0.0890909090909091
+        ],
+        [
+          6,
+          0.601875,
+          0.45181818181818184,
+          0.06125,
+          0.0890909090909091
+        ],
+        [
+          7,
+          0.3925,
+          0.5145454545454545,
+          0.06,
+          0.08727272727272728
+        ],
+        [
+          7,
+          0.44625,
+          0.600909090909091,
+          0.06,
+          0.0890909090909091
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "63c325aa7078ac740d19275e1c8f085e4542e4d7a06b64ab44471728e6073041",
+        "label_sha256": "935ac941f314930e062811d4cab99389c3492de33cdf372835b1ab8ef4088375",
+        "boxes": [
+          [
+            5,
+            0.55625,
+            0.4618181818181818,
+            0.265,
+            0.12727272727272726
+          ],
+          [
+            5,
+            0.41125,
+            0.5345454545454545,
+            0.185,
+            0.14181818181818182
+          ],
+          [
+            6,
+            0.540625,
+            0.5718181818181818,
+            0.07625,
+            0.10727272727272727
+          ],
+          [
+            6,
+            0.6075,
+            0.5245454545454545,
+            0.075,
+            0.10727272727272727
+          ],
+          [
+            7,
+            0.283125,
+            0.5327272727272727,
+            0.07875,
+            0.11636363636363636
+          ],
+          [
+            7,
+            0.333125,
+            0.6181818181818182,
+            0.07875,
+            0.11272727272727273
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_3.jpg",
+        "evidence_sha256": "b7bfd37d4f3437812ae23d9c652d43f07f6271001d7a2279d1112eab6ad6914d"
+      }
+    },
+    "loco_train_080": {
+      "status": "approved",
+      "image_sha256": "51bd1daa0c841b83e35861d23bc501073ab467d8504a84d0be0c81f651ce77ce",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.415625,
+          0.5154545454545455,
+          0.24125,
+          0.2381818181818182
+        ],
+        [
+          5,
+          0.49625,
+          0.5381818181818182,
+          0.26,
+          0.2872727272727273
+        ],
+        [
+          6,
+          0.40875,
+          0.46545454545454545,
+          0.06,
+          0.08727272727272728
+        ],
+        [
+          6,
+          0.474375,
+          0.5927272727272728,
+          0.06125,
+          0.08727272727272728
+        ],
+        [
+          7,
+          0.129375,
+          0.5472727272727272,
+          0.06125,
+          0.08363636363636363
+        ],
+        [
+          7,
+          0.28125,
+          0.6418181818181818,
+          0.06,
+          0.08727272727272728
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "51bd1daa0c841b83e35861d23bc501073ab467d8504a84d0be0c81f651ce77ce",
+        "label_sha256": "a89a89732ce91da6ad877dad87d8742e44941e1c092ff8d145d54b04bb726b58",
+        "boxes": [
+          [
+            5,
+            0.29,
+            0.5709090909090909,
+            0.1875,
+            0.17454545454545456
+          ],
+          [
+            5,
+            0.4325,
+            0.5609090909090909,
+            0.2425,
+            0.2636363636363636
+          ],
+          [
+            6,
+            0.410625,
+            0.4772727272727273,
+            0.07625,
+            0.10727272727272727
+          ],
+          [
+            6,
+            0.446875,
+            0.6418181818181818,
+            0.07375,
+            0.10909090909090909
+          ],
+          [
+            7,
+            0.174375,
+            0.5836363636363636,
+            0.07875,
+            0.11272727272727273
+          ],
+          [
+            7,
+            0.285625,
+            0.66,
+            0.08125,
+            0.11636363636363636
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_4.jpg",
+        "evidence_sha256": "81856d3a509fa2fdc7a54c1acbbefbc79da2407fe23a2d36a923c5f17cad4e19"
+      }
+    },
+    "loco_train_090": {
+      "status": "approved",
+      "image_sha256": "a92609de278f972e889d73018e64ad616c51dcb3b7c5853ea00a44bf59037c9b",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.319375,
+          0.4254545454545455,
+          0.34875,
+          0.2109090909090909
+        ],
+        [
+          5,
+          0.411875,
+          0.4163636363636364,
+          0.34875,
+          0.31272727272727274
+        ],
+        [
+          6,
+          0.224375,
+          0.5454545454545454,
+          0.06125,
+          0.08727272727272728
+        ],
+        [
+          6,
+          0.448125,
+          0.47909090909090907,
+          0.06125,
+          0.0890909090909091
+        ],
+        [
+          7,
+          0.25,
+          0.3181818181818182,
+          0.06,
+          0.08727272727272728
+        ],
+        [
+          7,
+          0.375625,
+          0.30727272727272725,
+          0.06125,
+          0.08727272727272728
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "a92609de278f972e889d73018e64ad616c51dcb3b7c5853ea00a44bf59037c9b",
+        "label_sha256": "65ebffbcc4a27684447d4bf15285e596f05979a6faf50286e0704cea1f042beb",
+        "boxes": [
+          [
+            5,
+            0.3075,
+            0.4009090909090909,
+            0.1875,
+            0.15454545454545454
+          ],
+          [
+            5,
+            0.460625,
+            0.3845454545454545,
+            0.25125,
+            0.2381818181818182
+          ],
+          [
+            6,
+            0.24875,
+            0.5236363636363637,
+            0.0775,
+            0.10909090909090909
+          ],
+          [
+            6,
+            0.470625,
+            0.47,
+            0.07375,
+            0.10727272727272727
+          ],
+          [
+            7,
+            0.286875,
+            0.3336363636363636,
+            0.07875,
+            0.11090909090909092
+          ],
+          [
+            7,
+            0.429375,
+            0.32272727272727275,
+            0.08125,
+            0.11454545454545455
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_4.jpg",
+        "evidence_sha256": "81856d3a509fa2fdc7a54c1acbbefbc79da2407fe23a2d36a923c5f17cad4e19"
+      }
+    },
+    "loco_train_100": {
+      "status": "approved",
+      "image_sha256": "ec3d8a7d8b2db4f934065a1945348088b8edcb61ae9cefb6e400884883f5d022",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.285,
+          0.45454545454545453,
+          0.1775,
+          0.24727272727272728
+        ],
+        [
+          5,
+          0.52875,
+          0.5672727272727273,
+          0.23,
+          0.2
+        ],
+        [
+          6,
+          0.176875,
+          0.5127272727272727,
+          0.05875,
+          0.08727272727272728
+        ],
+        [
+          6,
+          0.270625,
+          0.58,
+          0.06125,
+          0.08727272727272728
+        ],
+        [
+          7,
+          0.189375,
+          0.5218181818181818,
+          0.06125,
+          0.08727272727272728
+        ],
+        [
+          7,
+          0.550625,
+          0.7218181818181818,
+          0.06125,
+          0.08727272727272728
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "ec3d8a7d8b2db4f934065a1945348088b8edcb61ae9cefb6e400884883f5d022",
+        "label_sha256": "feea347dc22f9299ec8d5d392697e13b06473d97c1aa82c561d6eae65c44b3de",
+        "boxes": [
+          [
+            5,
+            0.27125,
+            0.4672727272727273,
+            0.245,
+            0.2581818181818182
+          ],
+          [
+            5,
+            0.50375,
+            0.6254545454545455,
+            0.185,
+            0.14545454545454545
+          ],
+          [
+            6,
+            0.16,
+            0.46,
+            0.075,
+            0.11272727272727273
+          ],
+          [
+            6,
+            0.271875,
+            0.5809090909090909,
+            0.07625,
+            0.10727272727272727
+          ],
+          [
+            7,
+            0.23,
+            0.4990909090909091,
+            0.0775,
+            0.11090909090909092
+          ],
+          [
+            7,
+            0.560625,
+            0.75,
+            0.08125,
+            0.11454545454545455
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_4.jpg",
+        "evidence_sha256": "81856d3a509fa2fdc7a54c1acbbefbc79da2407fe23a2d36a923c5f17cad4e19"
+      }
+    },
+    "loco_train_110": {
+      "status": "approved",
+      "image_sha256": "c01d5bc5bb07f47201c562caf2173b4d0240bc9bb95c66dee132a0a3c827a70e",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.2825,
+          0.6636363636363637,
+          0.3725,
+          0.15636363636363637
+        ],
+        [
+          5,
+          0.439375,
+          0.68,
+          0.26375,
+          0.16
+        ],
+        [
+          6,
+          0.23125,
+          0.6281818181818182,
+          0.0625,
+          0.0890909090909091
+        ],
+        [
+          6,
+          0.549375,
+          0.5436363636363636,
+          0.06125,
+          0.09090909090909091
+        ],
+        [
+          7,
+          0.234375,
+          0.4590909090909091,
+          0.06125,
+          0.0890909090909091
+        ],
+        [
+          7,
+          0.380625,
+          0.509090909090909,
+          0.06125,
+          0.09090909090909091
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "c01d5bc5bb07f47201c562caf2173b4d0240bc9bb95c66dee132a0a3c827a70e",
+        "label_sha256": "fa4c0f1166ffad9ed812a28b1cf1947cec7042277abdf18a12b67852780eb320",
+        "boxes": [
+          [
+            5,
+            0.325625,
+            0.6209090909090909,
+            0.26375,
+            0.1290909090909091
+          ],
+          [
+            5,
+            0.44125,
+            0.7090909090909091,
+            0.185,
+            0.11272727272727273
+          ],
+          [
+            6,
+            0.16875,
+            0.6372727272727273,
+            0.08,
+            0.10727272727272727
+          ],
+          [
+            6,
+            0.484375,
+            0.5181818181818182,
+            0.07625,
+            0.10909090909090909
+          ],
+          [
+            7,
+            0.54125,
+            0.43636363636363634,
+            0.08,
+            0.11272727272727273
+          ],
+          [
+            7,
+            0.253125,
+            0.6690909090909091,
+            0.07875,
+            0.11636363636363636
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_4.jpg",
+        "evidence_sha256": "81856d3a509fa2fdc7a54c1acbbefbc79da2407fe23a2d36a923c5f17cad4e19"
+      }
+    },
+    "loco_val_000": {
+      "status": "approved",
+      "image_sha256": "1a4168b939b52003b071883b4fb0549833b8bc8d161a6b76506ddf2929cad438",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.228125,
+          0.4209090909090909,
+          0.13625,
+          0.35454545454545455
+        ],
+        [
+          5,
+          0.4525,
+          0.45181818181818184,
+          0.145,
+          0.3981818181818182
+        ],
+        [
+          6,
+          0.25875,
+          0.49818181818181817,
+          0.06,
+          0.08727272727272728
+        ],
+        [
+          6,
+          0.29375,
+          0.5954545454545455,
+          0.06,
+          0.0890909090909091
+        ],
+        [
+          7,
+          0.165625,
+          0.4718181818181818,
+          0.06125,
+          0.0890909090909091
+        ],
+        [
+          7,
+          0.1525,
+          0.6190909090909091,
+          0.06,
+          0.0890909090909091
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "1a4168b939b52003b071883b4fb0549833b8bc8d161a6b76506ddf2929cad438",
+        "label_sha256": "06fa181e62f793969ec5e2227eda04ad149035f3b64053f133e34ebe4a359ad8",
+        "boxes": [
+          [
+            5,
+            0.24375,
+            0.4536363636363636,
+            0.1475,
+            0.3618181818181818
+          ],
+          [
+            5,
+            0.348125,
+            0.3790909090909091,
+            0.16625,
+            0.20909090909090908
+          ],
+          [
+            6,
+            0.43875,
+            0.40636363636363637,
+            0.0775,
+            0.11090909090909092
+          ],
+          [
+            6,
+            0.293125,
+            0.5345454545454545,
+            0.07875,
+            0.10909090909090909
+          ],
+          [
+            7,
+            0.17125,
+            0.4827272727272727,
+            0.08,
+            0.11090909090909092
+          ],
+          [
+            7,
+            0.149375,
+            0.6509090909090909,
+            0.07875,
+            0.11272727272727273
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_5.jpg",
+        "evidence_sha256": "9a41853b38ce6a1625760d93e8fb1306bec799b7be5861c162b06aaec2b9af8b"
+      }
+    },
+    "loco_val_015": {
+      "status": "approved",
+      "image_sha256": "09f7d670957e802099cddbd5c258e2759ed96eb6e01c25ae38e1baad166c0ae7",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.41125,
+          0.49727272727272726,
+          0.1425,
+          0.18
+        ],
+        [
+          5,
+          0.53375,
+          0.41818181818181815,
+          0.235,
+          0.2872727272727273
+        ],
+        [
+          6,
+          0.345,
+          0.5263636363636364,
+          0.0625,
+          0.0890909090909091
+        ],
+        [
+          6,
+          0.465,
+          0.42727272727272725,
+          0.0625,
+          0.09090909090909091
+        ],
+        [
+          7,
+          0.14,
+          0.4672727272727273,
+          0.0625,
+          0.09090909090909091
+        ],
+        [
+          7,
+          0.325625,
+          0.4827272727272727,
+          0.06375,
+          0.09272727272727273
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "09f7d670957e802099cddbd5c258e2759ed96eb6e01c25ae38e1baad166c0ae7",
+        "label_sha256": "fc55a400980b6b8cfc6bebba0507e7071468bcc0ad77e524b6aa065fd9aaa961",
+        "boxes": [
+          [
+            5,
+            0.25125,
+            0.6081818181818182,
+            0.1575,
+            0.22363636363636363
+          ],
+          [
+            5,
+            0.453125,
+            0.5318181818181819,
+            0.24875,
+            0.24909090909090909
+          ],
+          [
+            6,
+            0.52625,
+            0.37,
+            0.08,
+            0.11090909090909092
+          ],
+          [
+            6,
+            0.465,
+            0.42727272727272725,
+            0.0775,
+            0.11272727272727273
+          ],
+          [
+            7,
+            0.1875,
+            0.44363636363636366,
+            0.08,
+            0.11636363636363636
+          ],
+          [
+            7,
+            0.385625,
+            0.49454545454545457,
+            0.08125,
+            0.11636363636363636
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_5.jpg",
+        "evidence_sha256": "9a41853b38ce6a1625760d93e8fb1306bec799b7be5861c162b06aaec2b9af8b"
+      }
+    },
+    "loco_val_030": {
+      "status": "approved",
+      "image_sha256": "3904bf64ab8de5d6e9a7efd48dbb95bd7a30a98248c8d1d5c613ede1d6523fb0",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.27375,
+          0.7118181818181818,
+          0.3725,
+          0.09636363636363636
+        ],
+        [
+          5,
+          0.4125,
+          0.7218181818181818,
+          0.33,
+          0.11272727272727273
+        ],
+        [
+          6,
+          0.2525,
+          0.6,
+          0.06,
+          0.08727272727272728
+        ],
+        [
+          6,
+          0.56625,
+          0.6090909090909091,
+          0.0625,
+          0.09090909090909091
+        ],
+        [
+          7,
+          0.459375,
+          0.43272727272727274,
+          0.06125,
+          0.09090909090909091
+        ],
+        [
+          7,
+          0.46,
+          0.5381818181818182,
+          0.0625,
+          0.09090909090909091
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "3904bf64ab8de5d6e9a7efd48dbb95bd7a30a98248c8d1d5c613ede1d6523fb0",
+        "label_sha256": "b7f41f58054ad7d680f16827a5669f07591c2e9d74da68f9c5d27761bb642818",
+        "boxes": [
+          [
+            5,
+            0.1975,
+            0.7481818181818182,
+            0.1825,
+            0.12545454545454546
+          ],
+          [
+            5,
+            0.4175,
+            0.72,
+            0.265,
+            0.16
+          ],
+          [
+            6,
+            0.3975,
+            0.6272727272727273,
+            0.08,
+            0.10909090909090909
+          ],
+          [
+            6,
+            0.568125,
+            0.6081818181818182,
+            0.07875,
+            0.11090909090909092
+          ],
+          [
+            7,
+            0.469375,
+            0.4636363636363636,
+            0.07875,
+            0.11636363636363636
+          ],
+          [
+            7,
+            0.461875,
+            0.5690909090909091,
+            0.08125,
+            0.11636363636363636
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_5.jpg",
+        "evidence_sha256": "9a41853b38ce6a1625760d93e8fb1306bec799b7be5861c162b06aaec2b9af8b"
+      }
+    },
+    "loco_val_045": {
+      "status": "approved",
+      "image_sha256": "1439015ef06632768b7a20db935c404a06627bba623a560db605c51d6d933ba2",
+      "label_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "all_eight_classes_checked": true,
+      "boxes": [
+        [
+          5,
+          0.38,
+          0.6418181818181818,
+          0.1175,
+          0.3709090909090909
+        ],
+        [
+          5,
+          0.58875,
+          0.5509090909090909,
+          0.21,
+          0.31636363636363635
+        ],
+        [
+          6,
+          0.174375,
+          0.5409090909090909,
+          0.06125,
+          0.0890909090909091
+        ],
+        [
+          6,
+          0.52125,
+          0.6863636363636364,
+          0.0625,
+          0.09272727272727273
+        ],
+        [
+          7,
+          0.18875,
+          0.4381818181818182,
+          0.0625,
+          0.09090909090909091
+        ],
+        [
+          7,
+          0.3775,
+          0.5954545454545455,
+          0.0625,
+          0.09272727272727273
+        ]
+      ],
+      "note": "逐图检查透明袋内可见目标，自主新标2颗螺丝、2颗螺母、2个垫圈的水平框；袋子与反光不标；保留源划分。",
+      "second_review": {
+        "status": "approved",
+        "image_sha256": "1439015ef06632768b7a20db935c404a06627bba623a560db605c51d6d933ba2",
+        "label_sha256": "f5550ad2d41f9f50c9c6b5c4fc6331b913f05fbfe4786e8c1e419a3afc66c290",
+        "boxes": [
+          [
+            5,
+            0.281875,
+            0.6745454545454546,
+            0.10875,
+            0.2690909090909091
+          ],
+          [
+            5,
+            0.545625,
+            0.57,
+            0.25125,
+            0.2381818181818182
+          ],
+          [
+            6,
+            0.185625,
+            0.5727272727272728,
+            0.07875,
+            0.10909090909090909
+          ],
+          [
+            6,
+            0.480625,
+            0.7,
+            0.07875,
+            0.10909090909090909
+          ],
+          [
+            7,
+            0.245,
+            0.5081818181818182,
+            0.08,
+            0.11818181818181818
+          ],
+          [
+            7,
+            0.368125,
+            0.6581818181818182,
+            0.07875,
+            0.11636363636363636
+          ]
+        ],
+        "all_eight_classes_checked": true,
+        "note": "逐图对照原图并检查重画框叠加图：每图螺丝、螺母、垫圈各两件；框覆盖可见外缘，未见其他五类。此为同一助手第二轮视觉检查，不代表独立人员复审。",
+        "reviewed_at": "2026-10-23",
+        "evidence": "data/review/loco_corrected_5.jpg",
+        "evidence_sha256": "9a41853b38ce6a1625760d93e8fb1306bec799b7be5861c162b06aaec2b9af8b"
+      }
+    },
+    "oi_011bd38e7739d91b": {
+      "status": "approved",
+      "image_sha256": "510ea4f558434c84b73928c7e08ff3ef2ff7ce31c65238a30e73f5cead2d3592",
+      "label_sha256": "74cf3f18a4538a8cd455e716ca5ee614f8569360fd41092716aa69db942c20e3",
+      "all_eight_classes_checked": true,
+      "note": "先查看候选联系表，再放大逐图核对八类完整性；按可见边界修正瓶框，补齐普通饮水杯；高脚杯按规范排除。",
+      "boxes": [
+        [
+          1,
+          0.7266666666666667,
+          0.58,
+          0.5314285714285715,
+          0.7457142857142857
+        ]
+      ]
+    },
+    "oi_0219908f4f9e94ea": {
+      "status": "approved",
+      "image_sha256": "46325fb44ae035a38820a897b782074eb5da6b458f266003490abb8530c7eab6",
+      "label_sha256": "e6599f9507375cffccea3247fc65855909d715ea68354ed8b74b6f7c3bc64435",
+      "all_eight_classes_checked": true,
+      "note": "先查看候选联系表，再放大逐图核对八类完整性；按可见边界修正瓶框，补齐普通饮水杯；高脚杯按规范排除。",
+      "boxes": [
+        [
+          1,
+          0.5114285714285715,
+          0.42428571428571427,
+          0.5314285714285715,
+          0.8485714285714285
+        ]
+      ]
+    },
+    "oi_27ffc284a7e75fdb": {
+      "status": "approved",
+      "image_sha256": "2a3c2da386b86f648108f86011bd4c864a3ba495570617735f86f85bcc55eab7",
+      "label_sha256": "521e5e00d10c813ce2900e01354f209b5f0d1f05a16fc06e845aebed9f7d2b72",
+      "all_eight_classes_checked": true,
+      "note": "先查看候选联系表，再放大逐图核对八类完整性；按可见边界修正瓶框，补齐普通饮水杯；高脚杯按规范排除。",
+      "boxes": [
+        [
+          1,
+          0.6285714285714286,
+          0.6664285714285715,
+          0.13142857142857142,
+          0.39571428571428574
+        ],
+        [
+          1,
+          0.5821428571428572,
+          0.2507142857142857,
+          0.17,
+          0.39
+        ]
+      ]
+    },
+    "oi_3812c553e2a5c894": {
+      "status": "approved",
+      "image_sha256": "c18dc05eee4320337dd42e670230031b3820c4e90a087915dd2030a20b3b713c",
+      "label_sha256": "812c4bb0717a388ed73eea469ea2ad481186331db29dca00094674d47817b255",
+      "all_eight_classes_checked": true,
+      "note": "先查看候选联系表，再放大逐图核对八类完整性；按可见边界修正瓶框，补齐普通饮水杯；高脚杯按规范排除。",
+      "boxes": [
+        [
+          0,
+          0.7271428571428571,
+          0.6321428571428571,
+          0.5457142857142857,
+          0.6985714285714286
+        ],
+        [
+          1,
+          0.23142857142857143,
+          0.4692857142857143,
+          0.46285714285714286,
+          0.9385714285714286
+        ]
+      ]
+    },
+    "oi_38451ec391f20ab5": {
+      "status": "approved",
+      "image_sha256": "8ef910f0fc1047daf64d7e4bb228805c158b5866b55286df44637465ae55a01c",
+      "label_sha256": "91a347222c178a396c58af4574bbc628e16afc155c8edf0a246d952142dac9aa",
+      "all_eight_classes_checked": true,
+      "note": "先查看候选联系表，再放大逐图核对八类完整性；按可见边界修正瓶框，补齐普通饮水杯；高脚杯按规范排除。",
+      "boxes": [
+        [
+          1,
+          0.3047619047619048,
+          0.4942857142857143,
+          0.4723809523809524,
+          0.9885714285714285
+        ],
+        [
+          0,
+          0.7542857142857143,
+          0.5771428571428572,
+          0.49142857142857144,
+          0.7371428571428571
+        ]
+      ]
+    },
+    "oi_3cb6ace5647621ae": {
+      "status": "approved",
+      "image_sha256": "4322fde0a5aba115920c29f1d730c67f352f3ff28363e94da5157c3d2c95eccf",
+      "label_sha256": "8fae9f482ff178e7258227ca1798483f1445ab94251b3307bcccf40b81d02de6",
+      "all_eight_classes_checked": true,
+      "note": "先查看候选联系表，再放大逐图核对八类完整性；按可见边界修正瓶框，补齐普通饮水杯；高脚杯按规范排除。",
+      "boxes": [
+        [
+          1,
+          0.3180952380952381,
+          0.5,
+          0.5752380952380952,
+          1.0
+        ]
+      ]
+    },
+    "oi_4bc7261e166748b4": {
+      "status": "approved",
+      "image_sha256": "9e872b68ac4b1aa1d8bc56fa97251b48d9b3526b4397be46377f27b2d606fd22",
+      "label_sha256": "40c1bc786569966df0a333818008832cb4262923bbd5222e582fa0ab3256873c",
+      "all_eight_classes_checked": true,
+      "note": "先查看候选联系表，再放大逐图核对八类完整性；按可见边界修正瓶框，补齐普通饮水杯；高脚杯按规范排除。",
+      "boxes": [
+        [
+          1,
+          0.35428571428571426,
+          0.44357142857142856,
+          0.32761904761904764,
+          0.8871428571428571
+        ]
+      ]
+    },
+    "oi_66b60e1785582583": {
+      "status": "approved",
+      "image_sha256": "08af0cfc3adf35cd57a71c3a027ca53f3534af9932fc2b4064e887f71cda8361",
+      "label_sha256": "d12264b2886be10e99ddca347950162a67e5a3bb167db5648cb69b43870e18ff",
+      "all_eight_classes_checked": true,
+      "note": "先查看候选联系表，再放大逐图核对八类完整性；按可见边界修正瓶框，补齐普通饮水杯；高脚杯按规范排除。",
+      "boxes": [
+        [
+          1,
+          0.208,
+          0.325,
+          0.196,
+          0.35285714285714287
+        ],
+        [
+          1,
+          0.616,
+          0.5171428571428571,
+          0.424,
+          0.9657142857142857
+        ],
+        [
+          1,
+          0.463,
+          0.25642857142857145,
+          0.078,
+          0.17285714285714285
+        ]
+      ]
+    }
+  },
+  "generalization_limitations": [
+    "杯子、瓶子、书、橡皮和螺丝刀样本较少；五金目前只有透明袋场景，尚需补充多场景桌面照片及确认的负样本。"
+  ],
+  "training_scope": {
+    "purpose": "three_epoch_pilot",
+    "maximum_epochs": 3,
+    "authorization": "用户于 2026-10-23 明确要求“现在开始第四阶段”；仅批准当前 64 张复核样本的三轮训练链路试跑。",
+    "note": "图像与标签复核已通过；桌面场景、负样本和样本量缺口继续保留，不表示正式训练或泛化验收就绪。"
+  }
+}

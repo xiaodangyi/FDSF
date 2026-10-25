@@ -1,0 +1,196 @@
+{
+  "checked_at": "2026-10-24T11:18:42.752541+08:00",
+  "protocol_sha256": "b268185811c39f10a456b1bcefeb7f531a00cc9c2425fa20087c0f34a69a8da5",
+  "frozen_assets_and_samples": "passed",
+  "offline_summary": "passed; 已单独执行 summarize，未重新推理或调用 API",
+  "unit_tests": {
+    "count": 57,
+    "result": "OK",
+    "exit_code": 0,
+    "source": "本阶段先前完成的 unittest discover -s tests -v",
+    "warning": "Windows Gradio 的 ResourceWarning: unclosed event loop；未导致失败"
+  },
+  "project_environment_verification": "本阶段先前执行 verify_project.py，通过",
+  "git_diff_check": "passed",
+  "markdown_local_links": "passed",
+  "exact_local_key_scan": "passed; 不输出密钥，源码与嵌套导出逐项扫描",
+  "ui_export": {
+    "path": "runs/ui/exports/20261024-105835-f1b45560/双路识别结果.zip",
+    "entries": [
+      "yolo/annotated.png",
+      "yolo/masks/instance-0001-contours.json",
+      "yolo/masks/instance-0001.png",
+      "yolo/masks/instance-0002-contours.json",
+      "yolo/masks/instance-0002.png",
+      "yolo/result.json",
+      "yolo/segmented.png",
+      "deepseek/request-summary.json",
+      "deepseek/response.txt",
+      "deepseek/result.json",
+      "数量对比.md"
+    ],
+    "sha256": "58e9ef063549c96bf59934944c2da6eea6408842d9c43170578d7733a62da7ff",
+    "same_image_sha256": "8ef910f0fc1047daf64d7e4bb228805c158b5866b55286df44637465ae55a01c",
+    "yolo_counts": [
+      {
+        "category_id": 0,
+        "category_name": "杯子",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "cup"
+      },
+      {
+        "category_id": 1,
+        "category_name": "瓶子",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 2,
+        "category_key": "bottle"
+      },
+      {
+        "category_id": 2,
+        "category_name": "书",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "book"
+      },
+      {
+        "category_id": 3,
+        "category_name": "橡皮",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "eraser"
+      },
+      {
+        "category_id": 4,
+        "category_name": "螺丝刀",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "screwdriver"
+      },
+      {
+        "category_id": 5,
+        "category_name": "螺丝",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "screw"
+      },
+      {
+        "category_id": 6,
+        "category_name": "螺母",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "nut"
+      },
+      {
+        "category_id": 7,
+        "category_name": "垫圈",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "washer"
+      }
+    ],
+    "deepseek_counts": [
+      {
+        "category_id": 0,
+        "category_key": "cup",
+        "category_name": "杯子",
+        "count": 1,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 1,
+        "category_key": "bottle",
+        "category_name": "瓶子",
+        "count": 1,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 2,
+        "category_key": "book",
+        "category_name": "书",
+        "count": 0,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 3,
+        "category_key": "eraser",
+        "category_name": "橡皮",
+        "count": 0,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 4,
+        "category_key": "screwdriver",
+        "category_name": "螺丝刀",
+        "count": 0,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 5,
+        "category_key": "screw",
+        "category_name": "螺丝",
+        "count": 0,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 6,
+        "category_key": "nut",
+        "category_name": "螺母",
+        "count": 0,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 7,
+        "category_key": "washer",
+        "category_name": "垫圈",
+        "count": 0,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      }
+    ],
+    "additional_demo_usage": {
+      "prompt_tokens": 1154,
+      "completion_tokens": 89,
+      "total_tokens": 1243
+    }
+  },
+  "video": {
+    "format": "真实界面截图序列演示，非连续录屏；无配音，停留时长不代表推理耗时",
+    "path": "runs/stage8-demo/验收演示.mp4",
+    "codec": "H.264/yuv420p",
+    "frames_decoded": 360,
+    "fps": 10.0,
+    "seconds": 36.0,
+    "width": 1280,
+    "height": 720,
+    "sha256": "baa57ddf5f76511140d4781ac26486f984660c23f9f1d69ec9f6483970ee4d65",
+    "source_screenshots": [
+      "01-start.png",
+      "02-input.png",
+      "03-sam.png",
+      "04-deepseek.png",
+      "05-comparison.png"
+    ]
+  },
+  "package_verification": "打包后逐项 CRC、SHA256、密钥扫描结果见 runs/delivery/package-verification.json",
+  "remaining": [
+    "个人总结待本人核对表达",
+    "未证明真实桌面泛化",
+    "视频为截图序列；连续录屏要求须另补"
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-23T21:17:28.738319+08:00",
+  "stage": 5,
+  "test_split_evaluated": false,
+  "training_performed": false,
+  "yolo_weights_sha256": "cef441c3b271d8886bec5f2c8eb546ec17049953bc93a78cb485ab824f6014d7",
+  "sam2_weights_sha256": "7402e0d864fa82708a20fbd15bc84245c2f26dff0eb43a4b5b93452deb34be69",
+  "sam2_config": "configs/sam2.1/sam2.1_hiera_t.yaml",
+  "optional_cuda_postprocessing": false,
+  "checks": [
+    {
+      "result": "runs/segmentation/20261023-210737-0ff5b690/result.json",
+      "result_sha256": "280e69b50885f2a7c081a5d72067e958551cc0bca82c1b504121561f9f9b20ad",
+      "input": {
+        "file_name": "loco_val_000.png",
+        "sha256": "1a4168b939b52003b071883b4fb0549833b8bc8d161a6b76506ddf2929cad438"
+      },
+      "image_size": {
+        "width": 1600,
+        "height": 1100
+      },
+      "kind": "validation",
+      "segmentation_status": "completed",
+      "nonempty_masks": 6,
+      "empty_masks": 0,
+      "counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 2,
+        "6": 2,
+        "7": 2
+      },
+      "detection_and_counts_unchanged": true,
+      "masks_original_size_binary_and_hashes_checked": true,
+      "timings_ms": {
+        "model_load_and_transfer": 146.989,
+        "prediction_wall": 654.07,
+        "model_preprocess": 2.629,
+        "model_inference": 29.365,
+        "model_postprocess": 171.982,
+        "image_decode": 35.542,
+        "sam2_load_and_transfer": 1131.189,
+        "sam2_image_encoding": 345.08,
+        "sam2_mask_decoding": 232.757,
+        "sam2_artifact_write": 121.873
+      },
+      "instances": [
+        {
+          "instance_id": 1,
+          "category_id": 6,
+          "status": "ok",
+          "mask_sha256": "ecf67321707f6001d578723a23ff071ab5dc54dd9bc26ca0b6f76f3608de9a06",
+          "contours_sha256": "a3a811c62a34c76d8b5b461b2278533c00481758406bc12d98efc01061883909",
+          "area_pixels": 7273,
+          "sam2_predicted_iou": 0.9296875,
+          "hole_contours": 1
+        },
+        {
+          "instance_id": 2,
+          "category_id": 6,
+          "status": "ok",
+          "mask_sha256": "3734c37a434cc8da9cabdeebad65329895d47198b817201ce6de880c4c38f686",
+          "contours_sha256": "da5bf5a2625235b5bdf0590defbdfa6808e6a01ad075062c63a34d34696c3d52",
+          "area_pixels": 6967,
+          "sam2_predicted_iou": 0.93359375,
+          "hole_contours": 1
+        },
+        {
+          "instance_id": 3,
+          "category_id": 7,
+          "status": "ok",
+          "mask_sha256": "fa9f7b8a3ed9282f2103581bd55d7bae95c3bc2bcf48e3a51b6d0b686bcf714f",
+          "contours_sha256": "89e6ab7b05dadb68ca98394b125b608bc5c6d4142fd4833f8366b459192ae37d",
+          "area_pixels": 6427,
+          "sam2_predicted_iou": 0.9609375,
+          "hole_contours": 1
+        },
+        {
+          "instance_id": 4,
+          "category_id": 7,
+          "status": "ok",
+          "mask_sha256": "2e05855ed56059bd748f28b4b101105dbc4166f3ed80f62389dd1eef1bcfb284",
+          "contours_sha256": "c97cf11f391fdfb5ad01d44ea9ff3d2befb4465eca6d5c1e8ab05c83083d9601",
+          "area_pixels": 6150,
+          "sam2_predicted_iou": 0.9609375,
+          "hole_contours": 1
+        },
+        {
+          "instance_id": 5,
+          "category_id": 5,
+          "status": "ok",
+          "mask_sha256": "78c89f888c9a48b5057629cb94d62afb7e148643466a9fc2557ff1cc983f523d",
+          "contours_sha256": "a39e0896a2449c0ba98cb8cb16fdafe826f54578a24a9fda2dcde8c847fd4595",
+          "area_pixels": 17636,
+          "sam2_predicted_iou": 0.94140625,
+          "hole_contours": 0
+        },
+        {
+          "instance_id": 6,
+          "category_id": 5,
+          "status": "ok",
+          "mask_sha256": "96ea71fe3988a73030386e366fe481dc900b3345c04ca782e6347b2aaa7ee901",
+          "contours_sha256": "81d0794f8499299195fdb8bf27779d5349f8eba6369b57b5f6cddd58696c295e",
+          "area_pixels": 24641,
+          "sam2_predicted_iou": 0.92578125,
+          "hole_contours": 1
+        }
+      ]
+    },
+    {
+      "result": "runs/segmentation/20261023-211145-b469471d/result.json",
+      "result_sha256": "d91dd273d9a8a91f3e028fe7943dddb3a3bdb0ebf5c00bfe59cc982526b6fcc5",
+      "input": {
+        "file_name": "oi_38451ec391f20ab5.jpg",
+        "sha256": "8ef910f0fc1047daf64d7e4bb228805c158b5866b55286df44637465ae55a01c"
+      },
+      "image_size": {
+        "width": 768,
+        "height": 1024
+      },
+      "kind": "validation",
+      "segmentation_status": "completed",
+      "nonempty_masks": 2,
+      "empty_masks": 0,
+      "counts": {
+        "0": 0,
+        "1": 2,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0
+      },
+      "detection_and_counts_unchanged": true,
+      "masks_original_size_binary_and_hashes_checked": true,
+      "timings_ms": {
+        "model_load_and_transfer": 221.246,
+        "prediction_wall": 996.087,
+        "model_preprocess": 4.475,
+        "model_inference": 52.746,
+        "model_postprocess": 199.599,
+        "image_decode": 5.268,
+        "sam2_load_and_transfer": 1567.918,
+        "sam2_image_encoding": 429.133,
+        "sam2_mask_decoding": 310.032,
+        "sam2_artifact_write": 68.928
+      },
+      "instances": [
+        {
+          "instance_id": 1,
+          "category_id": 1,
+          "status": "ok",
+          "mask_sha256": "3f719879b50fe760efa12001276b0ef836db4580f5f5a29e415b04d23b5f6d40",
+          "contours_sha256": "a92139100fca93721de31f6f61574206adb8f61c2d9cc5a81a2c51263530aba8",
+          "area_pixels": 258291,
+          "sam2_predicted_iou": 0.99609375,
+          "hole_contours": 0
+        },
+        {
+          "instance_id": 2,
+          "category_id": 1,
+          "status": "ok",
+          "mask_sha256": "97bc0dce234cc2a76f825ef4010154285f36ae45392e95113114e8393c12838a",
+          "contours_sha256": "5a5515bc0dfcd83ee016f85a192d29f2a8f9996f56f3ae54a9244de26c15583c",
+          "area_pixels": 234212,
+          "sam2_predicted_iou": 0.94140625,
+          "hole_contours": 0
+        }
+      ]
+    },
+    {
+      "result": "runs/segmentation/20261023-211221-68676936/result.json",
+      "result_sha256": "c6f256a91cb0dd3dc6fb41584c0fcac2e637042eb4d34acbbf4a3f1f8b203807",
+      "input": {
+        "file_name": "blank.png",
+        "sha256": "2edcdd14af68fde6300fe936e977c9ae92e3fdedf26c12df7d32ab1ef4b9c759"
+      },
+      "image_size": {
+        "width": 640,
+        "height": 480
+      },
+      "kind": "synthetic_blank_contract_check",
+      "segmentation_status": "skipped_no_detections",
+      "nonempty_masks": 0,
+      "empty_masks": 0,
+      "counts": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0
+      },
+      "detection_and_counts_unchanged": true,
+      "masks_original_size_binary_and_hashes_checked": true,
+      "timings_ms": {
+        "model_load_and_transfer": 280.13,
+        "prediction_wall": 850.766,
+        "model_preprocess": 3.402,
+        "model_inference": 50.797,
+        "model_postprocess": 36.284,
+        "image_decode": 2.084,
+        "sam2_load_and_transfer": 0.0,
+        "sam2_image_encoding": 0.0,
+        "sam2_mask_decoding": 0.0,
+        "sam2_artifact_write": 0.0
+      },
+      "instances": []
+    }
+  ],
+  "failure_check": {
+    "result": "runs/segmentation/20261023-211645-728f55de/result.json",
+    "result_sha256": "afe12cda2c36dbac2e68a70f1473d194181b1107f3e8cff0f37eb496c8fe4c80",
+    "exit_code": 1,
+    "error": {
+      "stage": "segmentation",
+      "type": "FileNotFoundError",
+      "message": "未找到本地 .pt 权重；本工具不会自动下载模型。"
+    },
+    "preserved_detections": 6,
+    "segmentation_visualization_absent": true
+  },
+  "limitations": [
+    "两张验证图片只核对接口和可视化，不构成独立测试。",
+    "纯灰合成图仅检查空分支，不代表真实负样本效果。",
+    "无人工掩膜真值，不报告分割准确率；SAM 预测 IoU 不是实测准确率。",
+    "杯子仍被 YOLO 判成瓶子，透明边缘有碎点；分割不改变类别或数量。",
+    "掩膜可以超出框、互相重叠，实例独立保存；计时含冷启动，不是吞吐率。"
+  ]
+}

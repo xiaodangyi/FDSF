@@ -1,0 +1,190 @@
+{
+  "stage": 7,
+  "date": "2026-10-24",
+  "status": "passed",
+  "scope": "同一张已有验证图的界面联调，重复调用不增加样本覆盖；非独立测试或准确率验收。",
+  "source": "data/desk8-train-v1/images/val/oi_38451ec391f20ab5.jpg",
+  "input_sha256": "8ef910f0fc1047daf64d7e4bb228805c158b5866b55286df44637465ae55a01c",
+  "original_and_upload_bytes_equal": true,
+  "runs": [
+    {
+      "route": "yolo",
+      "path": "runs/ui/yolo/20261024-102608-6b06bce6/result.json",
+      "sha256": "ff317b27b3d67a51c5d3a9838502210ead48c43420175c31c5d0f83f78d32404",
+      "status": "ok",
+      "timings_ms": {
+        "model_load_and_transfer": 225.316,
+        "prediction_wall": 1211.904,
+        "model_preprocess": 6.583,
+        "model_inference": 33.145,
+        "model_postprocess": 267.395,
+        "image_decode": 14.321,
+        "sam2_load_and_transfer": 912.126,
+        "sam2_image_encoding": 364.621,
+        "sam2_mask_decoding": 234.55,
+        "sam2_artifact_write": 32.459,
+        "total_wall": 15314.813
+      },
+      "counts": {
+        "cup": 0,
+        "bottle": 2,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      },
+      "mask_files": 2
+    },
+    {
+      "route": "yolo",
+      "path": "runs/ui/yolo/20261024-103607-4a104ed5/result.json",
+      "sha256": "d57ec7ae5302253180971e52e3b8398a2d99981e02c3b4aef114db8bdd8b0d6d",
+      "status": "ok",
+      "timings_ms": {
+        "model_load_and_transfer": 155.143,
+        "prediction_wall": 636.258,
+        "model_preprocess": 2.749,
+        "model_inference": 30.952,
+        "model_postprocess": 144.388,
+        "image_decode": 11.606,
+        "sam2_load_and_transfer": 803.103,
+        "sam2_image_encoding": 272.021,
+        "sam2_mask_decoding": 146.359,
+        "sam2_artifact_write": 35.536,
+        "total_wall": 13043.775
+      },
+      "counts": {
+        "cup": 0,
+        "bottle": 2,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      },
+      "mask_files": 2
+    },
+    {
+      "route": "yolo",
+      "path": "runs/ui/yolo/20261024-103807-fd253dff/result.json",
+      "sha256": "2b95c5a5b6416bf18bc213ca1867edc0a11636ddb57226bd4120cee9a9dc4ba2",
+      "status": "ok",
+      "timings_ms": {
+        "model_load_and_transfer": 74.283,
+        "prediction_wall": 178.923,
+        "model_preprocess": 1.806,
+        "model_inference": 29.006,
+        "model_postprocess": 82.395,
+        "image_decode": 5.177,
+        "sam2_load_and_transfer": 528.618,
+        "sam2_image_encoding": 56.117,
+        "sam2_mask_decoding": 29.336,
+        "sam2_artifact_write": 34.28,
+        "total_wall": 1417.666
+      },
+      "counts": {
+        "cup": 0,
+        "bottle": 2,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      },
+      "mask_files": 2
+    },
+    {
+      "route": "deepseek",
+      "path": "runs/ui/deepseek/20261024-102608-9d96b579/result.json",
+      "sha256": "c2670bd147ee1579fd20a8c5e33825235f2adbfbdc8021bfee6f4b76ecf06241",
+      "status": "ok",
+      "timings_ms": {
+        "input_preparation": 34.591,
+        "api_wall": 3611.365,
+        "total_wall": 3647.19,
+        "ui_total_wall": 3655.568
+      },
+      "counts": {
+        "cup": 1,
+        "bottle": 1,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      },
+      "mask_files": 0
+    },
+    {
+      "route": "deepseek",
+      "path": "runs/ui/deepseek/20261024-103607-43898912/result.json",
+      "sha256": "816eba916532d434d2256dd3d64c5152d71bde235b6ff50b1d5cfd56d8f82de6",
+      "status": "ok",
+      "timings_ms": {
+        "input_preparation": 36.334,
+        "api_wall": 7243.94,
+        "total_wall": 7281.54,
+        "ui_total_wall": 7288.144
+      },
+      "counts": {
+        "cup": 1,
+        "bottle": 1,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      },
+      "mask_files": 0
+    }
+  ],
+  "real_api_requests": 2,
+  "archive": {
+    "path": "runs/ui/exports/20261024-103808-26220aea/双路识别结果.zip",
+    "crc_valid": true,
+    "entries": [
+      "yolo/annotated.png",
+      "yolo/masks/instance-0001-contours.json",
+      "yolo/masks/instance-0001.png",
+      "yolo/masks/instance-0002-contours.json",
+      "yolo/masks/instance-0002.png",
+      "yolo/result.json",
+      "yolo/segmented.png",
+      "deepseek/request-summary.json",
+      "deepseek/response.txt",
+      "deepseek/result.json",
+      "数量对比.md"
+    ],
+    "sha256": "dc1ea41ed4d8ac083c59d89da8d4f77a8127d902b0f1aee901af9bbd9a4e4d31"
+  },
+  "browser_checks": [
+    "原图上传和预览",
+    "真实一键双路运行",
+    "检测框与分割图库",
+    "独立清单与数量差异表",
+    "ZIP 下载链接",
+    "阈值变动清除本地结果和下载，保留 DeepSeek",
+    "单跑本地恢复比较，无新增 API 请求",
+    "清空原图清除两路结果"
+  ],
+  "automated_tests": {
+    "full_suite": 52,
+    "ui_tests_after_status_copy_change": 12,
+    "result": "passed",
+    "environment_check": "passed",
+    "warning": "Windows Gradio 构建出现 unclosed event loop ResourceWarning，退出码为 0。"
+  },
+  "screenshot": "runs/stage7-checks/界面联调.png",
+  "limitations": [
+    "独立测试组未使用",
+    "真实桌面泛化和分割精度未验收",
+    "本地杯瓶混淆仍存在",
+    "第八阶段未开始"
+  ]
+}

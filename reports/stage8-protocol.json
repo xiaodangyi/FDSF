@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-24T10:51:54.858015+08:00",
+  "split": "test",
+  "purpose": "全部既有留出测试图的首次固定比较，非真实桌面泛化合格证明",
+  "prior_exposure": "阶段三曾查看并标注；此前未推理评估，未用于训练、阈值或提示调整。云端模型预训练数据是否包含公开图未知。",
+  "samples": [
+    {
+      "id": "loco_test_000",
+      "source": "loco",
+      "source_id": "screw_bag/test/good/000.png",
+      "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-loco-ad",
+      "attribution": "MVTec Software GmbH / MVTec LOCO AD",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "image": "data/desk8-train-v1/images/test/loco_test_000.png",
+      "image_sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+      "label": "data/desk8-train-v1/labels/test/loco_test_000.txt",
+      "label_sha256": "d3aee86cb91aeee2f122974187ff6852a64aa62f48327493a45c18474d318f64",
+      "truth": {
+        "cup": 0,
+        "bottle": 0,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 2,
+        "nut": 2,
+        "washer": 2
+      }
+    },
+    {
+      "id": "loco_test_010",
+      "source": "loco",
+      "source_id": "screw_bag/test/good/010.png",
+      "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-loco-ad",
+      "attribution": "MVTec Software GmbH / MVTec LOCO AD",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "image": "data/desk8-train-v1/images/test/loco_test_010.png",
+      "image_sha256": "0070df93203f689ef6bf3ce5e30b7ecb856e3484f26076f9b09927d5936fa43d",
+      "label": "data/desk8-train-v1/labels/test/loco_test_010.txt",
+      "label_sha256": "6093adc25a5e31e390e46507fffdd375cb04c34a7250a6d50c189ba1f93db336",
+      "truth": {
+        "cup": 0,
+        "bottle": 0,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 2,
+        "nut": 2,
+        "washer": 2
+      }
+    },
+    {
+      "id": "loco_test_020",
+      "source": "loco",
+      "source_id": "screw_bag/test/good/020.png",
+      "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-loco-ad",
+      "attribution": "MVTec Software GmbH / MVTec LOCO AD",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "image": "data/desk8-train-v1/images/test/loco_test_020.png",
+      "image_sha256": "0f795c9dabf6404a12169e88e215b17ea6dc703ee89edb6c32d928e48b8a85e8",
+      "label": "data/desk8-train-v1/labels/test/loco_test_020.txt",
+      "label_sha256": "5376e2ea5ef7a89a2f26a9dba0a10af2997fcb29e2807d5d8fc69b2a2d207087",
+      "truth": {
+        "cup": 0,
+        "bottle": 0,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 2,
+        "nut": 2,
+        "washer": 2
+      }
+    },
+    {
+      "id": "loco_test_030",
+      "source": "loco",
+      "source_id": "screw_bag/test/good/030.png",
+      "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-loco-ad",
+      "attribution": "MVTec Software GmbH / MVTec LOCO AD",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "image": "data/desk8-train-v1/images/test/loco_test_030.png",
+      "image_sha256": "6478243511450b23a31c2861f6fb754c1c721cf182f70b02a60faa5111d50762",
+      "label": "data/desk8-train-v1/labels/test/loco_test_030.txt",
+      "label_sha256": "df3b5bbe708743f0d228775808a917649bffe1a8697f21a6cd5a65450619238a",
+      "truth": {
+        "cup": 0,
+        "bottle": 0,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 2,
+        "nut": 2,
+        "washer": 2
+      }
+    },
+    {
+      "id": "oi_02a90407e6bf3ef8",
+      "source": "openimages",
+      "source_id": "02a90407e6bf3ef8",
+      "source_url": "https://c1.staticflickr.com/8/7203/6971783394_74d95eacb6_o.jpg",
+      "attribution": "Author: Moto \"Club4AG\" Miwa (License)",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "image": "data/desk8-train-v1/images/test/oi_02a90407e6bf3ef8.jpg",
+      "image_sha256": "34288f232dccfa9853ef88929a49881cf08a2eebaaa92fd83e5bc414e3e21082",
+      "label": "data/desk8-train-v1/labels/test/oi_02a90407e6bf3ef8.txt",
+      "label_sha256": "75c58a24334ac2c235717cc4c665a84bd0728cc8ed635df2d79d7b2847ebe348",
+      "truth": {
+        "cup": 0,
+        "bottle": 0,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 1,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      }
+    },
+    {
+      "id": "oi_0b92046dc7f1f249",
+      "source": "openimages",
+      "source_id": "0b92046dc7f1f249",
+      "source_url": "https://c2.staticflickr.com/3/2164/2185809469_61109483e8_o.jpg",
+      "attribution": "Author: April Killingsworth (License)",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "image": "data/desk8-train-v1/images/test/oi_0b92046dc7f1f249.jpg",
+      "image_sha256": "200beefb66aeedd46c507f2ccd9e42d34a771378e34f2e986f035dbb8e908a97",
+      "label": "data/desk8-train-v1/labels/test/oi_0b92046dc7f1f249.txt",
+      "label_sha256": "64d31ee608c81bbedfbcf4079bdbffe926bdd5b816c237b1f088d87cbf4a521b",
+      "truth": {
+        "cup": 0,
+        "bottle": 0,
+        "book": 1,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      }
+    },
+    {
+      "id": "oi_1088928dd27d2299",
+      "source": "openimages",
+      "source_id": "1088928dd27d2299",
+      "source_url": "https://c2.staticflickr.com/8/7168/13628863893_2e8083d93a_o.jpg",
+      "attribution": "Author: De Vetpan Archive - siebewarmoeskerken.nl (License)",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "image": "data/desk8-train-v1/images/test/oi_1088928dd27d2299.jpg",
+      "image_sha256": "0862e475a04214f824dbafdf6d1212640afdcd5f8d95d179e41a29ab51b69194",
+      "label": "data/desk8-train-v1/labels/test/oi_1088928dd27d2299.txt",
+      "label_sha256": "f371630efe2af168c1695daf8a7254bf1f1365133db54fef1842b1ce78e4d162",
+      "truth": {
+        "cup": 1,
+        "bottle": 0,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      }
+    },
+    {
+      "id": "oi_2f47847a26b41b63",
+      "source": "openimages",
+      "source_id": "2f47847a26b41b63",
+      "source_url": "https://farm4.staticflickr.com/8423/7640361202_c758fda063_o.jpg",
+      "attribution": "Author: Kristin Nador (License)",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "image": "data/desk8-train-v1/images/test/oi_2f47847a26b41b63.jpg",
+      "image_sha256": "018769173e1928d52140beec4388d185e1284ece8bdd72072ecdd3c13abcb024",
+      "label": "data/desk8-train-v1/labels/test/oi_2f47847a26b41b63.txt",
+      "label_sha256": "31cf65902af946f42fb701d7aa32de3675d1731fd88ea20b3e5aa66449cfbe66",
+      "truth": {
+        "cup": 0,
+        "bottle": 0,
+        "book": 0,
+        "eraser": 1,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      }
+    },
+    {
+      "id": "oi_fe400557382a38aa",
+      "source": "openimages",
+      "source_id": "fe400557382a38aa",
+      "source_url": "https://c3.staticflickr.com/9/8618/15854003682_af4dc684a8_o.jpg",
+      "attribution": "Author: Sylvester S. (License)",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "image": "data/desk8-train-v1/images/test/oi_fe400557382a38aa.jpg",
+      "image_sha256": "64d2225165aaf32e2da0a847892d8b4286fe0e2b9e0aa8205f8f4a71a880904b",
+      "label": "data/desk8-train-v1/labels/test/oi_fe400557382a38aa.txt",
+      "label_sha256": "db985bcc5cafeb56f2619db02c2dddf03f519b7b6f646af407ffffc2a24e1732",
+      "truth": {
+        "cup": 0,
+        "bottle": 1,
+        "book": 0,
+        "eraser": 0,
+        "screwdriver": 0,
+        "screw": 0,
+        "nut": 0,
+        "washer": 0
+      }
+    }
+  ],
+  "classes": [
+    "cup",
+    "bottle",
+    "book",
+    "eraser",
+    "screwdriver",
+    "screw",
+    "nut",
+    "washer"
+  ],
+  "assets": [
+    {
+      "path": "runs/train/desk8-full-20261023-204546/weights/best.pt",
+      "sha256": "cef441c3b271d8886bec5f2c8eb546ec17049953bc93a78cb485ab824f6014d7"
+    },
+    {
+      "path": "models/sam2.1_hiera_tiny.pt",
+      "sha256": "7402e0d864fa82708a20fbd15bc84245c2f26dff0eb43a4b5b93452deb34be69"
+    },
+    {
+      "path": "data/desk8-train-v1/manifest.json",
+      "sha256": "e10c04b4b7cb57a6af157b207dee413d331c9c95b100754c99fce9136f942cc8"
+    },
+    {
+      "path": "configs/classes.yaml",
+      "sha256": "2414791e86e35b79963756c3d4386bbdae1ef95ec9c4082cc80c2b27e5eca953"
+    },
+    {
+      "path": "configs/vlm-system-prompt.txt",
+      "sha256": "619fdee141b1f36fa1072501a237c6597c9379184e6fdeb7442423b4c7e7cb79"
+    },
+    {
+      "path": "deskvision/__init__.py",
+      "sha256": "1ed48efefc0613fad7f12bb657c7db474b41d82e6cc0f16b7e9aa48a78021fdc"
+    },
+    {
+      "path": "deskvision/__main__.py",
+      "sha256": "ad71c7e40f1d20ba0236560172a357b517d67237c4fabcc9b447f5479a55f46b"
+    },
+    {
+      "path": "deskvision/acceptance.py",
+      "sha256": "c996600cd8eda98f1e8f39176000cb80881fd8d8e5269f72be280ab3a227c8c7"
+    },
+    {
+      "path": "deskvision/audit_data.py",
+      "sha256": "fe7d4cc2a32043f8bc27c23674c775f9c71db6be7ea8f8a5d7dc9fb7988dca9e"
+    },
+    {
+      "path": "deskvision/config.py",
+      "sha256": "b69a8aae50359e7d5e627d7867f1c39463e04e472db85475435c7933ef7fc2ae"
+    },
+    {
+      "path": "deskvision/data.py",
+      "sha256": "97c209ad05592550fe88695ff13260dcf69eba55281f952898203b01f2dc76f5"
+    },
+    {
+      "path": "deskvision/detector.py",
+      "sha256": "0a794901f5b8758f8c5aeeea283a9518872851931c37ff292a24495f077de525"
+    },
+    {
+      "path": "deskvision/evaluate.py",
+      "sha256": "e1924a37f401dbad06fb1ff83e56a8d7a7d823f17caa80eb3e939714ecf9136f"
+    },
+    {
+      "path": "deskvision/prepare_data.py",
+      "sha256": "2bdcd491a4df512399963beced5209995a054a5764a047d2bbf3bbd65e83fda4"
+    },
+    {
+      "path": "deskvision/render.py",
+      "sha256": "b8ea71c4cb1bee2e3443e6b4b5f82b7bf00d17420709faa9c3b0a79f0971cf96"
+    },
+    {
+      "path": "deskvision/segmentation.py",
+      "sha256": "f0a0cb8b67dddb88d9e1256ee57686603a80a3dd501a9b76e32673ed9e2c4346"
+    },
+    {
+      "path": "deskvision/train.py",
+      "sha256": "a293faf36cdc62002e594ac9b70c5923f5fe4d8bbc428a1393aea11a88eda3fd"
+    },
+    {
+      "path": "deskvision/ui.py",
+      "sha256": "a125af5bc22631aa7b66bd49f73d76647a2f38bf4608ebbbff357e53d2cf8866"
+    },
+    {
+      "path": "deskvision/vision_language.py",
+      "sha256": "198c845bbde80e1b42c614647702cb0fd51b42e50c6baaa61237811382c9c7e3"
+    },
+    {
+      "path": "deskvision/vlm.py",
+      "sha256": "591c88c6b95b303dc707e7733f6676cab39c04d3b34c068691e0093875265033"
+    },
+    {
+      "path": "deskvision/vlm_config.py",
+      "sha256": "2b0e49022137b9d9c227f50492c1085fa6da035352a198751276d6a17b7eb024"
+    }
+  ],
+  "versions": {
+    "python": "3.12.15",
+    "torch": "2.7.1+cu128",
+    "torchvision": "0.22.1+cu128",
+    "ultralytics": "8.3.203",
+    "SAM-2": "1.0",
+    "opencv-python": "4.11.0.86",
+    "Pillow": "11.3.0",
+    "numpy": "1.26.4",
+    "openai": "2.16.0",
+    "httpx": "0.28.1",
+    "gradio": "5.49.1"
+  },
+  "weights": "runs/train/desk8-full-20261023-204546/weights/best.pt",
+  "local_parameters": {
+    "confidence": 0.25,
+    "iou": 0.7,
+    "image_size": 640,
+    "device": "cuda:0",
+    "segment": true,
+    "class_agnostic_nms": true,
+    "half_precision": false,
+    "max_detections": 300
+  },
+  "vlm": {
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "base_url": "https://api.deepseek.com",
+    "timeout_seconds": 60,
+    "max_tokens": 4096,
+    "max_retries": 0,
+    "thinking": "disabled",
+    "response_format": "json_object",
+    "image_detail": "high"
+  },
+  "execution": "固定 id 排序，先逐图本地，再逐图 DeepSeek；每张本地重新加载模型。无自动重试，失败与中断保留。",
+  "metrics": {
+    "exact": "成功且八类计数向量与真值完全一致的图数/全部测试图数；另列成功图分母。",
+    "mae": "成功图中八类绝对计数误差之和/(成功图数*8)，包括真实为零的类别。",
+    "normalized_absolute_error": "成功图八类绝对误差总和/这些图真实实例总数；不是准确率，可大于1。",
+    "failures": "失败、未运行、中断均无零计数，不参与MAE；始终列出成功覆盖率。",
+    "timing": "本地单次总耗时含加载、输入校验、推理及图像产物；云端总耗时含请求及网络。均不含UI上传、排队、下载；不换算FPS。",
+    "cost": "汇总API返回token用量；无已核实价格和账单，不估算金额；本地硬件电费未测。"
+  },
+  "limitations": [
+    "仅9张、29个实例，前五类各仅1张1实例，五金仅4张固定工业背景。",
+    "缺真实桌面、遮挡、密集小物、负样本；人工标签由同一助手复核，仍需人工抽审。",
+    "无人工像素掩膜，不报分割精度；DeepSeek无像素框，不计算其mAP。",
+    "云端服务可能更新，固定请求不能保证未来答案逐字相同。"
+  ]
+}
