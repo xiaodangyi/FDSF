@@ -1,0 +1,527 @@
+{
+  "stage": "S1",
+  "started_at": "2026-10-25T21:23:51.322628+08:00",
+  "device_requested": "cuda:0",
+  "cpu_build_removed": true,
+  "training_executed": false,
+  "deepseek_attempts_this_run": 1,
+  "run_directory": "runs/stage3/S1/20261025-212351",
+  "status": "passed",
+  "environment": {
+    "stage": "S1",
+    "checked_at": "2026-10-25T21:24:02.218452+08:00",
+    "scope": "只读环境清单；不代表实际推理、网页或 Docker 验收通过。",
+    "os_release": {
+      "PRETTY_NAME": "Ubuntu 26.04.1 LTS",
+      "NAME": "Ubuntu",
+      "VERSION_ID": "26.04",
+      "VERSION": "26.04.1 LTS (Resolute Raccoon)",
+      "VERSION_CODENAME": "resolute",
+      "ID": "ubuntu",
+      "ID_LIKE": "debian",
+      "HOME_URL": "https://www.ubuntu.com/",
+      "SUPPORT_URL": "https://help.ubuntu.com/",
+      "BUG_REPORT_URL": "https://bugs.launchpad.net/ubuntu/",
+      "PRIVACY_POLICY_URL": "https://www.ubuntu.com/legal/terms-and-policies/privacy-policy",
+      "UBUNTU_CODENAME": "resolute",
+      "LOGO": "ubuntu-logo"
+    },
+    "kernel": "6.18.54.1-microsoft-standard-WSL2",
+    "architecture": "x86_64",
+    "logical_cpus": 32,
+    "cpu": {
+      "exit_code": 0,
+      "stdout": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           39 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  32\nOn-line CPU(s) list:                     0-31\nVendor ID:                               GenuineIntel\nModel name:                              Intel(R) Core(TM) i9-14900HX\nCPU family:                              6\nModel:                                   183\nThread(s) per core:                      2\nCore(s) per socket:                      16\nSocket(s):                               1\nStepping:                                1\nBogoMIPS:                                4838.40\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves avx_vnni vnmi umip waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize ibt flush_l1d arch_capabilities\nVirtualization:                          VT-x\nHypervisor vendor:                       Microsoft\nVirtualization type:                     full\nL1d cache:                               768 KiB (16 instances)\nL1i cache:                               512 KiB (16 instances)\nL2 cache:                                32 MiB (16 instances)\nL3 cache:                                36 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-31\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Mitigation; Clear Register File\nVulnerability Retbleed:                  Mitigation; Enhanced IBRS\nVulnerability Spec rstack overflow:      Not affected\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Not affected",
+      "stderr": ""
+    },
+    "memory": {
+      "exit_code": 0,
+      "stdout": "total        used        free      shared  buff/cache   available\nMem:      8178069504  1140310016  5295149056     4403200  1916190720  7037759488\nSwap:     2147483648           0  2147483648",
+      "stderr": ""
+    },
+    "root_disk_bytes": {
+      "total": 1081101176832,
+      "used": 9822412800,
+      "free": 1016286408704
+    },
+    "mounts": {
+      "exit_code": 0,
+      "stdout": "/usr/lib/modules/6.18.54.1-microsoft-standard-WSL2 overlay\n/usr/src/linux-headers-6.18.54.1-microsoft-standard-WSL2 ext4\n/usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2 ext4\n/mnt/wsl tmpfs\n/usr/lib/wsl/drivers 9p\n/ ext4\n/mnt/wslg tmpfs\n/mnt/wslg/distro ext4\n/usr/lib/wsl/lib overlay\n/init rootfs\n/dev devtmpfs\n/sys sysfs\n/proc proc\n/dev/pts devpts\n/run tmpfs\n/run/lock tmpfs\n/run/shm tmpfs\n/dev/shm tmpfs\n/run/user tmpfs\n/proc/sys/fs/binfmt_misc binfmt_misc\n/sys/fs/cgroup cgroup2\n/mnt/wslg/versions.txt overlay\n/mnt/wslg/doc overlay\n/tmp/.X11-unix tmpfs\n/mnt/c 9p\n/mnt/d 9p\n/mnt/e 9p\n/run/user tmpfs\n/proc/sys/fs/binfmt_misc/status tmpfs\n/tmp tmpfs\n/dev/mqueue mqueue\n/sys/kernel/tracing tracefs\n/dev/hugepages hugetlbfs\n/sys/kernel/debug debugfs\n/run/credentials/systemd-journald.service tmpfs\n/sys/kernel/config configfs\n/sys/fs/fuse/connections fusectl\n/run/credentials/systemd-resolved.service tmpfs\n/tmp/.X11-unix tmpfs\n/run/credentials/getty@tty1.service tmpfs\n/run/user/1000 tmpfs\n/mnt/wslg/run/user/1000 tmpfs",
+      "stderr": ""
+    },
+    "python": "3.12.12",
+    "python_modules": {
+      "torch": true,
+      "torchvision": true,
+      "ultralytics": true,
+      "gradio": true,
+      "cv2": true,
+      "sam2": true,
+      "fastapi": true,
+      "sqlalchemy": false,
+      "redis": false,
+      "celery": false,
+      "openai": true
+    },
+    "executables": {
+      "python3.12": null,
+      "uv": null,
+      "conda": null,
+      "docker": null,
+      "git": "/usr/bin/git",
+      "curl": "/usr/bin/curl",
+      "fc-list": "/usr/bin/fc-list"
+    },
+    "gpu": {
+      "exit_code": 0,
+      "stdout": "NVIDIA GeForce RTX 5070 Laptop GPU, 8151 MiB, 610.74",
+      "stderr": ""
+    },
+    "fonts": {
+      "exit_code": 0,
+      "stdout": "Noto Serif CJK JP\nNoto Serif CJK KR\nNoto Serif CJK HK\nNoto Serif CJK SC\nNoto Serif CJK TC\nNoto Sans Mono CJK SC\nNoto Sans Mono CJK TC\nNoto Sans Mono CJK JP\nNoto Sans Mono CJK HK\nNoto Sans Mono CJK KR\nNoto Sans CJK HK\nNoto Sans CJK KR\nNoto Sans CJK JP\nNoto Sans CJK SC\nNoto Sans CJK TC",
+      "stderr": ""
+    },
+    "project_readable": true,
+    "docker": {
+      "exit_code": null,
+      "error": "FileNotFoundError"
+    }
+  },
+  "versions": {
+    "torch": "2.7.1+cu128",
+    "torchvision": "0.22.1+cu128",
+    "ultralytics": "8.3.203",
+    "SAM-2": "1.0",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "gradio": "5.49.1",
+    "openai": "2.16.0",
+    "Pillow": "11.3.0"
+  },
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "capability": [
+      12,
+      0
+    ],
+    "torch_architectures": [
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90",
+      "sm_100",
+      "sm_120",
+      "compute_120"
+    ],
+    "peak_allocated_bytes": 596365312
+  },
+  "cuda_operations": {
+    "matrix": "passed",
+    "torchvision_nms": "passed",
+    "convolution": "passed"
+  },
+  "font_present": true,
+  "offline_tests": {
+    "exit_code": 0,
+    "tests_run": 62
+  },
+  "local": {
+    "status": "ok",
+    "model": {
+      "route": "yolov8_desk8_finetuned",
+      "weights_name": "best.pt",
+      "weights_sha256": "cef441c3b271d8886bec5f2c8eb546ec17049953bc93a78cb485ab824f6014d7",
+      "device": "cuda:0",
+      "gpu_name": "NVIDIA GeForce RTX 5070 Laptop GPU"
+    },
+    "input": {
+      "file_name": "loco_test_000.png",
+      "sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+      "mime_type": "image/png",
+      "bytes": 1461041,
+      "width": 1600,
+      "height": 1100,
+      "exif_orientation": 1,
+      "processing": "原文件字节，不裁剪、不缩放、不叠加检测框"
+    },
+    "summary": [
+      {
+        "category_id": 0,
+        "category_name": "杯子",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "cup"
+      },
+      {
+        "category_id": 1,
+        "category_name": "瓶子",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "bottle"
+      },
+      {
+        "category_id": 2,
+        "category_name": "书",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "book"
+      },
+      {
+        "category_id": 3,
+        "category_name": "橡皮",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "eraser"
+      },
+      {
+        "category_id": 4,
+        "category_name": "螺丝刀",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 0,
+        "category_key": "screwdriver"
+      },
+      {
+        "category_id": 5,
+        "category_name": "螺丝",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 2,
+        "category_key": "screw"
+      },
+      {
+        "category_id": 6,
+        "category_name": "螺母",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 2,
+        "category_key": "nut"
+      },
+      {
+        "category_id": 7,
+        "category_name": "垫圈",
+        "status": "supported",
+        "status_text": "已微调，待验收",
+        "count": 2,
+        "category_key": "washer"
+      }
+    ],
+    "timings_ms": {
+      "model_load_and_transfer": 1214.994,
+      "prediction_wall": 1191.468,
+      "model_preprocess": 7.849,
+      "model_inference": 56.585,
+      "model_postprocess": 185.862,
+      "image_decode": 92.528,
+      "sam2_load_and_transfer": 2805.408,
+      "sam2_image_encoding": 748.327,
+      "sam2_mask_decoding": 572.208,
+      "sam2_artifact_write": 528.41,
+      "total_wall": 11815.955
+    },
+    "segmentation": {
+      "status": "completed",
+      "model": "SAM 2.1 Hiera tiny",
+      "model_config": "configs/sam2.1/sam2.1_hiera_t.yaml",
+      "package_version": "1.0",
+      "weights_name": "sam2.1_hiera_tiny.pt",
+      "weights_sha256": "7402e0d864fa82708a20fbd15bc84245c2f26dff0eb43a4b5b93452deb34be69",
+      "device": "cuda:0",
+      "precision": "bfloat16",
+      "optional_cuda_postprocessing": false,
+      "multimask_output": false,
+      "coordinate_system": "原图像素坐标，xyxy；掩膜框右下边界为开区间",
+      "mask_encoding": "每实例独立原尺寸灰度 PNG，0=背景，255=前景；实例可重叠",
+      "quality_note": "SAM 2 的预测 IoU 质量估计，不是检测置信度，也不是实测分割准确率；不与检测分数相乘。",
+      "counting_note": "数量沿用 YOLO 检测；空掩膜不扣除检测数；分割不修复漏检或错分类。",
+      "prompt_count": 6,
+      "nonempty_masks": 6,
+      "empty_masks": 0,
+      "instances": [
+        {
+          "instance_id": 1,
+          "category_id": 7,
+          "status": "ok",
+          "prompt_bbox_xyxy": [
+            408.6875915527344,
+            321.1006164550781,
+            532.8689575195312,
+            447.36602783203125
+          ],
+          "sam2_predicted_iou": 0.96484375,
+          "area_ratio": 0.0036869318181818184,
+          "area_pixels": 6489,
+          "bbox_xyxy": [
+            413,
+            328,
+            529,
+            444
+          ],
+          "centroid_xy": [
+            470.08106025581753,
+            384.5654184003699
+          ],
+          "mask_file": "masks/instance-0001.png",
+          "mask_sha256": "459e87ad9b0fadc2a47999cec795a420ecc0b065f03e66ea4ddc49bca5ffd4e6",
+          "contours_file": "masks/instance-0001-contours.json",
+          "contours_sha256": "637041fed55ab42f4fc873a422c5eef9fa1943c080e8b7f42587ad1854b4a726"
+        },
+        {
+          "instance_id": 2,
+          "category_id": 5,
+          "status": "ok",
+          "prompt_bbox_xyxy": [
+            408.96539306640625,
+            323.453125,
+            640.19580078125,
+            597.1344604492188
+          ],
+          "sam2_predicted_iou": 0.9453125,
+          "area_ratio": 0.010055681818181818,
+          "area_pixels": 17698,
+          "bbox_xyxy": [
+            414,
+            327,
+            639,
+            596
+          ],
+          "centroid_xy": [
+            525.1603571024974,
+            469.7726296756696
+          ],
+          "mask_file": "masks/instance-0002.png",
+          "mask_sha256": "bfb92013641bddf4235229263c43aae40a12b6e8cd85be98cec76cb4696ff427",
+          "contours_file": "masks/instance-0002-contours.json",
+          "contours_sha256": "2b78764d6b5d8b8c67a41efe62dfab0973eb9b1ff7aab380c969cf58b46f9301"
+        },
+        {
+          "instance_id": 3,
+          "category_id": 6,
+          "status": "ok",
+          "prompt_bbox_xyxy": [
+            311.4085388183594,
+            406.0884094238281,
+            434.5965576171875,
+            524.7857666015625
+          ],
+          "sam2_predicted_iou": 0.94140625,
+          "area_ratio": 0.004032954545454545,
+          "area_pixels": 7098,
+          "bbox_xyxy": [
+            314,
+            409,
+            431,
+            520
+          ],
+          "centroid_xy": [
+            370.24246266553956,
+            464.4798534798535
+          ],
+          "mask_file": "masks/instance-0003.png",
+          "mask_sha256": "ac7f5422e1d752ce1ddcbe26434812cb469986a040e09fe515ff185074a5270c",
+          "contours_file": "masks/instance-0003-contours.json",
+          "contours_sha256": "0514a606a2f10ce67d286ba7c2f3551af568d4b296ca84563ed05e7b86ab5d63"
+        },
+        {
+          "instance_id": 4,
+          "category_id": 6,
+          "status": "ok",
+          "prompt_bbox_xyxy": [
+            220.37258911132812,
+            567.1925048828125,
+            345.6698913574219,
+            686.7123413085938
+          ],
+          "sam2_predicted_iou": 0.94140625,
+          "area_ratio": 0.004034090909090909,
+          "area_pixels": 7100,
+          "bbox_xyxy": [
+            228,
+            572,
+            341,
+            679
+          ],
+          "centroid_xy": [
+            281.9185915492958,
+            626.6254929577465
+          ],
+          "mask_file": "masks/instance-0004.png",
+          "mask_sha256": "d998f135f71893dd780e1bcee378c2c178af80ca78a3534a018d2d1fd5e69166",
+          "contours_file": "masks/instance-0004-contours.json",
+          "contours_sha256": "d2dff7f1cb3c2b41b17b453150d12445494d363978113890b4d67678266381c4"
+        },
+        {
+          "instance_id": 5,
+          "category_id": 5,
+          "status": "ok",
+          "prompt_bbox_xyxy": [
+            447.02545166015625,
+            334.7486877441406,
+            833.556640625,
+            691.3827514648438
+          ],
+          "sam2_predicted_iou": 0.8203125,
+          "area_ratio": 0.01734375,
+          "area_pixels": 30525,
+          "bbox_xyxy": [
+            463,
+            328,
+            805,
+            683
+          ],
+          "centroid_xy": [
+            622.2926126126126,
+            495.44180180180183
+          ],
+          "mask_file": "masks/instance-0005.png",
+          "mask_sha256": "e30e9c8bceaf8d7ad6d257e987b0c1578ada815dd4a111b834f5c28fead7013a",
+          "contours_file": "masks/instance-0005-contours.json",
+          "contours_sha256": "f926823a2dfd277e5016e3c733312b3c638ce65837bfcfdbe1b9acdab0060c76"
+        },
+        {
+          "instance_id": 6,
+          "category_id": 7,
+          "status": "ok",
+          "prompt_bbox_xyxy": [
+            488.98748779296875,
+            657.2545166015625,
+            616.938720703125,
+            783.2677001953125
+          ],
+          "sam2_predicted_iou": 0.96484375,
+          "area_ratio": 0.0036335227272727274,
+          "area_pixels": 6395,
+          "bbox_xyxy": [
+            494,
+            661,
+            611,
+            777
+          ],
+          "centroid_xy": [
+            552.5474589523064,
+            719.0675527756059
+          ],
+          "mask_file": "masks/instance-0006.png",
+          "mask_sha256": "878ec210727d1f205c0e9c2248245499570c849b163d6b13c2a25d892a7d2b28",
+          "contours_file": "masks/instance-0006-contours.json",
+          "contours_sha256": "fa0cbdb085843601d5c490f58528ab119aab36b0d169e667ec8bb2785f973933"
+        }
+      ]
+    }
+  },
+  "process_peak_rss_KiB": 2401780,
+  "truth": {
+    "cup": 0,
+    "bottle": 0,
+    "book": 0,
+    "eraser": 0,
+    "screwdriver": 0,
+    "screw": 2,
+    "nut": 2,
+    "washer": 2
+  },
+  "web": {
+    "status": "passed",
+    "http_status": 200,
+    "component_count": 58,
+    "scope": "真实 Linux 服务的 HTTP 配置检查；未操作浏览器按钮。"
+  },
+  "remote": {
+    "status": "ok",
+    "input": {
+      "file_name": "loco_test_000.png",
+      "sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+      "mime_type": "image/png",
+      "bytes": 1461041,
+      "width": 1600,
+      "height": 1100,
+      "exif_orientation": 1,
+      "processing": "原文件字节，不裁剪、不缩放、不叠加检测框"
+    },
+    "summary": [
+      {
+        "category_id": 0,
+        "category_key": "cup",
+        "category_name": "杯子",
+        "count": 0,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 1,
+        "category_key": "bottle",
+        "category_name": "瓶子",
+        "count": 0,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 2,
+        "category_key": "book",
+        "category_name": "书",
+        "count": 0,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 3,
+        "category_key": "eraser",
+        "category_name": "橡皮",
+        "count": 0,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 4,
+        "category_key": "screwdriver",
+        "category_name": "螺丝刀",
+        "count": 0,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 5,
+        "category_key": "screw",
+        "category_name": "螺丝",
+        "count": 2,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 6,
+        "category_key": "nut",
+        "category_name": "螺母",
+        "count": 3,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      },
+      {
+        "category_id": 7,
+        "category_key": "washer",
+        "category_name": "垫圈",
+        "count": 2,
+        "status": "reported",
+        "status_text": "大模型独立识别，待核对"
+      }
+    ],
+    "timings_ms": {
+      "input_preparation": 156.977,
+      "api_wall": 4054.654,
+      "total_wall": 4226.687,
+      "ui_total_wall": 4322.907
+    },
+    "usage": {
+      "prompt_tokens": 1668,
+      "completion_tokens": 210,
+      "total_tokens": 1878
+    }
+  },
+  "same_original_image": true,
+  "finished_at": "2026-10-25T21:24:43.334939+08:00",
+  "scope": "单张历史样例的 Linux GPU 链路检查，不代表精度、并发、云端或 Docker 验收。"
+}

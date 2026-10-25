@@ -1,0 +1,40 @@
+{
+  "resources": [
+    {
+      "role": "runs/train/desk8-full-20261023-204546/weights/best.pt",
+      "bytes": 6274801,
+      "sha256": "cef441c3b271d8886bec5f2c8eb546ec17049953bc93a78cb485ab824f6014d7",
+      "copied_to_ignored_directory": true
+    },
+    {
+      "role": "models/sam2.1_hiera_tiny.pt",
+      "bytes": 156008466,
+      "sha256": "7402e0d864fa82708a20fbd15bc84245c2f26dff0eb43a4b5b93452deb34be69",
+      "copied_to_ignored_directory": true
+    },
+    {
+      "role": "data/desk8-train-v1/images/test/loco_test_000.png",
+      "bytes": 1461041,
+      "sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+      "copied_to_ignored_directory": true
+    },
+    {
+      "role": "data/desk8-train-v1/images/val/oi_38451ec391f20ab5.jpg",
+      "bytes": 214005,
+      "sha256": "8ef910f0fc1047daf64d7e4bb228805c158b5866b55286df44637465ae55a01c",
+      "copied_to_ignored_directory": true
+    }
+  ],
+  "sample_id": "loco_test_000",
+  "sample_truth": {
+    "cup": 0,
+    "bottle": 0,
+    "book": 0,
+    "eraser": 0,
+    "screwdriver": 0,
+    "screw": 2,
+    "nut": 2,
+    "washer": 2
+  },
+  "sample_path": "data/desk8-train-v1/images/test/loco_test_000.png"
+}

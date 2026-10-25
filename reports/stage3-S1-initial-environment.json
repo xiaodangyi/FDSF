@@ -1,0 +1,81 @@
+{
+  "stage": "S1",
+  "checked_at": "2026-10-25T20:59:46.699038+08:00",
+  "scope": "只读环境清单；不代表实际推理、网页或 Docker 验收通过。",
+  "os_release": {
+    "PRETTY_NAME": "Ubuntu 26.04.1 LTS",
+    "NAME": "Ubuntu",
+    "VERSION_ID": "26.04",
+    "VERSION": "26.04.1 LTS (Resolute Raccoon)",
+    "VERSION_CODENAME": "resolute",
+    "ID": "ubuntu",
+    "ID_LIKE": "debian",
+    "HOME_URL": "https://www.ubuntu.com/",
+    "SUPPORT_URL": "https://help.ubuntu.com/",
+    "BUG_REPORT_URL": "https://bugs.launchpad.net/ubuntu/",
+    "PRIVACY_POLICY_URL": "https://www.ubuntu.com/legal/terms-and-policies/privacy-policy",
+    "UBUNTU_CODENAME": "resolute",
+    "LOGO": "ubuntu-logo"
+  },
+  "kernel": "6.18.54.1-microsoft-standard-WSL2",
+  "architecture": "x86_64",
+  "logical_cpus": 32,
+  "cpu": {
+    "exit_code": 0,
+    "stdout": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           39 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  32\nOn-line CPU(s) list:                     0-31\nVendor ID:                               GenuineIntel\nModel name:                              Intel(R) Core(TM) i9-14900HX\nCPU family:                              6\nModel:                                   183\nThread(s) per core:                      2\nCore(s) per socket:                      16\nSocket(s):                               1\nStepping:                                1\nBogoMIPS:                                4838.40\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves avx_vnni vnmi umip waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize ibt flush_l1d arch_capabilities\nVirtualization:                          VT-x\nHypervisor vendor:                       Microsoft\nVirtualization type:                     full\nL1d cache:                               768 KiB (16 instances)\nL1i cache:                               512 KiB (16 instances)\nL2 cache:                                32 MiB (16 instances)\nL3 cache:                                36 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-31\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Mitigation; Clear Register File\nVulnerability Retbleed:                  Mitigation; Enhanced IBRS\nVulnerability Spec rstack overflow:      Not affected\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Not affected",
+    "stderr": ""
+  },
+  "memory": {
+    "exit_code": 0,
+    "stdout": "total        used        free      shared  buff/cache   available\nMem:      8178069504   627634176  7441805312     4386816   269410304  7550435328\nSwap:     2147483648           0  2147483648",
+    "stderr": ""
+  },
+  "root_disk_bytes": {
+    "total": 1081101176832,
+    "used": 1380069376,
+    "free": 1024728752128
+  },
+  "mounts": {
+    "exit_code": 0,
+    "stdout": "/usr/lib/modules/6.18.54.1-microsoft-standard-WSL2 overlay\n/usr/src/linux-headers-6.18.54.1-microsoft-standard-WSL2 ext4\n/usr/lib/linux-tools/6.18.54.1-microsoft-standard-WSL2 ext4\n/mnt/wsl tmpfs\n/usr/lib/wsl/drivers 9p\n/ ext4\n/mnt/wslg tmpfs\n/mnt/wslg/distro ext4\n/usr/lib/wsl/lib overlay\n/init rootfs\n/dev devtmpfs\n/sys sysfs\n/proc proc\n/dev/pts devpts\n/run tmpfs\n/run/lock tmpfs\n/run/shm tmpfs\n/dev/shm tmpfs\n/run/user tmpfs\n/proc/sys/fs/binfmt_misc binfmt_misc\n/sys/fs/cgroup cgroup2\n/mnt/wslg/versions.txt overlay\n/mnt/wslg/doc overlay\n/tmp/.X11-unix tmpfs\n/mnt/c 9p\n/mnt/d 9p\n/mnt/e 9p\n/run/user tmpfs\n/proc/sys/fs/binfmt_misc/status tmpfs\n/run/credentials/systemd-journald.service tmpfs\n/dev/mqueue mqueue\n/sys/kernel/debug debugfs\n/sys/kernel/tracing tracefs\n/tmp tmpfs\n/dev/hugepages hugetlbfs\n/sys/kernel/config configfs\n/sys/fs/fuse/connections fusectl\n/run/credentials/systemd-resolved.service tmpfs\n/tmp/.X11-unix tmpfs\n/run/credentials/getty@tty1.service tmpfs\n/run/user/1000 tmpfs\n/mnt/wslg/run/user/1000 tmpfs",
+    "stderr": ""
+  },
+  "python": "3.14.4",
+  "python_modules": {
+    "torch": false,
+    "torchvision": false,
+    "ultralytics": false,
+    "gradio": false,
+    "cv2": false,
+    "sam2": false,
+    "fastapi": false,
+    "sqlalchemy": false,
+    "redis": false,
+    "celery": false,
+    "openai": false
+  },
+  "executables": {
+    "python3.12": null,
+    "uv": null,
+    "conda": null,
+    "docker": null,
+    "git": "/usr/bin/git",
+    "curl": "/usr/bin/curl",
+    "fc-list": "/usr/bin/fc-list"
+  },
+  "gpu": {
+    "exit_code": 0,
+    "stdout": "NVIDIA GeForce RTX 5070 Laptop GPU, 8151 MiB, 610.74",
+    "stderr": ""
+  },
+  "fonts": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "project_readable": true,
+  "docker": {
+    "exit_code": null,
+    "error": "FileNotFoundError"
+  }
+}
