@@ -5,5 +5,6 @@
 *.json text eol=lf
 *.txt text eol=lf
 *.ps1 text eol=crlf
+*.sh text eol=lf
 # 首次冻结协议含 Windows CRLF，保留原始字节以保持既有 SHA256。
 reports/stage8-protocol.json -text whitespace=cr-at-eol

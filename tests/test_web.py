@@ -1,8 +1,9 @@
 """新版展示层的真值边界、转义与可操作状态检查，不请求真实模型。"""
 
 import unittest
+from unittest.mock import patch
 
-from deskvision.web.app import build_demo, overview, remote_inventory
+from deskvision.web.app import build_demo, overview, remote_inventory, run_confirmed
 
 
 def report(fingerprint='same', count=1, status='ok'):
@@ -11,6 +12,14 @@ def report(fingerprint='same', count=1, status='ok'):
 
 
 class WorkbenchTests(unittest.TestCase):
+    def test_cloud_action_without_consent_never_starts_inference(self):
+        import gradio as gr
+        with patch('deskvision.web.app.core.run_session_ui') as run:
+            for route in ('both', 'deepseek'):
+                with self.assertRaises(gr.Error):
+                    run_confirmed(route, False, {}, None, None)
+            run.assert_not_called()
+
     def test_missing_and_failed_results_do_not_forge_zero_counts(self):
         self.assertIn('—', overview(None, report(status='failed')))
         self.assertNotIn('>0<', overview(None, report(status='failed')))

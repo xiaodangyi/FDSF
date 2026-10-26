@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from importlib import metadata
 import json
@@ -263,26 +262,31 @@ def export_results(yolo_report: dict | None, vlm_report: dict | None, *, output_
 
 
 def run_yolo_ui(image_path, mode, weights_path, confidence, iou, image_size, device, segment):
-    report = run_yolo_route(image_path, mode=mode, weights_path=weights_path or None,
-                            confidence=confidence, iou=iou, image_size=int(image_size),
-                            device=device, segment=segment)
+    from .service import run_routes
+
+    report = run_routes('yolo', image_path, dict(
+        mode=mode, weights_path=weights_path or None, confidence=confidence,
+        iou=iou, image_size=int(image_size), device=device, segment=segment))['yolo']
     return (_result_images(report), format_yolo_result(report), report,
             'YOLO 路线完成。' if report.get('status') == 'ok' else 'YOLO 路线失败。')
 
 
 def run_vlm_ui(image_path):
-    report = run_vlm_route(image_path)
+    from .service import run_routes
+
+    report = run_routes('deepseek', image_path, {})['deepseek']
     return (format_vlm_result(report), report,
             'DeepSeek 路线完成。' if report.get('status') == 'ok' else 'DeepSeek 路线失败。')
 
 
 def run_both_ui(image_path, mode, weights_path, confidence, iou, image_size, device, segment):
     """一键运行两路；两路各自读取同一原图，结果只在最后用于展示比较。"""
-    with ThreadPoolExecutor(max_workers=2) as pool:
-        local = pool.submit(run_yolo_route, image_path, mode=mode, weights_path=weights_path or None,
-                            confidence=confidence, iou=iou, image_size=int(image_size), device=device, segment=segment)
-        remote = pool.submit(run_vlm_route, image_path)
-        yolo_report, vlm_report = local.result(), remote.result()
+    from .service import run_routes
+
+    reports = run_routes('both', image_path, dict(
+        mode=mode, weights_path=weights_path or None, confidence=confidence,
+        iou=iou, image_size=int(image_size), device=device, segment=segment))
+    yolo_report, vlm_report = reports['yolo'], reports['deepseek']
     return (
         _result_images(yolo_report), format_yolo_result(yolo_report), yolo_report,
         format_vlm_result(vlm_report), vlm_report, format_count_diff(yolo_report, vlm_report),

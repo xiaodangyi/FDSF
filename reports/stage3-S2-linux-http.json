@@ -1,0 +1,231 @@
+{
+  "stage": "S2",
+  "started_at": "2026-10-26T12:59:08.464607+08:00",
+  "route": "yolo",
+  "external_api_requests": 0,
+  "sample": "loco_test_000.png",
+  "input_sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+  "checks": {
+    "health_http_200": true,
+    "page_http_200": true,
+    "page_config_http_200": true,
+    "upload_http_202": true,
+    "task_succeeded": true,
+    "same_original_sha256": true,
+    "gpu_used": true,
+    "segmentation_ok": true,
+    "segmented_image_downloaded": true,
+    "internal_json_blocked": true,
+    "no_remote_route": true,
+    "ui_local_route_ok": true,
+    "ui_same_original_sha256": true,
+    "ui_zip_has_detection_and_masks": true
+  },
+  "observed_states": [
+    "queued",
+    "running",
+    "succeeded"
+  ],
+  "run_id": "909ce13e-8bb9-4c55-b556-099fe6d58e4b",
+  "counts": [
+    {
+      "category_id": 0,
+      "category_name": "杯子",
+      "status": "supported",
+      "status_text": "已微调，待验收",
+      "count": 0,
+      "category_key": "cup"
+    },
+    {
+      "category_id": 1,
+      "category_name": "瓶子",
+      "status": "supported",
+      "status_text": "已微调，待验收",
+      "count": 0,
+      "category_key": "bottle"
+    },
+    {
+      "category_id": 2,
+      "category_name": "书",
+      "status": "supported",
+      "status_text": "已微调，待验收",
+      "count": 0,
+      "category_key": "book"
+    },
+    {
+      "category_id": 3,
+      "category_name": "橡皮",
+      "status": "supported",
+      "status_text": "已微调，待验收",
+      "count": 0,
+      "category_key": "eraser"
+    },
+    {
+      "category_id": 4,
+      "category_name": "螺丝刀",
+      "status": "supported",
+      "status_text": "已微调，待验收",
+      "count": 0,
+      "category_key": "screwdriver"
+    },
+    {
+      "category_id": 5,
+      "category_name": "螺丝",
+      "status": "supported",
+      "status_text": "已微调，待验收",
+      "count": 2,
+      "category_key": "screw"
+    },
+    {
+      "category_id": 6,
+      "category_name": "螺母",
+      "status": "supported",
+      "status_text": "已微调，待验收",
+      "count": 2,
+      "category_key": "nut"
+    },
+    {
+      "category_id": 7,
+      "category_name": "垫圈",
+      "status": "supported",
+      "status_text": "已微调，待验收",
+      "count": 2,
+      "category_key": "washer"
+    }
+  ],
+  "timings_ms": {
+    "model_load_and_transfer": 392.353,
+    "prediction_wall": 1188.785,
+    "model_preprocess": 3.515,
+    "model_inference": 18.837,
+    "model_postprocess": 319.31,
+    "image_decode": 45.432,
+    "sam2_load_and_transfer": 1901.884,
+    "sam2_image_encoding": 298.02,
+    "sam2_mask_decoding": 359.564,
+    "sam2_artifact_write": 544.904,
+    "total_wall": 12364.075
+  },
+  "nonempty_masks": 6,
+  "downloads": [
+    {
+      "name": "annotated.png",
+      "http_status": 200,
+      "bytes": 1515355,
+      "sha256": "f747db77264ae3fcafcd5958c8d9daa304adfc7ea674d1d03cc817e9e5ab9362"
+    },
+    {
+      "name": "masks/instance-0001-contours.json",
+      "http_status": 200,
+      "bytes": 13796,
+      "sha256": "637041fed55ab42f4fc873a422c5eef9fa1943c080e8b7f42587ad1854b4a726"
+    },
+    {
+      "name": "masks/instance-0001.png",
+      "http_status": 200,
+      "bytes": 2662,
+      "sha256": "459e87ad9b0fadc2a47999cec795a420ecc0b065f03e66ea4ddc49bca5ffd4e6"
+    },
+    {
+      "name": "masks/instance-0002-contours.json",
+      "http_status": 200,
+      "bytes": 19414,
+      "sha256": "2b78764d6b5d8b8c67a41efe62dfab0973eb9b1ff7aab380c969cf58b46f9301"
+    },
+    {
+      "name": "masks/instance-0002.png",
+      "http_status": 200,
+      "bytes": 3451,
+      "sha256": "bfb92013641bddf4235229263c43aae40a12b6e8cd85be98cec76cb4696ff427"
+    },
+    {
+      "name": "masks/instance-0003-contours.json",
+      "http_status": 200,
+      "bytes": 11646,
+      "sha256": "0514a606a2f10ce67d286ba7c2f3551af568d4b296ca84563ed05e7b86ab5d63"
+    },
+    {
+      "name": "masks/instance-0003.png",
+      "http_status": 200,
+      "bytes": 2603,
+      "sha256": "ac7f5422e1d752ce1ddcbe26434812cb469986a040e09fe515ff185074a5270c"
+    },
+    {
+      "name": "masks/instance-0004-contours.json",
+      "http_status": 200,
+      "bytes": 12396,
+      "sha256": "d2dff7f1cb3c2b41b17b453150d12445494d363978113890b4d67678266381c4"
+    },
+    {
+      "name": "masks/instance-0004.png",
+      "http_status": 200,
+      "bytes": 2542,
+      "sha256": "d998f135f71893dd780e1bcee378c2c178af80ca78a3534a018d2d1fd5e69166"
+    },
+    {
+      "name": "masks/instance-0005-contours.json",
+      "http_status": 200,
+      "bytes": 49583,
+      "sha256": "f926823a2dfd277e5016e3c733312b3c638ce65837bfcfdbe1b9acdab0060c76"
+    },
+    {
+      "name": "masks/instance-0005.png",
+      "http_status": 200,
+      "bytes": 4984,
+      "sha256": "e30e9c8bceaf8d7ad6d257e987b0c1578ada815dd4a111b834f5c28fead7013a"
+    },
+    {
+      "name": "masks/instance-0006-contours.json",
+      "http_status": 200,
+      "bytes": 13796,
+      "sha256": "fa0cbdb085843601d5c490f58528ab119aab36b0d169e667ec8bb2785f973933"
+    },
+    {
+      "name": "masks/instance-0006.png",
+      "http_status": 200,
+      "bytes": 2653,
+      "sha256": "878ec210727d1f205c0e9c2248245499570c849b163d6b13c2a25d892a7d2b28"
+    },
+    {
+      "name": "segmented.png",
+      "http_status": 200,
+      "bytes": 1506230,
+      "sha256": "c7c4429b4d686d44a367eb7e573fae05b69bec158c3078fce12b2d71160e9bd7"
+    }
+  ],
+  "ui_zip_files": [
+    "yolo/annotated.png",
+    "yolo/masks/instance-0001-contours.json",
+    "yolo/masks/instance-0001.png",
+    "yolo/masks/instance-0002-contours.json",
+    "yolo/masks/instance-0002.png",
+    "yolo/masks/instance-0003-contours.json",
+    "yolo/masks/instance-0003.png",
+    "yolo/masks/instance-0004-contours.json",
+    "yolo/masks/instance-0004.png",
+    "yolo/masks/instance-0005-contours.json",
+    "yolo/masks/instance-0005.png",
+    "yolo/masks/instance-0006-contours.json",
+    "yolo/masks/instance-0006.png",
+    "yolo/result.json",
+    "yolo/segmented.png",
+    "数量对比.md"
+  ],
+  "ui_route_timings_ms": {
+    "model_load_and_transfer": 155.509,
+    "prediction_wall": 240.875,
+    "model_preprocess": 2.11,
+    "model_inference": 32.389,
+    "model_postprocess": 145.92,
+    "image_decode": 107.936,
+    "sam2_load_and_transfer": 1761.044,
+    "sam2_image_encoding": 50.094,
+    "sam2_mask_decoding": 75.647,
+    "sam2_artifact_write": 365.673,
+    "total_wall": 5965.075
+  },
+  "finished_at": "2026-10-26T12:59:41.831654+08:00",
+  "status": "passed",
+  "server_log": "runs/stage3/S2/http-20261026-125908/server.txt",
+  "scope": "Real local GPU via TCP HTTP; Gradio callbacks exercised via HTTP client. No browser clicks or live DeepSeek."
+}

@@ -9,11 +9,12 @@
 - [第三阶段开发与运行记录](第三阶段开发记录.md)：只记录实际发生的操作、结果、失败与待办。
 - [交付清单](docs/第三阶段交付清单.md)：代码、环境、视频、说明和最终提交检查。
 - [运行记录模板](docs/第三阶段运行记录模板.md)：后续每阶段沿用。
+- [S2 API 接口说明](docs/第三阶段S2-API接口说明.md)：本地启动方式、请求字段、状态与当前限制。
 - [第二阶段原项目说明](第二阶段项目说明.md)：已有模型、数据和实验的历史背景。
 
 ## 当前状态
 
-2026-10-25：完成 PDF 整页视觉核读、需求拆解和现有代码迁入。已有命令行、Gradio 工作台和离线检查源码包含在本仓库；FastAPI、数据库、登录/JWT、独立任务队列、Docker、Nginx 和云端部署尚待实现。迁入代码不等于已经在新机器运行了模型。
+2026-10-26：S0 需求整理、S1 本机 Ubuntu GPU 单样本核验完成。S2 已实现 FastAPI 接口、共用执行层及同服务 Gradio 工作台；本地 GPU HTTP 与离线双路检查见运行报告。真实 DeepSeek 双路联调、浏览器人工视觉验收尚待完成。接口暂存状态不持久化、无登录，仅监听本机；数据库、登录/JWT、独立任务队列、Docker、Nginx 和云端部署尚待实现。
 
 后续按 S0～S8 推进。S0 是本轮需求与代码基线整理；每阶段完成后报告改动、检查、限制和提交，再讲解下一阶段。
 
@@ -41,10 +42,18 @@ python -m deskvision.web
 
 当前仅监听 `127.0.0.1:7860`。完整识别另需八类 `best.pt`、SAM 2.1 tiny、`.local/config.json` 和有效 DeepSeek 密钥/余额；参考 `configs/local.example.json`、`configs/vlm.example.json`、`environment/README.md`。PowerShell 激活与旧自检属于 Windows 基线，Ubuntu 操作与 Docker 启动在 S1/S6 实测补齐。
 
+S2 FastAPI 本机入口：
+
+```console
+python -m deskvision.api
+```
+
+监听 `127.0.0.1:8000`；工作台 `http://127.0.0.1:8000/ui/`，接口文档 `/docs`。默认只运行本地路线，DeepSeek 必须明确确认。步骤及限制见 [S2 API 说明](docs/第三阶段S2-API接口说明.md)。
+
 权重、原始数据、密钥、上传图片和缓存不通过普通 Git 提交。新机器只拉代码不能重现完整推理，须按私有资源清单补齐。
 
 ## 实施顺序
 
 S0 要求与基线 → S1 Ubuntu 与资源核验 → S2 API 与双路线 → S3 数据库与历史 → S4 登录/JWT → S5 消息队列 → S6 Docker/Compose → S7 Nginx/云端访问 → S8 验收与交付。
 
-少量演示先用一台服务器；SQLite 和 Redis 可同机运行。GPU、域名和独立云数据库不是 PDF 明文要求，GPU 由 CPU 实测决定。本机 Ubuntu 版本由用户报告为 26.04.1 LTS，尚未独立核验。
+少量演示先用一台服务器；SQLite 和 Redis 可同机运行。GPU、域名和独立云数据库不是 PDF 明文要求。用户已选择 GPU 版 PyTorch，本轮移除 CPU 构建；云端规格另按预算和需求决定。S1 已通过 `/etc/os-release` 确认本机 `Ubuntu` WSL2 实例是 Ubuntu 26.04.1 LTS，真实推理结果以 S1 报告为准。

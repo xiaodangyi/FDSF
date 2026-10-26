@@ -1,0 +1,27 @@
+{
+  "stage": "S2",
+  "started_at": "2026-10-26T13:00:20.669268+08:00",
+  "finished_at": "2026-10-26T13:00:36.204065+08:00",
+  "system": "Windows",
+  "python_version": "3.12.15",
+  "versions": {
+    "fastapi": "0.159.1",
+    "starlette": "0.52.1",
+    "gradio": "5.49.1",
+    "python-multipart": "0.0.32",
+    "uvicorn": "0.54.0",
+    "httpx": "0.28.1"
+  },
+  "command": "python -m unittest discover -s tests -v",
+  "exit_code": 0,
+  "tests_run": 79,
+  "skipped": 1,
+  "duration_seconds": 5.343,
+  "status": "passed",
+  "scope": "Offline contracts and mounted page HTTP; mocked models; no external API calls.",
+  "raw_log": "runs/stage3/S2/windows-20261026-130020/unittest.txt",
+  "warnings": [
+    "ResourceWarning: Enable tracemalloc to get the object allocation traceback",
+    "ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>"
+  ]
+}

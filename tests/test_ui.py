@@ -98,9 +98,10 @@ class UiTests(unittest.TestCase):
 
     def test_one_route_failure_does_not_block_the_other_route(self):
         yolo = {'status': 'failed', 'error': {'message': '模拟错误'}}
-        vlm = {'status': 'ok', 'summary': [], 'items': []}
+        vlm = {'status': 'ok', 'input': {'sha256': 'original'}, 'summary': [], 'items': []}
         with patch.object(ui, 'run_yolo_route', return_value=yolo) as local, \
-                patch.object(ui, 'run_vlm_route', return_value=vlm) as remote:
+                patch.object(ui, 'run_vlm_route', return_value=vlm) as remote, \
+                patch.object(ui, 'prepare_image', return_value=(b'input', {'sha256': 'original'})):
             result = ui.run_both_ui('original.png', 'finetuned', '', .25, .7, 640, 'auto', True)
         self.assertEqual(local.call_args.args, ('original.png',))
         self.assertEqual(remote.call_args.args, ('original.png',))

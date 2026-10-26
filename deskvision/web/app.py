@@ -73,6 +73,15 @@ def route_badges(local, remote):
     return '<div class="route-badges">' + badge(local, '本地') + badge(remote, 'DeepSeek') + '</div>'
 
 
+def run_confirmed(route, allow_remote, state, local, remote, *values):
+    """Keep external-image/cost consent at the user action boundary."""
+    if route in ('deepseek', 'both') and not allow_remote:
+        import gradio as gr
+
+        raise gr.Error('请先勾选云端调用确认；也可以只运行本地 YOLOv8 + SAM 2。')
+    return core.run_session_ui(route, state, local, remote, *values)
+
+
 def build_demo():
     import gradio as gr
 
@@ -122,6 +131,8 @@ def build_demo():
                     image_size = gr.Dropdown([320, 640, 960, 1280], value=640, label='模型输入尺寸')
                     device = gr.Dropdown(['auto', 'cuda:0', 'cpu'], value='auto', label='计算设备')
                 gr.Markdown('可在识别设置中调整本地模型与分割。', elem_classes='helper')
+                allow_remote = gr.Checkbox(value=False,
+                    label='我同意本次将原图发送至 DeepSeek，并产生 API 用量')
                 both_button = gr.Button('运行两路并比较', variant='primary', interactive=False,
                                         elem_id='run-both')
                 with gr.Row(elem_id='single-actions'):
@@ -188,7 +199,8 @@ def build_demo():
                     *decorate(None, remote))
 
         image.change(update_image, [session, *yolo_inputs],
-                     [preview, *outputs, *decorations, *buttons], queue=False, show_progress='hidden')
+                     [preview, *outputs, *decorations, *buttons], queue=False,
+                     show_progress='hidden', api_name='set_image')
         example.click(lambda: str(EXAMPLE), outputs=image, queue=False, show_progress='hidden')
         mode.change(core.weights_for_mode, [mode], [weights], queue=False)
         for component in yolo_inputs[1:]:
@@ -197,22 +209,25 @@ def build_demo():
                               *decorations], queue=False, show_progress='hidden')
 
         for button, route in [(yolo_button, 'yolo'), (vlm_button, 'deepseek'), (both_button, 'both')]:
-            def run(state, local, remote, *values, selected=route):
+            def run(state, local, remote, allow_cloud, *values, selected=route):
+                if selected in ('deepseek', 'both') and not allow_cloud:
+                    raise gr.Error('请先勾选云端调用确认；也可以只运行本地 YOLOv8 + SAM 2。')
                 running = list(gr.skip() for _ in outputs)
                 running[-1] = {'yolo': '正在运行本地检测与分割…', 'deepseek': '正在等待 DeepSeek 响应…',
                                'both': '正在运行两路识别，请稍候…'}[selected]
                 yield (*running, *(gr.skip() for _ in decorations),
                        *(gr.update(interactive=False) for _ in buttons))
-                result = core.run_session_ui(selected, state, local, remote, *values)
+                result = run_confirmed(selected, allow_cloud, state, local, remote, *values)
                 current_local = local if selected == 'deepseek' else result[2]
                 current_remote = remote if selected == 'yolo' else result[4]
                 stale = result[-1] == {'__type__': 'update'}
                 updated = (gr.skip(),) * 3 if stale else decorate(current_local, current_remote)
                 yield (*result, *updated, *(gr.update(interactive=bool(state['image'])) for _ in buttons))
 
-            button.click(run, inputs=[session, yolo_json, vlm_json, *yolo_inputs],
+            button.click(run, inputs=[session, yolo_json, vlm_json, allow_remote, *yolo_inputs],
                          outputs=[*outputs, *decorations, *buttons],
                          concurrency_id='deskvision', concurrency_limit=1,
-                         show_progress='minimal', show_progress_on=[status], trigger_mode='once')
+                         show_progress='minimal', show_progress_on=[status], trigger_mode='once',
+                         api_name=f'run_{route}')
         demo.queue(max_size=16, default_concurrency_limit=1)
     return demo
