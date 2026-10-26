@@ -1,33 +1,53 @@
 """Stage-three S2 HTTP API. Task state is process-local until S3."""
 
-from copy import deepcopy
+from contextlib import asynccontextmanager
 from datetime import datetime
 import logging
 import os
 from pathlib import Path
 import shutil
-from threading import Lock
 from typing import Literal
 from urllib.parse import quote
 from uuid import UUID, uuid4
 from zoneinfo import ZoneInfo
 
-from fastapi import BackgroundTasks, FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import BackgroundTasks, FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.responses import FileResponse, RedirectResponse
+from pydantic import BaseModel, Field
 
 from . import ui as core
+from .artifacts import artifact_names as _artifact_names
 from .config import ROOT
+from .database import get_database
+from .repository import RunRepository
 from .service import run_routes
+from .task_service import TASKS_ROOT
 from .vision_language import prepare_image
 
 
 MAX_UPLOAD_BYTES = 32 * 1024 * 1024
-RUNS_ROOT = ROOT / 'runs/stage3-api'
-_tasks: dict[str, dict] = {}
-_tasks_lock = Lock()
+RUNS_ROOT = TASKS_ROOT
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title='DeskVision API', version='1.0.0')
+
+@asynccontextmanager
+async def _lifespan(_app):
+    get_database().initialize()
+    _repository().recover_incomplete(_now())
+    yield
+
+
+app = FastAPI(title='DeskVision API', version='1.0.0', lifespan=_lifespan)
+
+
+def _repository() -> RunRepository:
+    database = get_database()
+    database.initialize()
+    return RunRepository(database.sessions)
+
+
+class NoteUpdate(BaseModel):
+    note: str = Field(max_length=1000)
 
 
 def _now() -> str:
@@ -61,12 +81,12 @@ def _snapshot(task: dict) -> dict:
                   ('sha256', 'mime_type', 'bytes', 'width', 'height')},
         'parameters': task['parameters'], 'results': results,
         'comparison': task.get('comparison'), 'error': task.get('error'),
+        'note': task.get('note', ''),
     }
 
 
 def _mark_running(run_id: str) -> None:
-    with _tasks_lock:
-        _tasks[run_id].update(status='running', started_at=_now())
+    _repository().mark_running(run_id, _now())
 
 
 def _run_routes(task: dict, image_path: Path, output_root: Path) -> dict:
@@ -76,16 +96,12 @@ def _run_routes(task: dict, image_path: Path, output_root: Path) -> dict:
 
 
 def _execute_run(run_id: str) -> None:
-    with _tasks_lock:
-        task = _tasks.get(run_id)
-        if task is None:
-            return
-        task['status'] = 'queued'
+    task = _repository().get(run_id)
+    if task is None:
+        return
     try:
-        with _tasks_lock:
-            task = _tasks[run_id]
-            image_path = Path(task['image_path'])
-            output_root = Path(task['run_dir']) / 'results'
+        image_path = task['image_path']
+        output_root = task['run_dir'] / 'results'
         results = _run_routes(task, image_path, output_root)
         statuses = [report.get('status') for report in results.values()]
         comparison = (core.format_count_diff(results.get('yolo'), results.get('deepseek'))
@@ -93,18 +109,13 @@ def _execute_run(run_id: str) -> None:
         successful = statuses.count('ok')
         status = ('succeeded' if successful == len(statuses) else
                   'partial_failed' if successful else 'failed')
-        with _tasks_lock:
-            task = _tasks[run_id]
-            task.update(status=status, results=results, comparison=comparison,
-                        finished_at=_now())
+        _repository().finish(run_id, status=status, results=results,
+                             comparison=comparison, finished_at=_now())
     except Exception:
         logger.exception('Task %s failed', run_id)
-        with _tasks_lock:
-            task = _tasks.get(run_id)
-            if task is not None:
-                task.update(status='failed', error={
-                    'code': 'internal_error', 'message': '任务未能完成，请检查服务端运行日志。',
-                }, finished_at=_now())
+        _repository().fail(run_id, {
+            'code': 'internal_error', 'message': '任务未能完成，请检查服务端运行日志。',
+        }, _now())
 
 
 @app.get('/health')
@@ -158,17 +169,31 @@ async def create_run(
 
     task = {
         'run_id': run_id, 'route': route, 'status': 'queued', 'created_at': _now(),
-        'image_path': str(image_path), 'run_dir': str(run_dir),
+        'image_path': image_path, 'run_dir': run_dir,
         'input': image_info,
         'parameters': {'mode': mode, 'confidence': confidence, 'iou': iou,
                        'image_size': image_size, 'device': device, 'segment': segment},
         'results': {},
     }
-    with _tasks_lock:
-        _tasks[run_id] = task
+    try:
+        _repository().create(task)
+    except Exception:
+        logger.exception('Could not create run %s in SQLite', run_id)
+        shutil.rmtree(run_dir, ignore_errors=True)
+        raise HTTPException(status_code=503, detail='任务记录暂时无法保存，请检查本地数据库。') from None
     background_tasks.add_task(_execute_run, run_id)
-    with _tasks_lock:
-        return _snapshot(deepcopy(task))
+    return _snapshot(task)
+
+
+@app.get('/api/v1/runs')
+def list_runs(
+    limit: int = Query(20, ge=1, le=100),
+    offset: int = Query(0, ge=0),
+    status: Literal['queued', 'running', 'succeeded', 'partial_failed', 'failed'] | None = None,
+) -> dict:
+    result = _repository().list(limit=limit, offset=offset, status=status)
+    result['items'] = [_snapshot(item) for item in result['items']]
+    return result
 
 
 @app.get('/api/v1/runs/{run_id}')
@@ -177,11 +202,39 @@ def get_run(run_id: str) -> dict:
         normalized_id = str(UUID(run_id))
     except ValueError:
         raise HTTPException(status_code=404, detail='任务不存在。') from None
-    with _tasks_lock:
-        task = _tasks.get(normalized_id)
-        if task is None:
-            raise HTTPException(status_code=404, detail='任务不存在。')
-        return _snapshot(deepcopy(task))
+    task = _repository().get(normalized_id)
+    if task is None:
+        raise HTTPException(status_code=404, detail='任务不存在。')
+    return _snapshot(task)
+
+
+@app.patch('/api/v1/runs/{run_id}/note')
+def update_run_note(run_id: str, payload: NoteUpdate) -> dict:
+    try:
+        normalized_id = str(UUID(run_id))
+    except ValueError:
+        raise HTTPException(status_code=404, detail='任务不存在。') from None
+    repository = _repository()
+    if not repository.update_note(normalized_id, payload.note):
+        raise HTTPException(status_code=404, detail='任务不存在。')
+    return {'run_id': normalized_id, 'note': payload.note}
+
+
+@app.delete('/api/v1/runs/{run_id}', status_code=204)
+def delete_run(run_id: str) -> None:
+    try:
+        normalized_id = str(UUID(run_id))
+    except ValueError:
+        raise HTTPException(status_code=404, detail='任务不存在。') from None
+    result = _repository().delete(normalized_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail='任务不存在。')
+    if result.get('running'):
+        raise HTTPException(status_code=409, detail='排队中或运行中的任务不能删除。')
+    run_dir = result['run_dir']
+    if run_dir.exists():
+        shutil.rmtree(run_dir)
+    return None
 
 
 @app.get('/api/v1/runs/{run_id}/artifacts/{route}/{artifact_path:path}')
@@ -190,12 +243,11 @@ def get_artifact(run_id: str, route: Literal['yolo', 'deepseek'], artifact_path:
         normalized_id = str(UUID(run_id))
     except ValueError:
         raise HTTPException(status_code=404, detail='文件不存在。') from None
-    with _tasks_lock:
-        task = _tasks.get(normalized_id)
-        report = task.get('results', {}).get(route) if task else None
-        result_dir = report.get('result_dir') if report else None
-        run_dir = task.get('run_dir') if task else None
-        allowed_names = _artifact_names(report) if report else set()
+    task = _repository().get(normalized_id)
+    report = task.get('results', {}).get(route) if task else None
+    result_dir = report.get('result_dir') if report else None
+    run_dir = task.get('run_dir') if task else None
+    allowed_names = _artifact_names(report) if report else set()
     if not result_dir or not run_dir or artifact_path not in allowed_names:
         raise HTTPException(status_code=404, detail='文件不存在。')
     base = Path(result_dir).resolve()
@@ -228,18 +280,6 @@ def main() -> None:
     os.environ.setdefault('GRADIO_ANALYTICS_ENABLED', 'False')
     os.environ.setdefault('GRADIO_TEMP_DIR', str(ROOT / 'runs/web-cache'))
     uvicorn.run(create_app(), host='127.0.0.1', port=8000, reload=False)
-
-
-def _artifact_names(report: dict) -> set[str]:
-    names = set()
-    if isinstance(report.get('artifacts'), dict):
-        names.update(value for value in report['artifacts'].values() if isinstance(value, str))
-    for instance in report.get('segmentation', {}).get('instances', []):
-        names.update(instance.get(key) for key in ('mask_file', 'contours_file')
-                     if isinstance(instance.get(key), str))
-    return {name for name in names if name != 'result.json' and '\\' not in name
-            and not Path(name).is_absolute() and ':' not in name
-            and all(part not in ('', '.', '..') for part in name.split('/'))}
 
 
 if __name__ == '__main__':

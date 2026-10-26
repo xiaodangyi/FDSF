@@ -11,6 +11,7 @@ from fastapi.testclient import TestClient
 from PIL import Image
 
 from deskvision import api
+from deskvision.database import configure_database, get_database
 
 
 def png_bytes() -> bytes:
@@ -21,18 +22,23 @@ def png_bytes() -> bytes:
 
 class ApiTests(unittest.TestCase):
     def setUp(self):
-        self.temp = TemporaryDirectory()
-        self.runs_root = Path(self.temp.name) / 'runs'
+        self.temp = TemporaryDirectory(dir=api.ROOT / 'runs')
+        self.runs_root = api.ROOT / 'runs/stage3-api' / Path(self.temp.name).name
         self.root_patch = patch.object(api, 'RUNS_ROOT', self.runs_root)
         self.root_patch.start()
+        self.original_database = get_database().path
+        self.database = configure_database(Path(self.temp.name) / 'stage3.sqlite3')
+        self.database.initialize()
         self.client = TestClient(api.app)
-        with api._tasks_lock:
-            api._tasks.clear()
 
     def tearDown(self):
         self.client.close()
         self.root_patch.stop()
+        configure_database(self.original_database)
         self.temp.cleanup()
+
+    def total_runs(self):
+        return self.client.get('/api/v1/runs').json()['total']
 
     def uploaded(self, route='both', content=None):
         return self.client.post('/api/v1/runs', data={'route': route, 'allow_remote': 'true'}, files={
@@ -115,17 +121,17 @@ class ApiTests(unittest.TestCase):
             'image': ('image.png', png_bytes(), 'image/png'),
         })
         self.assertEqual(response.status_code, 422)
-        self.assertEqual(len(api._tasks), 0)
+        self.assertEqual(self.total_runs(), 0)
 
     def test_invalid_image_is_rejected_without_creating_a_task(self):
         response = self.uploaded(content=b'not an image')
         self.assertEqual(response.status_code, 422)
-        self.assertEqual(len(api._tasks), 0)
+        self.assertEqual(self.total_runs(), 0)
 
     def test_upload_over_limit_is_rejected(self):
         response = self.uploaded(content=b'x' * (api.MAX_UPLOAD_BYTES + 1))
         self.assertEqual(response.status_code, 413)
-        self.assertEqual(len(api._tasks), 0)
+        self.assertEqual(self.total_runs(), 0)
 
     def test_unknown_run_and_artifact_paths_are_not_served(self):
         self.assertEqual(self.client.get('/api/v1/runs/not-a-uuid').status_code, 404)
@@ -142,7 +148,7 @@ class ApiTests(unittest.TestCase):
                 response = self.client.post('/api/v1/runs', data={'route': route}, files={
                     'image': ('image.png', png_bytes(), 'image/png')})
                 self.assertEqual(response.status_code, 422)
-        self.assertEqual(len(api._tasks), 0)
+        self.assertEqual(self.total_runs(), 0)
         remote.assert_not_called()
 
     def test_default_route_is_local_only(self):
@@ -188,7 +194,7 @@ class ApiTests(unittest.TestCase):
                           self.fake_report(path, kw['output_root'], 'yolo')):
             created = self.uploaded(route='yolo')
         run_id = created.json()['run_id']
-        report = api._tasks[run_id]['results']['yolo']
+        report = api._repository().get(run_id)['results']['yolo']
         (Path(report['result_dir']) / 'private.txt').write_text('private', encoding='utf-8')
         for name in ('result.json', 'private.txt', 'missing.png'):
             self.assertEqual(self.client.get(
@@ -199,15 +205,87 @@ class ApiTests(unittest.TestCase):
                           self.fake_report(path, kw['output_root'], 'yolo')):
             created = self.uploaded(route='yolo')
         run_id = created.json()['run_id']
-        report = api._tasks[run_id]['results']['yolo']
+        report = api._repository().get(run_id)['results']['yolo']
         base = Path(report['result_dir'])
         try:
-            (base / 'alias.png').symlink_to(base / 'annotated.png')
+            (base / 'annotated.png').unlink()
+            (base / 'outside.png').write_bytes(b'outside')
+            (base / 'annotated.png').symlink_to(base / 'outside.png')
         except OSError:
             self.skipTest('Creating symbolic links requires Windows developer mode or privileges.')
-        report['artifacts']['alias'] = 'alias.png'
         self.assertEqual(self.client.get(
-            f'/api/v1/runs/{run_id}/artifacts/yolo/alias.png').status_code, 404)
+            f'/api/v1/runs/{run_id}/artifacts/yolo/annotated.png').status_code, 404)
+
+    def test_paginated_history_note_update_and_delete(self):
+        ids = []
+        for _ in range(2):
+            with patch.object(api.core, 'run_yolo_route', side_effect=lambda path, **kw:
+                              self.fake_report(path, kw['output_root'], 'yolo')):
+                ids.append(self.uploaded(route='yolo').json()['run_id'])
+        page = self.client.get('/api/v1/runs', params={'limit': 1, 'offset': 0})
+        self.assertEqual(page.status_code, 200)
+        self.assertEqual(page.json()['total'], 2)
+        self.assertEqual(len(page.json()['items']), 1)
+        self.assertEqual(self.client.get('/api/v1/runs', params={'status': 'failed'}).json()['total'], 0)
+        updated = self.client.patch(f'/api/v1/runs/{ids[0]}/note', json={'note': '复核完成'})
+        self.assertEqual(updated.status_code, 200)
+        self.assertEqual(self.client.get(f'/api/v1/runs/{ids[0]}').json()['note'], '复核完成')
+        self.assertEqual(self.client.patch(f'/api/v1/runs/{ids[0]}/note',
+                                           json={'note': 'a' * 1001}).status_code, 422)
+        run_dir = self.runs_root / ids[0]
+        self.assertEqual(self.client.delete(f'/api/v1/runs/{ids[0]}').status_code, 204)
+        self.assertFalse(run_dir.exists())
+        self.assertEqual(self.client.get('/api/v1/runs').json()['total'], 1)
+
+    def test_restart_keeps_history_results_and_artifact_index(self):
+        with patch.object(api.core, 'run_yolo_route', side_effect=lambda path, **kw:
+                          self.fake_report(path, kw['output_root'], 'yolo')):
+            created = self.uploaded(route='yolo')
+        run_id = created.json()['run_id']
+        self.client.patch(f'/api/v1/runs/{run_id}/note', json={'note': '留待课堂展示'})
+        database_path = self.database.path
+        self.database = configure_database(database_path)
+        self.database.initialize()
+        response = self.client.get(f'/api/v1/runs/{run_id}')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['note'], '留待课堂展示')
+        self.assertIn('annotated.png', response.json()['results']['yolo']['artifact_urls'])
+
+    def test_queued_task_cannot_be_deleted(self):
+        from uuid import uuid4
+
+        run_id = str(uuid4())
+        run_dir = self.runs_root / run_id
+        run_dir.mkdir(parents=True)
+        image_path = run_dir / 'input.img'
+        image_path.write_bytes(png_bytes())
+        _, input_info = api.prepare_image(image_path)
+        api._repository().create({
+            'run_id': run_id, 'route': 'yolo', 'status': 'queued', 'created_at': '2026-10-26T00:00:00+08:00',
+            'input': input_info, 'parameters': {}, 'image_path': image_path, 'run_dir': run_dir,
+        })
+        self.assertEqual(self.client.delete(f'/api/v1/runs/{run_id}').status_code, 409)
+        self.assertTrue(run_dir.exists())
+
+    def test_application_restart_marks_incomplete_tasks_without_rerunning(self):
+        from uuid import uuid4
+
+        run_id = str(uuid4())
+        run_dir = self.runs_root / run_id
+        run_dir.mkdir(parents=True)
+        image_path = run_dir / 'input.img'
+        image_path.write_bytes(png_bytes())
+        _, input_info = api.prepare_image(image_path)
+        api._repository().create({
+            'run_id': run_id, 'route': 'yolo', 'status': 'running', 'created_at': '2026-10-26T00:00:00+08:00',
+            'input': input_info, 'parameters': {}, 'image_path': image_path, 'run_dir': run_dir,
+        })
+        with patch.object(api.core, 'run_yolo_route') as inference, \
+                TestClient(api.create_app()):
+            result = api._repository().get(run_id)
+        inference.assert_not_called()
+        self.assertEqual(result['status'], 'failed')
+        self.assertEqual(result['error']['code'], 'interrupted_by_restart')
 
     def test_page_and_api_share_one_application_without_inference(self):
         with patch.object(api.core, 'run_yolo_route') as local, \

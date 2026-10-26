@@ -262,30 +262,33 @@ def export_results(yolo_report: dict | None, vlm_report: dict | None, *, output_
 
 
 def run_yolo_ui(image_path, mode, weights_path, confidence, iou, image_size, device, segment):
-    from .service import run_routes
+    from .task_service import execute_and_record
 
-    report = run_routes('yolo', image_path, dict(
+    task = execute_and_record('yolo', image_path, dict(
         mode=mode, weights_path=weights_path or None, confidence=confidence,
-        iou=iou, image_size=int(image_size), device=device, segment=segment))['yolo']
+        iou=iou, image_size=int(image_size), device=device, segment=segment))
+    report = task['results']['yolo']
     return (_result_images(report), format_yolo_result(report), report,
             'YOLO 路线完成。' if report.get('status') == 'ok' else 'YOLO 路线失败。')
 
 
 def run_vlm_ui(image_path):
-    from .service import run_routes
+    from .task_service import execute_and_record
 
-    report = run_routes('deepseek', image_path, {})['deepseek']
+    task = execute_and_record('deepseek', image_path, {})
+    report = task['results']['deepseek']
     return (format_vlm_result(report), report,
             'DeepSeek 路线完成。' if report.get('status') == 'ok' else 'DeepSeek 路线失败。')
 
 
 def run_both_ui(image_path, mode, weights_path, confidence, iou, image_size, device, segment):
     """一键运行两路；两路各自读取同一原图，结果只在最后用于展示比较。"""
-    from .service import run_routes
+    from .task_service import execute_and_record
 
-    reports = run_routes('both', image_path, dict(
+    task = execute_and_record('both', image_path, dict(
         mode=mode, weights_path=weights_path or None, confidence=confidence,
         iou=iou, image_size=int(image_size), device=device, segment=segment))
+    reports = task['results']
     yolo_report, vlm_report = reports['yolo'], reports['deepseek']
     return (
         _result_images(yolo_report), format_yolo_result(yolo_report), yolo_report,

@@ -12,6 +12,7 @@ gradio==5.49.1
 fastapi==0.159.1
 python-multipart==0.0.32
 uvicorn==0.54.0
+SQLAlchemy==2.0.48
 openai==2.16.0
 httpx==0.28.1
 python-dotenv==1.2.1

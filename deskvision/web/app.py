@@ -172,6 +172,22 @@ def build_demo():
                             yolo_json = gr.JSON(label='YOLO 路线原始报告')
                         with gr.Accordion('DeepSeek 详细报告', open=False):
                             vlm_json = gr.JSON(label='DeepSeek 路线原始报告')
+                    with gr.Tab('历史记录') as history_tab:
+                        history_table = gr.Dataframe(
+                            headers=['任务编号', '路线', '状态', '创建时间', '路线摘要', '备注'],
+                            datatype=['str', 'str', 'str', 'str', 'str', 'str'],
+                            value=[], interactive=False, wrap=True, label='最近 100 条任务')
+                        with gr.Row():
+                            history_id = gr.Dropdown(label='历史任务', choices=[], interactive=True)
+                            history_refresh = gr.Button('刷新历史')
+                            history_load = gr.Button('查看详情')
+                        history_detail = gr.JSON(label='任务详情')
+                        history_note = gr.Textbox(label='备注', lines=2, max_lines=4,
+                                                  max_length=1000)
+                        with gr.Row():
+                            history_save = gr.Button('保存备注', variant='primary')
+                            history_delete = gr.Button('删除任务')
+                        history_status = gr.Markdown('选择一条历史任务。')
                 with gr.Group(elem_id='export-panel'):
                     gr.Markdown('### 保存本次结果\n导出图片、掩膜、JSON 与数量对比，方便复核。')
                     download = gr.File(label='下载当前结果（JSON、图片、掩膜与数量对比）', interactive=False)
@@ -229,5 +245,58 @@ def build_demo():
                          concurrency_id='deskvision', concurrency_limit=1,
                          show_progress='minimal', show_progress_on=[status], trigger_mode='once',
                          api_name=f'run_{route}')
+
+        def refresh_history():
+            from deskvision.history import history_rows
+
+            rows, ids = history_rows()
+            return rows, gr.update(choices=ids, value=ids[0] if ids else None), \
+                '历史记录已刷新。' if ids else '还没有识别记录。'
+
+        def load_history(run_id):
+            from deskvision.history import history_detail
+
+            if not run_id:
+                raise gr.Error('请先选择一条历史任务。')
+            try:
+                detail, note = history_detail(run_id)
+            except ValueError as error:
+                raise gr.Error(str(error)) from None
+            return detail, note, '已加载历史详情。'
+
+        def save_history(run_id, note):
+            from deskvision.history import update_history_note
+
+            if not run_id:
+                raise gr.Error('请先选择一条历史任务。')
+            try:
+                message = update_history_note(run_id, note)
+            except ValueError as error:
+                raise gr.Error(str(error)) from None
+            rows, choices, _ = refresh_history()
+            return rows, choices, message
+
+        def remove_history(run_id):
+            from deskvision.history import delete_history
+
+            if not run_id:
+                raise gr.Error('请先选择一条历史任务。')
+            try:
+                message = delete_history(run_id)
+            except ValueError as error:
+                raise gr.Error(str(error)) from None
+            rows, choices, _ = refresh_history()
+            return rows, choices, None, '', message
+
+        history_outputs = [history_table, history_id, history_status]
+        history_refresh.click(refresh_history, outputs=history_outputs, queue=False)
+        history_tab.select(refresh_history, outputs=history_outputs, queue=False)
+        history_load.click(load_history, inputs=[history_id],
+                           outputs=[history_detail, history_note, history_status], queue=False)
+        history_save.click(save_history, inputs=[history_id, history_note],
+                           outputs=history_outputs, queue=False)
+        history_delete.click(remove_history, inputs=[history_id],
+                             outputs=[history_table, history_id, history_detail,
+                                      history_note, history_status], queue=False)
         demo.queue(max_size=16, default_concurrency_limit=1)
     return demo

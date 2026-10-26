@@ -6,7 +6,7 @@ S2 提供健康检查、图片上传、模型路线调用、任务状态/结果�
 
 通俗解释：网页是操作窗口，API 是接单规则，执行层负责把同一张原图交给两条路线。网页回调直接调用共用执行层，不绕回本机 HTTP；网页任务暂不进入 API 的任务索引，两者在 S3 接入统一数据库。
 
-当前任务暂存于单进程内存；服务重启后任务索引会消失，S3 将接入 SQLite。当前没有登录和用户隔离，因此仅监听 `127.0.0.1`，不可直接开放给局域网或公网；身份认证安排在 S4。
+S2 首版任务状态保存在进程内存；S3 已将 API 和工作台识别历史接入 SQLite，数据库、表结构和 CRUD 见 [S3 说明](第三阶段S3-数据库与历史说明.md)。当前没有登录和用户隔离，因此仍仅监听 `127.0.0.1`，不可直接开放给局域网或公网；身份认证安排在 S4。
 
 ## 启动
 
@@ -28,6 +28,7 @@ python -m deskvision.api
 2. `POST /api/v1/runs`：使用 multipart/form-data 上传 `image`，返回 HTTP 202 和任务号。路线 `route` 可选 `yolo`、`deepseek`、`both`，默认 `yolo`；后两种必须显式传 `allow_remote=true`，否则返回 422，且不创建任务、不调用模型。
 3. `GET /api/v1/runs/{run_id}`：读取 `queued`、`running`、`succeeded`、`partial_failed` 或 `failed` 状态和已完成路线结果。
 4. 使用结果里的 `artifact_urls` 下载检测图、分割图或大模型文本产物。接口不提供内部 `result.json`，避免输出服务端本地路径。
+5. S3 增加 `GET /api/v1/runs` 分页列表、`PATCH /api/v1/runs/{run_id}/note` 更新备注和 `DELETE /api/v1/runs/{run_id}` 删除已完成任务；删除同时清理受控任务目录。详见 [S3 历史说明](第三阶段S3-数据库与历史说明.md)。
 
 上传图片上限 32 MiB，须为可解码的单帧 JPEG、PNG、WebP 或 GIF，单边最长 8192 像素。任务 ID 使用 UUID；两条路线各自读取上传原图，成功结果 SHA256 必须匹配上传内容。不匹配返回路线错误 `input_mismatch`。损坏图、空文件和参数错误返回 422，超大图片返回 413。这里限制的是图片文件；公网请求体上限在 S7 的代理中另设。
 
@@ -76,7 +77,7 @@ python environment/verify_stage3_s2_http.py --image data/desk8-train-v1/images/t
 
 ## 当前限制
 
-- 队列与任务状态只在 API 进程内存；进程重启后不能恢复。生产 worker 在 S5 实现。
+- API 任务、路线结果、备注和产物索引写入 SQLite；工作台运行也写入同一历史。进程重启后可查询。任务若在 queued/running 时中断，重启会标记失败，不自动重复调用。Gradio 当前同步执行，重启后的数据库历史保留。
 - 本版本未加入账号和 JWT；只能本机访问。S7 配置反向代理前须先完成 S4 权限。
 - API 的 `BackgroundTasks` 适合当前演示串联，不是持久任务队列。
 - 已做真实本地 GPU HTTP 联调；真实 DeepSeek 双路线联调与浏览器人工视觉验收仍待完成。

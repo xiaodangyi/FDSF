@@ -99,14 +99,34 @@ class UiTests(unittest.TestCase):
     def test_one_route_failure_does_not_block_the_other_route(self):
         yolo = {'status': 'failed', 'error': {'message': '模拟错误'}}
         vlm = {'status': 'ok', 'input': {'sha256': 'original'}, 'summary': [], 'items': []}
-        with patch.object(ui, 'run_yolo_route', return_value=yolo) as local, \
-                patch.object(ui, 'run_vlm_route', return_value=vlm) as remote, \
-                patch.object(ui, 'prepare_image', return_value=(b'input', {'sha256': 'original'})):
-            result = ui.run_both_ui('original.png', 'finetuned', '', .25, .7, 640, 'auto', True)
-        self.assertEqual(local.call_args.args, ('original.png',))
-        self.assertEqual(remote.call_args.args, ('original.png',))
-        self.assertEqual(result[2], yolo)
-        self.assertEqual(result[4], vlm)
+        from deskvision.database import configure_database, get_database
+
+        with TemporaryDirectory() as folder:
+            source = Path(folder) / 'original.png'
+            source.write_bytes(b'original image')
+            original_database = get_database().path
+            database = configure_database(Path(folder) / 'history.sqlite3')
+            database.initialize()
+            image_info = {'sha256': 'original', 'mime_type': 'image/png',
+                          'bytes': 14, 'width': 1, 'height': 1}
+            try:
+                with patch.object(ui, 'run_yolo_route', return_value=yolo) as local, \
+                        patch.object(ui, 'run_vlm_route', return_value=vlm) as remote, \
+                        patch.object(ui, 'prepare_image', return_value=(b'original image', image_info)):
+                    result = ui.run_both_ui(str(source), 'finetuned', '', .25, .7, 640, 'auto', True)
+                self.assertEqual(Path(local.call_args.args[0]).read_bytes(), b'original image')
+                self.assertEqual(Path(remote.call_args.args[0]).read_bytes(), b'original image')
+                from deskvision.repository import RunRepository
+                repository = RunRepository(database.sessions)
+                item = repository.list(limit=1, offset=0)['items'][0]
+                repository.delete(item['run_id'])
+                import shutil
+                shutil.rmtree(item['run_dir'], ignore_errors=True)
+            finally:
+                configure_database(original_database)
+        self.assertEqual(result[2]['status'], yolo['status'])
+        self.assertEqual(result[2]['error'], yolo['error'])
+        self.assertEqual(result[4]['status'], vlm['status'])
         self.assertIn('至少一条路线失败', result[5])
 
     def test_segmentation_failure_keeps_detection_report_and_image(self):

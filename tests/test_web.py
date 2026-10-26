@@ -44,7 +44,7 @@ class WorkbenchTests(unittest.TestCase):
         self.assertIn('存疑', text)
         self.assertIn('失败不计为零件', remote_inventory(report(status='failed')))
 
-    def test_empty_page_disables_inference_and_exposes_three_result_tabs(self):
+    def test_empty_page_disables_inference_and_exposes_result_and_history_tabs(self):
         demo = build_demo()
         components = demo.config['components']
         actions = [c for c in components if c['type'] == 'button' and
@@ -52,7 +52,7 @@ class WorkbenchTests(unittest.TestCase):
         self.assertEqual(len(actions), 3)
         self.assertTrue(all(not c['props']['interactive'] for c in actions))
         self.assertEqual([c['props']['label'] for c in components if c['type'] == 'tabitem'],
-                         ['识别结果', '数量对比', '详细报告'])
+                         ['识别结果', '数量对比', '详细报告', '历史记录'])
 
 
 if __name__ == '__main__':
