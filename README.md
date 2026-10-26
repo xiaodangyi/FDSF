@@ -10,11 +10,12 @@
 - [交付清单](docs/第三阶段交付清单.md)：代码、环境、视频、说明和最终提交检查。
 - [运行记录模板](docs/第三阶段运行记录模板.md)：后续每阶段沿用。
 - [S2 API 接口说明](docs/第三阶段S2-API接口说明.md)：本地启动方式、请求字段、状态与当前限制。
+- [S4 登录与权限说明](docs/第三阶段S4-登录与权限说明.md)：管理员如何预建账号、本机密钥、退出和任务隔离。
 - [第二阶段原项目说明](第二阶段项目说明.md)：已有模型、数据和实验的历史背景。
 
 ## 当前状态
 
-2026-10-26：S0 需求整理、S1 本机 Ubuntu GPU 单样本核验完成；S2 本地接口与工作台联调完成；S3 已加入 SQLite 任务/路线/产物历史、分页查询、备注与删除，86 项离线检查中 85 项通过、1 项 Windows 符号链接权限用例跳过，退出码 0。服务当前仍无登录，只监听本机；真实 DeepSeek 双路联调和浏览器手工视觉验收待做。JWT、独立任务队列、Docker、Nginx 和云端部署尚待实现。
+2026-10-26：S0～S4 本机实现完成；S4 完整离线回归运行 105 项，104 项通过、1 项因 Windows 符号链接权限跳过，退出码 0；浏览器实测登录、上传/预览、跨账号文件隔离、历史页和退出也通过。演示账号密码保存在 Git 忽略的 `.local/demo-accounts.json`，服务只监听本机。真实 DeepSeek 双路联调、独立任务队列、Docker、Nginx 和云端部署尚待完成。
 
 后续按 S0～S8 推进。S0 是本轮需求与代码基线整理；每阶段完成后报告改动、检查、限制和提交，再讲解下一阶段。
 
@@ -40,7 +41,7 @@ python environment/verify_stage3_baseline.py
 python -m deskvision.web
 ```
 
-当前仅监听 `127.0.0.1:7860`。完整识别另需八类 `best.pt`、SAM 2.1 tiny、`.local/config.json` 和有效 DeepSeek 密钥/余额；参考 `configs/local.example.json`、`configs/vlm.example.json`、`environment/README.md`。PowerShell 激活与旧自检属于 Windows 基线，Ubuntu 操作与 Docker 启动在 S1/S6 实测补齐。
+通过 `python environment/manage_users.py init-local` 生成忽略的本机 JWT 配置，再用 `create-user <账号>` 预建账号。工作台和 API 统一从 `python -m deskvision.api` 或 `python -m deskvision.ui` 启动，默认访问 `http://127.0.0.1:8000/login`；只监听 `127.0.0.1`。完整识别另需八类 `best.pt`、SAM 2.1 tiny、`.local/config.json` 和有效 DeepSeek 密钥/余额；参考 `configs/local.example.json`、`configs/vlm.example.json`、`environment/README.md`。PowerShell 激活与旧自检属于 Windows 基线，Ubuntu 操作与 Docker 启动在 S1/S6 实测补齐。
 
 S2 FastAPI 本机入口：
 

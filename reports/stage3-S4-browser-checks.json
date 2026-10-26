@@ -1,0 +1,22 @@
+{
+  "stage": "S4",
+  "started_at": "2026-10-26T13:17:37.534Z",
+  "base_url": "http://127.0.0.1:8001",
+  "scope": "Actual browser login, upload/preview, private file access, history and logout; no inference.",
+  "checks": [
+    "teacher01: browser login and account name passed",
+    "student01: browser login and account name passed",
+    "Actual browser upload/preview passed; teacher file 200, student file 404",
+    "Both accounts can open and refresh their own empty history",
+    "Browser logout revokes teacher access; student remains logged in"
+  ],
+  "inference_calls": 0,
+  "external_calls": 0,
+  "status": "passed",
+  "browser": "156.0.4314.42",
+  "screenshots": [
+    "runs/stage3/S4/browser-2026-10-26T13-17-37-532Z/login.png",
+    "runs/stage3/S4/browser-2026-10-26T13-17-37-532Z/teacher-workbench.png"
+  ],
+  "finished_at": "2026-10-26T13:17:42.915Z"
+}

@@ -4,13 +4,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from threading import Lock
 
-from sqlalchemy import func, select
+from sqlalchemy import inspect, text
 
 from .db import DEFAULT_DATABASE, make_engine, make_session_factory
 from .models import Base, SchemaVersion
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 
 class Database:
@@ -26,15 +26,22 @@ class Database:
         with self._lock:
             if self._initialized:
                 return
-            Base.metadata.create_all(self.engine)
-            with self.sessions.begin() as session:
-                current = session.scalar(select(func.max(SchemaVersion.version))) or 0
+            with self.engine.begin() as connection:
+                tables = inspect(connection).get_table_names()
+                current = (connection.scalar(text('SELECT max(version) FROM schema_version')) or 0
+                           if 'schema_version' in tables else 0)
                 if current > SCHEMA_VERSION:
                     raise RuntimeError(
                         f'Database schema {current} is newer than supported {SCHEMA_VERSION}.')
-                if current == 0:
-                    session.add(SchemaVersion(version=SCHEMA_VERSION,
-                                              applied_at=datetime.now(timezone.utc).replace(tzinfo=None)))
+                Base.metadata.create_all(connection)
+                if 'owner_id' not in {col['name'] for col in inspect(connection).get_columns('runs')}:
+                    connection.execute(text('ALTER TABLE runs ADD COLUMN owner_id VARCHAR(36) '
+                                            'REFERENCES users(id)'))
+                connection.execute(text('CREATE INDEX IF NOT EXISTS ix_runs_owner_id ON runs(owner_id)'))
+                if current < SCHEMA_VERSION:
+                    connection.execute(SchemaVersion.__table__.insert().values(
+                        version=SCHEMA_VERSION,
+                        applied_at=datetime.now(timezone.utc).replace(tzinfo=None)))
             self._initialized = True
 
     def dispose(self) -> None:

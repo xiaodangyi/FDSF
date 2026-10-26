@@ -10,15 +10,19 @@ from .config import ROOT
 from .models import ArtifactRecord, RouteResultRecord, RunRecord
 
 
+_ALL_OWNERS = object()
+
+
 class RunRepository:
     def __init__(self, session_factory):
         self.session_factory = session_factory
 
-    def create(self, task: dict) -> None:
+    def create(self, task: dict, *, owner_id: str | None = None) -> None:
         image = task['input']
         with self.session_factory.begin() as session:
             session.add(RunRecord(
-                run_id=task['run_id'], route=task['route'], status=task['status'],
+                run_id=task['run_id'], owner_id=owner_id or task.get('owner_id'),
+                route=task['route'], status=task['status'],
                 created_at=task['created_at'], input_sha256=image['sha256'],
                 mime_type=image['mime_type'], input_bytes=image['bytes'],
                 input_width=image['width'], input_height=image['height'],
@@ -84,17 +88,22 @@ class RunRepository:
                 }
             return len(records)
 
-    def get(self, run_id: str) -> dict | None:
+    def get(self, run_id: str, *, owner_id=_ALL_OWNERS) -> dict | None:
         with self.session_factory() as session:
-            record = session.scalar(select(RunRecord).options(
+            query = select(RunRecord).options(
                 selectinload(RunRecord.route_results).selectinload(RouteResultRecord.artifacts)
-            ).where(RunRecord.run_id == run_id))
+            ).where(RunRecord.run_id == run_id)
+            if owner_id is not _ALL_OWNERS:
+                query = query.where(RunRecord.owner_id == owner_id)
+            record = session.scalar(query)
             return _serialize(record) if record else None
 
-    def list(self, *, limit: int, offset: int, status: str | None = None) -> dict:
+    def list(self, *, limit: int, offset: int, status: str | None = None,
+             owner_id: str | None = None) -> dict:
         with self.session_factory() as session:
             query = select(RunRecord).order_by(RunRecord.created_at.desc(), RunRecord.run_id.desc())
-            count = select(func.count()).select_from(RunRecord)
+            query = query.where(RunRecord.owner_id == owner_id)
+            count = select(func.count()).select_from(RunRecord).where(RunRecord.owner_id == owner_id)
             if status:
                 query = query.where(RunRecord.status == status)
                 count = count.where(RunRecord.status == status)
@@ -103,18 +112,19 @@ class RunRepository:
             return {'total': total, 'limit': limit, 'offset': offset,
                     'items': [_serialize(record) for record in records]}
 
-    def update_note(self, run_id: str, note: str) -> bool:
+    def update_note(self, run_id: str, note: str, *, owner_id: str | None = None) -> bool:
         with self.session_factory.begin() as session:
-            record = session.get(RunRecord, run_id)
+            record = session.scalar(select(RunRecord).where(
+                RunRecord.run_id == run_id, RunRecord.owner_id == owner_id))
             if record is None:
                 return False
             record.note = note
             return True
 
-    def delete(self, run_id: str) -> dict | None:
+    def delete(self, run_id: str, *, owner_id: str | None = None) -> dict | None:
         with self.session_factory.begin() as session:
             record = session.scalar(select(RunRecord).where(
-                RunRecord.run_id == run_id).with_for_update())
+                RunRecord.run_id == run_id, RunRecord.owner_id == owner_id).with_for_update())
             if record is None:
                 return None
             if record.status in ('queued', 'running'):

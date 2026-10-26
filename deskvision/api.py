@@ -2,6 +2,8 @@
 
 from contextlib import asynccontextmanager
 from datetime import datetime
+from io import BytesIO
+import json
 import logging
 import os
 from pathlib import Path
@@ -10,19 +12,23 @@ from typing import Literal
 from urllib.parse import quote
 from uuid import UUID, uuid4
 from zoneinfo import ZoneInfo
+from zipfile import ZIP_DEFLATED, ZipFile
 
-from fastapi import BackgroundTasks, FastAPI, File, Form, HTTPException, Query, UploadFile
-from fastapi.responses import FileResponse, RedirectResponse
+from fastapi import BackgroundTasks, Depends, FastAPI, File, Form, HTTPException, Query, Request, UploadFile
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse, Response
 from pydantic import BaseModel, Field
+from starlette.middleware import Middleware
 
 from . import ui as core
 from .artifacts import artifact_names as _artifact_names
+from . import auth
 from .config import ROOT
 from .database import get_database
 from .repository import RunRepository
 from .service import run_routes
 from .task_service import TASKS_ROOT
 from .vision_language import prepare_image
+from .web_guard import WorkbenchGuard
 
 
 MAX_UPLOAD_BYTES = 32 * 1024 * 1024
@@ -33,11 +39,13 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def _lifespan(_app):
     get_database().initialize()
+    auth.settings()
     _repository().recover_incomplete(_now())
     yield
 
 
-app = FastAPI(title='DeskVision API', version='1.0.0', lifespan=_lifespan)
+app = FastAPI(title='DeskVision API', version='1.0.0', lifespan=_lifespan,
+              middleware=[Middleware(WorkbenchGuard)])
 
 
 def _repository() -> RunRepository:
@@ -48,6 +56,42 @@ def _repository() -> RunRepository:
 
 class NoteUpdate(BaseModel):
     note: str = Field(max_length=1000)
+
+
+class LoginCredentials(BaseModel):
+    username: str = Field(min_length=3, max_length=32)
+    password: str = Field(min_length=1, max_length=128)
+
+
+@app.get('/login', response_class=HTMLResponse, include_in_schema=False)
+def login_page():
+    from .auth_ui import LOGIN_PAGE
+
+    return LOGIN_PAGE
+
+
+@app.post('/api/auth/login')
+def create_login(payload: LoginCredentials):
+    token, identity = auth.login(payload.username, payload.password)
+    result = JSONResponse({'username': identity.username, 'expires_in': auth.TOKEN_SECONDS})
+    _, local_http = auth.settings()
+    result.set_cookie(auth.COOKIE, token, max_age=auth.TOKEN_SECONDS, httponly=True,
+                      secure=not local_http, samesite='strict', path='/')
+    return result
+
+
+@app.get('/api/auth/me')
+def whoami(identity: auth.Identity = Depends(auth.current_user)) -> dict:
+    return {'username': identity.username}
+
+
+@app.post('/api/auth/logout')
+def logout(identity: auth.Identity = Depends(auth.current_user)) -> JSONResponse:
+    auth.revoke(identity)
+    response = JSONResponse({'status': 'ok'})
+    response.delete_cookie(auth.COOKIE, path='/', httponly=True,
+                           secure=not auth.settings()[1], samesite='strict')
+    return response
 
 
 def _now() -> str:
@@ -125,13 +169,18 @@ def health() -> dict:
 
 
 @app.get('/', include_in_schema=False)
-def home():
-    return RedirectResponse('/ui/')
+def home(request: Request):
+    try:
+        auth.current_user(request)
+    except HTTPException:
+        return RedirectResponse('/login', status_code=303)
+    return RedirectResponse('/ui/', status_code=303)
 
 
 @app.post('/api/v1/runs', status_code=202)
 async def create_run(
     background_tasks: BackgroundTasks,
+    identity: auth.Identity = Depends(auth.current_user),
     image: UploadFile = File(...),
     route: Literal['yolo', 'deepseek', 'both'] = Form('yolo'),
     allow_remote: bool = Form(False),
@@ -176,7 +225,7 @@ async def create_run(
         'results': {},
     }
     try:
-        _repository().create(task)
+        _repository().create(task, owner_id=identity.user_id)
     except Exception:
         logger.exception('Could not create run %s in SQLite', run_id)
         shutil.rmtree(run_dir, ignore_errors=True)
@@ -190,43 +239,46 @@ def list_runs(
     limit: int = Query(20, ge=1, le=100),
     offset: int = Query(0, ge=0),
     status: Literal['queued', 'running', 'succeeded', 'partial_failed', 'failed'] | None = None,
+    identity: auth.Identity = Depends(auth.current_user),
 ) -> dict:
-    result = _repository().list(limit=limit, offset=offset, status=status)
+    result = _repository().list(limit=limit, offset=offset, status=status,
+                                owner_id=identity.user_id)
     result['items'] = [_snapshot(item) for item in result['items']]
     return result
 
 
 @app.get('/api/v1/runs/{run_id}')
-def get_run(run_id: str) -> dict:
+def get_run(run_id: str, identity: auth.Identity = Depends(auth.current_user)) -> dict:
     try:
         normalized_id = str(UUID(run_id))
     except ValueError:
         raise HTTPException(status_code=404, detail='任务不存在。') from None
-    task = _repository().get(normalized_id)
+    task = _repository().get(normalized_id, owner_id=identity.user_id)
     if task is None:
         raise HTTPException(status_code=404, detail='任务不存在。')
     return _snapshot(task)
 
 
 @app.patch('/api/v1/runs/{run_id}/note')
-def update_run_note(run_id: str, payload: NoteUpdate) -> dict:
+def update_run_note(run_id: str, payload: NoteUpdate,
+                    identity: auth.Identity = Depends(auth.current_user)) -> dict:
     try:
         normalized_id = str(UUID(run_id))
     except ValueError:
         raise HTTPException(status_code=404, detail='任务不存在。') from None
     repository = _repository()
-    if not repository.update_note(normalized_id, payload.note):
+    if not repository.update_note(normalized_id, payload.note, owner_id=identity.user_id):
         raise HTTPException(status_code=404, detail='任务不存在。')
     return {'run_id': normalized_id, 'note': payload.note}
 
 
 @app.delete('/api/v1/runs/{run_id}', status_code=204)
-def delete_run(run_id: str) -> None:
+def delete_run(run_id: str, identity: auth.Identity = Depends(auth.current_user)) -> None:
     try:
         normalized_id = str(UUID(run_id))
     except ValueError:
         raise HTTPException(status_code=404, detail='任务不存在。') from None
-    result = _repository().delete(normalized_id)
+    result = _repository().delete(normalized_id, owner_id=identity.user_id)
     if result is None:
         raise HTTPException(status_code=404, detail='任务不存在。')
     if result.get('running'):
@@ -238,12 +290,13 @@ def delete_run(run_id: str) -> None:
 
 
 @app.get('/api/v1/runs/{run_id}/artifacts/{route}/{artifact_path:path}')
-def get_artifact(run_id: str, route: Literal['yolo', 'deepseek'], artifact_path: str):
+def get_artifact(run_id: str, route: Literal['yolo', 'deepseek'], artifact_path: str,
+                 identity: auth.Identity = Depends(auth.current_user)):
     try:
         normalized_id = str(UUID(run_id))
     except ValueError:
         raise HTTPException(status_code=404, detail='文件不存在。') from None
-    task = _repository().get(normalized_id)
+    task = _repository().get(normalized_id, owner_id=identity.user_id)
     report = task.get('results', {}).get(route) if task else None
     result_dir = report.get('result_dir') if report else None
     run_dir = task.get('run_dir') if task else None
@@ -261,6 +314,38 @@ def get_artifact(run_id: str, route: Literal['yolo', 'deepseek'], artifact_path:
     return FileResponse(target, filename=target.name)
 
 
+@app.get('/api/v1/runs/{run_id}/export.zip')
+def export_run(run_id: str, identity: auth.Identity = Depends(auth.current_user)):
+    try:
+        normalized_id = str(UUID(run_id))
+    except ValueError:
+        raise HTTPException(status_code=404, detail='任务不存在。') from None
+    task = _repository().get(normalized_id, owner_id=identity.user_id)
+    if task is None:
+        raise HTTPException(status_code=404, detail='任务不存在。')
+    buffer = BytesIO()
+    with ZipFile(buffer, 'w', ZIP_DEFLATED) as archive:
+        archive.writestr('report.json', json.dumps(_snapshot(task), ensure_ascii=False, indent=2))
+        for route, report in task['results'].items():
+            base = report.get('result_dir')
+            if not base:
+                continue
+            folder = Path(base).resolve()
+            allowed = (task['run_dir'] / 'results').resolve()
+            if not folder.is_relative_to(allowed) or not folder.is_dir():
+                continue
+            for name in sorted(_artifact_names(report)):
+                candidate = folder / name
+                target = candidate.resolve()
+                if (target.is_file() and target.is_relative_to(folder)
+                        and not any(part.is_symlink() for part in (candidate, *candidate.parents)
+                                    if part != part.parent)):
+                    archive.write(target, f'{route}/{name}')
+        archive.writestr('数量对比.md', task.get('comparison') or '本任务没有双路数量对比。')
+    return Response(buffer.getvalue(), media_type='application/zip',
+                    headers={'Content-Disposition': f'attachment; filename="deskvision-{normalized_id}.zip"'})
+
+
 def create_app() -> FastAPI:
     """Mount the existing workbench on the API process, once and without inference."""
     import gradio as gr
@@ -269,8 +354,9 @@ def create_app() -> FastAPI:
     if any(getattr(route, 'path', None) == '/ui' for route in app.routes):
         return app
     return gr.mount_gradio_app(
-        app, build_demo(), path='/ui', allowed_paths=[str(core.UI_OUTPUT_ROOT)],
-        blocked_paths=[str(ROOT / '.local')], max_file_size='32mb', show_error=False,
+        app, build_demo(), path='/ui', blocked_paths=[str(ROOT / '.local')],
+        max_file_size='32mb', show_error=False,
+        auth_dependency=auth.gradio_user,
     )
 
 

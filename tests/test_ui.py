@@ -100,6 +100,7 @@ class UiTests(unittest.TestCase):
         yolo = {'status': 'failed', 'error': {'message': '模拟错误'}}
         vlm = {'status': 'ok', 'input': {'sha256': 'original'}, 'summary': [], 'items': []}
         from deskvision.database import configure_database, get_database
+        from deskvision.models import UserRecord
 
         with TemporaryDirectory() as folder:
             source = Path(folder) / 'original.png'
@@ -107,19 +108,22 @@ class UiTests(unittest.TestCase):
             original_database = get_database().path
             database = configure_database(Path(folder) / 'history.sqlite3')
             database.initialize()
+            with database.sessions.begin() as session:
+                session.add(UserRecord(id='test-owner', username='test_owner', password_hash='test'))
             image_info = {'sha256': 'original', 'mime_type': 'image/png',
                           'bytes': 14, 'width': 1, 'height': 1}
             try:
                 with patch.object(ui, 'run_yolo_route', return_value=yolo) as local, \
                         patch.object(ui, 'run_vlm_route', return_value=vlm) as remote, \
                         patch.object(ui, 'prepare_image', return_value=(b'original image', image_info)):
-                    result = ui.run_both_ui(str(source), 'finetuned', '', .25, .7, 640, 'auto', True)
+                    result = ui.run_both_ui(str(source), 'finetuned', '', .25, .7, 640, 'auto', True,
+                                            owner_id='test-owner')
                 self.assertEqual(Path(local.call_args.args[0]).read_bytes(), b'original image')
                 self.assertEqual(Path(remote.call_args.args[0]).read_bytes(), b'original image')
                 from deskvision.repository import RunRepository
                 repository = RunRepository(database.sessions)
-                item = repository.list(limit=1, offset=0)['items'][0]
-                repository.delete(item['run_id'])
+                item = repository.list(limit=1, offset=0, owner_id='test-owner')['items'][0]
+                repository.delete(item['run_id'], owner_id='test-owner')
                 import shutil
                 shutil.rmtree(item['run_dir'], ignore_errors=True)
             finally:
@@ -176,13 +180,13 @@ class UiTests(unittest.TestCase):
         values = ('original.png', 'finetuned', '', .25, .7, 640, 'auto', True)
         ui.invalidate_session(state, values)
 
-        def finish_late(*args):
+        def finish_late(*args, **kwargs):
             ui.invalidate_session(state, ('new.png', *values[1:]))
             return [], '旧结果', {'status': 'ok'}, '完成'
 
         with patch.object(ui, 'run_yolo_ui', side_effect=finish_late), \
                 patch.object(ui, 'refresh_comparison') as refresh:
-            result = ui.run_session_ui('yolo', state, None, None, *values)
+            result = ui.run_session_ui('yolo', state, None, None, *values, owner_id='test-owner')
         self.assertTrue(all(value == {'__type__': 'update'} for value in result))
         refresh.assert_not_called()
 
@@ -191,7 +195,7 @@ class UiTests(unittest.TestCase):
         values = ('original.png', 'finetuned', '', .25, .7, 640, 'auto', True)
         ui.invalidate_session(state, ('original.png', 'finetuned', '', .5, .7, 640, 'auto', True))
         with patch.object(ui, 'run_yolo_ui') as run:
-            ui.run_session_ui('yolo', state, None, None, *values)
+            ui.run_session_ui('yolo', state, None, None, *values, owner_id='test-owner')
         run.assert_not_called()
 
 

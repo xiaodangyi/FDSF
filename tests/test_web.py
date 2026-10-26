@@ -17,7 +17,7 @@ class WorkbenchTests(unittest.TestCase):
         with patch('deskvision.web.app.core.run_session_ui') as run:
             for route in ('both', 'deepseek'):
                 with self.assertRaises(gr.Error):
-                    run_confirmed(route, False, {}, None, None)
+                    run_confirmed(route, False, {}, None, None, owner_id='test-owner')
             run.assert_not_called()
 
     def test_missing_and_failed_results_do_not_forge_zero_counts(self):

@@ -1,0 +1,30 @@
+{
+  "stage": "S4",
+  "started_at": "2026-10-26T20:58:41.966122+08:00",
+  "finished_at": "2026-10-26T20:59:02.429587+08:00",
+  "system": "Windows",
+  "python_version": "3.12.15",
+  "versions": {
+    "SQLAlchemy": "2.0.48",
+    "PyJWT": "2.10.1",
+    "pwdlib": "0.3.0",
+    "argon2-cffi": "25.1.0",
+    "fastapi": "0.159.1",
+    "starlette": "0.52.1",
+    "gradio": "5.49.1",
+    "python-multipart": "0.0.32",
+    "uvicorn": "0.54.0"
+  },
+  "command": "python -m unittest discover -s tests -v",
+  "exit_code": 0,
+  "tests_run": 105,
+  "skipped": 1,
+  "duration_seconds": 11.482,
+  "status": "passed",
+  "scope": "S3 regression, S3-to-S4 SQLite migration, auth lifecycle and owner isolation; no inference or network calls.",
+  "raw_log": "runs/stage3/S4/windows-20261026-205841/unittest.txt",
+  "warnings": [
+    "ResourceWarning: Enable tracemalloc to get the object allocation traceback",
+    "ResourceWarning: unclosed event loop <ProactorEventLoop running=False closed=False debug=False>"
+  ]
+}

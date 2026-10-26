@@ -15,7 +15,7 @@ from .service import run_routes
 TASKS_ROOT = ROOT / 'runs/stage3-api'
 
 
-def execute_and_record(route: str, image_path, parameters: dict) -> dict:
+def execute_and_record(route: str, image_path, parameters: dict, *, owner_id: str) -> dict:
     """Copy an original into managed storage, execute selected routes, and persist results."""
     database = get_database()
     database.initialize()
@@ -30,12 +30,12 @@ def execute_and_record(route: str, image_path, parameters: dict) -> dict:
     try:
         managed_image.write_bytes(content)
         task = {
-            'run_id': run_id, 'route': route, 'status': 'queued',
+            'run_id': run_id, 'owner_id': owner_id, 'route': route, 'status': 'queued',
             'created_at': _now(),
             'input': image_info, 'parameters': parameters,
             'image_path': managed_image, 'run_dir': run_dir,
         }
-        repository.create(task)
+        repository.create(task, owner_id=owner_id)
         persisted = True
         results = run_routes(
             route, managed_image, parameters, output_root=run_dir / 'results',
@@ -50,7 +50,7 @@ def execute_and_record(route: str, image_path, parameters: dict) -> dict:
                       if len(statuses) > 1 else None)
         repository.finish(run_id, status=status, results=results, comparison=comparison,
                           finished_at=_now())
-        return repository.get(run_id)
+        return repository.get(run_id, owner_id=owner_id)
     except Exception:
         if persisted:
             repository.fail(run_id, {'code': 'internal_error',

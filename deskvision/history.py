@@ -13,8 +13,8 @@ def _repository() -> RunRepository:
     return RunRepository(database.sessions)
 
 
-def history_rows(limit: int = 100) -> tuple[list[list[str]], list[str]]:
-    page = _repository().list(limit=limit, offset=0)
+def history_rows(owner_id: str, limit: int = 100) -> tuple[list[list[str]], list[str]]:
+    page = _repository().list(limit=limit, offset=0, owner_id=owner_id)
     rows = []
     for item in page['items']:
         route_summaries = []
@@ -32,12 +32,12 @@ def history_rows(limit: int = 100) -> tuple[list[list[str]], list[str]]:
     return rows, [row[0] for row in rows]
 
 
-def history_detail(run_id: str) -> tuple[dict, str]:
+def history_detail(run_id: str, owner_id: str) -> tuple[dict, str]:
     try:
         normalized = str(UUID(run_id))
     except ValueError:
         raise ValueError('任务编号无效。') from None
-    item = _repository().get(normalized)
+    item = _repository().get(normalized, owner_id=owner_id)
     if item is None:
         raise ValueError('任务不存在。')
     from .api import _snapshot
@@ -45,24 +45,24 @@ def history_detail(run_id: str) -> tuple[dict, str]:
     return _snapshot(item), item['note']
 
 
-def update_history_note(run_id: str, note: str) -> str:
+def update_history_note(run_id: str, note: str, owner_id: str) -> str:
     if len(note) > 1000:
         raise ValueError('备注不能超过 1000 个字符。')
     try:
         normalized = str(UUID(run_id))
     except ValueError:
         raise ValueError('任务编号无效。') from None
-    if not _repository().update_note(normalized, note):
+    if not _repository().update_note(normalized, note, owner_id=owner_id):
         raise ValueError('任务不存在。')
     return '备注已保存。'
 
 
-def delete_history(run_id: str) -> str:
+def delete_history(run_id: str, owner_id: str) -> str:
     try:
         normalized = str(UUID(run_id))
     except ValueError:
         raise ValueError('任务编号无效。') from None
-    deleted = _repository().delete(normalized)
+    deleted = _repository().delete(normalized, owner_id=owner_id)
     if deleted is None:
         raise ValueError('任务不存在。')
     if deleted.get('running'):

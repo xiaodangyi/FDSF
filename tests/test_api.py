@@ -6,11 +6,12 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 from unittest.mock import patch
+from zipfile import ZipFile
 
 from fastapi.testclient import TestClient
 from PIL import Image
 
-from deskvision import api
+from deskvision import api, auth
 from deskvision.database import configure_database, get_database
 
 
@@ -29,10 +30,21 @@ class ApiTests(unittest.TestCase):
         self.original_database = get_database().path
         self.database = configure_database(Path(self.temp.name) / 'stage3.sqlite3')
         self.database.initialize()
-        self.client = TestClient(api.app)
+        self.auth_patch = patch.dict('os.environ', {
+            'DESKVISION_JWT_SECRET': 'test-secret-for-auth-tests-32-bytes-minimum',
+            'DESKVISION_LOCAL_HTTP': 'true',
+        })
+        self.auth_patch.start()
+        auth.settings.cache_clear()
+        self.user_id = auth.create_user('teacher_one', 'correct-horse-battery-staple')
+        token, _ = auth.login('teacher_one', 'correct-horse-battery-staple')
+        self.client = TestClient(api.app, client=('127.0.0.1', 50000))
+        self.client.headers['Authorization'] = f'Bearer {token}'
 
     def tearDown(self):
         self.client.close()
+        self.auth_patch.stop()
+        auth.settings.cache_clear()
         self.root_patch.stop()
         configure_database(self.original_database)
         self.temp.cleanup()
@@ -261,9 +273,9 @@ class ApiTests(unittest.TestCase):
         image_path.write_bytes(png_bytes())
         _, input_info = api.prepare_image(image_path)
         api._repository().create({
-            'run_id': run_id, 'route': 'yolo', 'status': 'queued', 'created_at': '2026-10-26T00:00:00+08:00',
+            'run_id': run_id, 'owner_id': self.user_id, 'route': 'yolo', 'status': 'queued', 'created_at': '2026-10-26T00:00:00+08:00',
             'input': input_info, 'parameters': {}, 'image_path': image_path, 'run_dir': run_dir,
-        })
+        }, owner_id=self.user_id)
         self.assertEqual(self.client.delete(f'/api/v1/runs/{run_id}').status_code, 409)
         self.assertTrue(run_dir.exists())
 
@@ -277,11 +289,11 @@ class ApiTests(unittest.TestCase):
         image_path.write_bytes(png_bytes())
         _, input_info = api.prepare_image(image_path)
         api._repository().create({
-            'run_id': run_id, 'route': 'yolo', 'status': 'running', 'created_at': '2026-10-26T00:00:00+08:00',
+            'run_id': run_id, 'owner_id': self.user_id, 'route': 'yolo', 'status': 'running', 'created_at': '2026-10-26T00:00:00+08:00',
             'input': input_info, 'parameters': {}, 'image_path': image_path, 'run_dir': run_dir,
-        })
+        }, owner_id=self.user_id)
         with patch.object(api.core, 'run_yolo_route') as inference, \
-                TestClient(api.create_app()):
+                TestClient(api.create_app(), client=('127.0.0.1', 50000)):
             result = api._repository().get(run_id)
         inference.assert_not_called()
         self.assertEqual(result['status'], 'failed')
@@ -290,15 +302,106 @@ class ApiTests(unittest.TestCase):
     def test_page_and_api_share_one_application_without_inference(self):
         with patch.object(api.core, 'run_yolo_route') as local, \
                 patch.object(api.core, 'run_vlm_route') as remote:
-            with TestClient(api.create_app()) as client:
+            with TestClient(api.create_app(), headers=self.client.headers,
+                            client=('127.0.0.1', 50000)) as client:
                 self.assertEqual(client.get('/health').json(), {'status': 'ok'})
                 self.assertEqual(client.get('/ui/').status_code, 200)
                 config = client.get('/ui/config')
                 self.assertEqual(config.status_code, 200)
                 self.assertTrue(any(c['type'] == 'gallery' for c in config.json()['components']))
+                mounted = next(route for route in api.app.routes
+                               if getattr(route, 'path', None) == '/ui')
+                self.assertIsNotNone(mounted.app.auth_dependency)
                 self.assertEqual(client.get('/').status_code, 200)
         local.assert_not_called()
         remote.assert_not_called()
+
+    def test_anonymous_requests_are_rejected_and_login_cookie_is_http_only(self):
+        anonymous = TestClient(api.create_app(), client=('127.0.0.1', 50000),
+                               headers={'Origin': 'http://testserver'})
+        self.assertEqual(anonymous.get('/api/v1/runs').status_code, 401)
+        self.assertEqual(anonymous.get('/ui/config').status_code, 401)
+        with patch.object(api.core, 'run_yolo_route') as inference:
+            upload = anonymous.post('/api/v1/runs', files={
+                'image': ('image.png', png_bytes(), 'image/png')})
+        self.assertEqual(upload.status_code, 401)
+        inference.assert_not_called()
+        login = anonymous.post('/api/auth/login', json={
+            'username': 'teacher_one', 'password': 'correct-horse-battery-staple'})
+        self.assertEqual(login.status_code, 200)
+        cookie = login.headers['set-cookie'].lower()
+        self.assertIn('httponly', cookie)
+        self.assertIn('samesite=strict', cookie)
+        self.assertIn('deskvision_session', cookie)
+        self.assertEqual(anonymous.get('/ui/config').status_code, 200)
+        self.assertEqual(anonymous.post('/api/auth/logout').status_code, 200)
+        self.assertEqual(anonymous.get('/api/auth/me').status_code, 401)
+        anonymous.close()
+
+    def test_run_history_and_artifacts_are_isolated_between_users(self):
+        with patch.object(api.core, 'run_yolo_route', side_effect=lambda path, **kw:
+                          self.fake_report(path, kw['output_root'], 'yolo')):
+            created = self.uploaded(route='yolo')
+        run_id = created.json()['run_id']
+        auth.create_user('student_two', 'correct-horse-battery-staple')
+        token, _ = auth.login('student_two', 'correct-horse-battery-staple')
+        headers = {'Authorization': f'Bearer {token}'}
+        self.assertEqual(self.client.get('/api/v1/runs', headers=headers).json()['total'], 0)
+        responses = (
+            self.client.get(f'/api/v1/runs/{run_id}', headers=headers),
+            self.client.patch(f'/api/v1/runs/{run_id}/note', json={'note': 'steal'}, headers=headers),
+            self.client.delete(f'/api/v1/runs/{run_id}', headers=headers),
+            self.client.get(f'/api/v1/runs/{run_id}/artifacts/yolo/annotated.png', headers=headers))
+        self.assertEqual([response.status_code for response in responses], [404, 404, 404, 404])
+        self.assertEqual(self.client.get(f'/api/v1/runs/{run_id}/export.zip', headers=headers).status_code, 404)
+        self.assertEqual(self.client.get(f'/api/v1/runs/{run_id}').status_code, 200)
+        self.assertEqual(self.client.get('/api/v1/runs').json()['total'], 1)
+        bundle = self.client.get(f'/api/v1/runs/{run_id}/export.zip')
+        self.assertEqual(bundle.status_code, 200)
+        with ZipFile(BytesIO(bundle.content)) as archive:
+            self.assertIn('yolo/annotated.png', archive.namelist())
+            self.assertNotIn('yolo/result.json', archive.namelist())
+
+    def test_login_rejects_wrong_password_and_inactive_account(self):
+        from deskvision.models import UserRecord
+        with self.database.sessions() as session:
+            stored_hash = session.get(UserRecord, self.user_id).password_hash
+        self.assertNotEqual(stored_hash, 'correct-horse-battery-staple')
+        self.assertTrue(stored_hash.startswith('$argon2id$'))
+        bad = self.client.post('/api/auth/login', json={
+            'username': 'teacher_one', 'password': 'not-the-password'})
+        self.assertEqual(bad.status_code, 401)
+        with self.database.sessions.begin() as session:
+            session.get(UserRecord, self.user_id).active = False
+        disabled = self.client.post('/api/auth/login', json={
+            'username': 'teacher_one', 'password': 'correct-horse-battery-staple'})
+        self.assertEqual(disabled.status_code, 401)
+        self.assertEqual(self.client.get('/api/auth/me').status_code, 401)
+
+    def test_forged_bearer_token_is_rejected(self):
+        response = self.client.get('/api/auth/me', headers={
+            'Authorization': 'Bearer not.a.valid.jwt'})
+        self.assertEqual(response.status_code, 401)
+
+    def test_expired_jwt_is_rejected(self):
+        import jwt
+        from time import time
+        expired = jwt.encode({'sub': self.user_id, 'jti': 'expired-session',
+                              'iat': int(time()) - 100, 'exp': int(time()) - 50,
+                              'iss': 'deskvision', 'aud': 'deskvision'},
+                             auth.settings()[0], algorithm='HS256')
+        response = self.client.get('/api/auth/me', headers={'Authorization': f'Bearer {expired}'})
+        self.assertEqual(response.status_code, 401)
+
+    def test_admin_password_reset_revokes_old_sessions(self):
+        from environment import manage_users
+        with patch.object(manage_users.getpass, 'getpass',
+                          side_effect=['new-password-for-teacher', 'new-password-for-teacher']):
+            self.assertEqual(manage_users.set_password('teacher_one'), 0)
+        self.assertEqual(self.client.get('/api/auth/me').status_code, 401)
+        token, _ = auth.login('teacher_one', 'new-password-for-teacher')
+        response = self.client.get('/api/auth/me', headers={'Authorization': f'Bearer {token}'})
+        self.assertEqual(response.status_code, 200)
 
 
 if __name__ == '__main__':

@@ -261,35 +261,40 @@ def export_results(yolo_report: dict | None, vlm_report: dict | None, *, output_
     return str(archive)
 
 
-def run_yolo_ui(image_path, mode, weights_path, confidence, iou, image_size, device, segment):
+def run_yolo_ui(image_path, mode, weights_path, confidence, iou, image_size, device, segment,
+                *, owner_id: str):
     from .task_service import execute_and_record
 
     task = execute_and_record('yolo', image_path, dict(
         mode=mode, weights_path=weights_path or None, confidence=confidence,
-        iou=iou, image_size=int(image_size), device=device, segment=segment))
+        iou=iou, image_size=int(image_size), device=device, segment=segment), owner_id=owner_id)
     report = task['results']['yolo']
+    report['_run_id'] = task['run_id']
     return (_result_images(report), format_yolo_result(report), report,
             'YOLO 路线完成。' if report.get('status') == 'ok' else 'YOLO 路线失败。')
 
 
-def run_vlm_ui(image_path):
+def run_vlm_ui(image_path, *, owner_id: str):
     from .task_service import execute_and_record
 
-    task = execute_and_record('deepseek', image_path, {})
+    task = execute_and_record('deepseek', image_path, {}, owner_id=owner_id)
     report = task['results']['deepseek']
+    report['_run_id'] = task['run_id']
     return (format_vlm_result(report), report,
             'DeepSeek 路线完成。' if report.get('status') == 'ok' else 'DeepSeek 路线失败。')
 
 
-def run_both_ui(image_path, mode, weights_path, confidence, iou, image_size, device, segment):
+def run_both_ui(image_path, mode, weights_path, confidence, iou, image_size, device, segment,
+                *, owner_id: str):
     """一键运行两路；两路各自读取同一原图，结果只在最后用于展示比较。"""
     from .task_service import execute_and_record
 
     task = execute_and_record('both', image_path, dict(
         mode=mode, weights_path=weights_path or None, confidence=confidence,
-        iou=iou, image_size=int(image_size), device=device, segment=segment))
+        iou=iou, image_size=int(image_size), device=device, segment=segment), owner_id=owner_id)
     reports = task['results']
     yolo_report, vlm_report = reports['yolo'], reports['deepseek']
+    yolo_report['_run_id'] = vlm_report['_run_id'] = task['run_id']
     return (
         _result_images(yolo_report), format_yolo_result(yolo_report), yolo_report,
         format_vlm_result(vlm_report), vlm_report, format_count_diff(yolo_report, vlm_report),
@@ -334,7 +339,7 @@ def invalidate_session(session, values):
     session.update(image=values[0], params=tuple(values[1:]), revision=session['revision'] + 1)
 
 
-def run_session_ui(route, session, previous_yolo, previous_vlm, *values):
+def run_session_ui(route, session, previous_yolo, previous_vlm, *values, owner_id: str):
     import gradio as gr
 
     def current():
@@ -345,16 +350,17 @@ def run_session_ui(route, session, previous_yolo, previous_vlm, *values):
         return skipped
     revision = session['revision']
     if route == 'both':
-        gallery, local_text, local, remote_text, remote, _, status = run_both_ui(*values)
+        gallery, local_text, local, remote_text, remote, _, status = run_both_ui(
+            *values, owner_id=owner_id)
     elif route == 'yolo':
-        gallery, local_text, local, status = run_yolo_ui(*values)
+        gallery, local_text, local, status = run_yolo_ui(*values, owner_id=owner_id)
         remote, remote_text = previous_vlm, gr.skip()
     else:
-        remote_text, remote, status = run_vlm_ui(values[0])
+        remote_text, remote, status = run_vlm_ui(values[0], owner_id=owner_id)
         local, gallery, local_text = previous_yolo, gr.skip(), gr.skip()
     if revision != session['revision'] or not current():
         return skipped
-    comparison, archive = refresh_comparison(local, remote)
+    comparison, archive = format_count_diff(local, remote), None
     if revision != session['revision']:
         return skipped
     return (gallery, local_text, local if route != 'deepseek' else gr.skip(),
@@ -447,12 +453,13 @@ def build_demo():
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description='启动桌面物品双路线 Gradio 界面。')
-    parser.add_argument('--port', type=int, default=7860, help='监听端口，默认 7860')
+    parser = argparse.ArgumentParser(description='启动带登录保护的桌面物品识别工作台。')
+    parser.add_argument('--port', type=int, default=8000, help='监听端口，默认 8000')
     args = parser.parse_args()
-    build_demo().launch(server_name='127.0.0.1', server_port=args.port, share=False,
-                        allowed_paths=[str(UI_OUTPUT_ROOT)], blocked_paths=[str(ROOT / '.local')],
-                        max_file_size='32mb', show_error=False)
+    import uvicorn
+    from .api import create_app
+
+    uvicorn.run(create_app(), host='127.0.0.1', port=args.port, reload=False)
     return 0
 
 

@@ -70,7 +70,7 @@ python .\environment\verify_project.py
 
 ## 下一步
 
-已完成八类小数据集长训练和 YOLOv8 → SAM 2 分割串联，运行方式见 [第五阶段说明](../docs/第五阶段分割说明.md)。当前数据与真实桌面泛化仍有缺口。第六阶段另用已有 OpenAI SDK 2.16.0 和 httpx 0.28.1 接入 DeepSeek deepseek-flash，已完成两张验证图云端调用；参数、密钥位置与独立入口见 [第六阶段说明](../docs/第六阶段视觉大模型说明.md)。第七阶段复用 Gradio 5.49.1 完成统一界面，本机没有新增依赖或训练。激活环境后运行 `python -m deskvision.ui`，打开 http://127.0.0.1:7860；详细操作见 [第七阶段说明](../docs/第七阶段界面说明.md)。
+已完成八类小数据集长训练和 YOLOv8 → SAM 2 分割串联，运行方式见 [第五阶段说明](../docs/第五阶段分割说明.md)。当前数据与真实桌面泛化仍有缺口。第六阶段另用已有 OpenAI SDK 2.16.0 和 httpx 0.28.1 接入 DeepSeek deepseek-flash，已完成两张验证图云端调用；参数、密钥位置与独立入口见 [第六阶段说明](../docs/第六阶段视觉大模型说明.md)。第七阶段复用 Gradio 5.49.1 完成统一界面；S4 后统一通过带登录的 API 入口启动：先运行 `python environment/manage_users.py init-local` 和 `create-user <账号>`，再运行 `python -m deskvision.ui`，访问 http://127.0.0.1:8000/login。详细操作见 [第七阶段说明](../docs/第七阶段界面说明.md) 与 [S4 认证说明](../docs/第三阶段S4-登录与权限说明.md)。
 
 没有安装 Grounding DINO、Florence-2、DDS、Docker 或 TorchAudio，因为当前路线是 YOLOv8 + SAM 2。
 

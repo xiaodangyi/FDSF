@@ -2,8 +2,9 @@
 
 from html import escape
 from pathlib import Path
+from uuid import UUID
 
-from deskvision import ui as core
+from deskvision import auth, ui as core
 
 
 ASSETS = Path(__file__).parent
@@ -73,13 +74,48 @@ def route_badges(local, remote):
     return '<div class="route-badges">' + badge(local, '本地') + badge(remote, 'DeepSeek') + '</div>'
 
 
-def run_confirmed(route, allow_remote, state, local, remote, *values):
+def export_link(local, remote):
+    links = {}
+    for label, report in [('本地路线', local), ('DeepSeek 路线', remote)]:
+        if report and report.get('_run_id'):
+            run_id = str(UUID(report['_run_id']))
+            links[run_id] = label if run_id not in links else '双路结果'
+    return ' '.join(f'<a class="export-link" href="/api/v1/runs/{run_id}/export.zip">'
+                    f'下载{label} ZIP</a>' for run_id, label in links.items())
+
+
+def owned_report(report, route, owner_id):
+    """Browser JSON is display data; recover previous results from owned records."""
+    if not isinstance(report, dict) or not report.get('_run_id'):
+        return None
+    from deskvision.history import _repository
+
+    try:
+        run_id = str(UUID(report['_run_id']))
+    except (ValueError, TypeError, AttributeError):
+        return None
+    task = _repository().get(run_id, owner_id=owner_id)
+    stored = task.get('results', {}).get(route) if task else None
+    return {**stored, '_run_id': run_id} if stored else None
+
+
+def checked_values(values):
+    """The browser may select approved models, never an arbitrary .pt file."""
+    import gradio as gr
+
+    if (len(values) != 8 or values[1] not in ('finetuned', 'baseline')
+            or values[2] not in ('', None, str(core.DEFAULT_FINETUNED_WEIGHTS))):
+        raise gr.Error('只允许使用项目预设权重，请刷新工作台。')
+    return values
+
+
+def run_confirmed(route, allow_remote, state, local, remote, *values, owner_id: str):
     """Keep external-image/cost consent at the user action boundary."""
     if route in ('deepseek', 'both') and not allow_remote:
         import gradio as gr
 
         raise gr.Error('请先勾选云端调用确认；也可以只运行本地 YOLOv8 + SAM 2。')
-    return core.run_session_ui(route, state, local, remote, *values)
+    return core.run_session_ui(route, state, local, remote, *values, owner_id=owner_id)
 
 
 def build_demo():
@@ -98,13 +134,28 @@ def build_demo():
     with gr.Blocks(title='DeskVision · 桌面物品识别', theme=theme,
                    css=(ASSETS / 'styles.css').read_text(encoding='utf-8'),
                    analytics_enabled=False) as demo:
-        session = gr.State(value=core.new_session)
+        session = gr.State(value=core.new_session())
         gr.HTML('''<header class="topbar"><div class="brand"><span class="brand-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3H4a1 1 0 0 0-1 1v4m13-5h4a1 1 0 0 1 1 1v4M3 16v4a1 1 0 0 0 1 1h4m8 0h4a1 1 0 0 0 1-1v-4"/>
             <rect x="7" y="7" width="10" height="10" rx="2"/></svg></span>
             <div><strong>DeskVision<span>视觉工作台</span></strong><p>桌面物品识别与清点</p></div></div>
             <div class="topbar-meta"><span class="local-tag">本机工作台</span><span>YOLOv8 / SAM 2 / DeepSeek</span></div></header>
-            <section class="intro"><div><p class="eyebrow">识别 · 清点 · 核对</p><h1>一张原图，两种独立视角。</h1>
+            ''')
+        with gr.Row(elem_classes='account-bar'):
+            account_name = gr.Markdown('')
+            logout_button = gr.Button('退出登录', size='sm')
+
+        def show_account(request: gr.Request):
+            return f'当前账号：{escape(auth.callback_user(request).username)}'
+
+        demo.load(show_account, outputs=account_name, queue=False)
+        logout_button.click(
+            fn=None,
+            js="async () => { await fetch('/api/auth/logout', {method:'POST'}); "
+               "window.location.replace('/login'); return []; }",
+            queue=False,
+        )
+        gr.HTML('''<section class="intro"><div><p class="eyebrow">识别 · 清点 · 核对</p><h1>一张原图，两种独立视角。</h1>
             <p>检测轮廓与物品清单并排呈现，让每一次清点都有据可查。</p></div>
             <div class="workflow" aria-label="操作顺序"><span><b>01</b>上传原图</span><i aria-hidden="true">/</i>
             <span><b>02</b>运行识别</span><i aria-hidden="true">/</i><span><b>03</b>核对结果</span></div></section>''')
@@ -126,7 +177,7 @@ def build_demo():
                     mode = gr.Dropdown([('八类微调模型', 'finetuned'), ('COCO 预训练基线', 'baseline')],
                                        value='finetuned', label='YOLO 权重模式')
                     weights = gr.Textbox(value=str(core.DEFAULT_FINETUNED_WEIGHTS),
-                                         label='已有权重路径（基线留空使用本机配置）')
+                                         label='项目预设权重（由管理员配置）', interactive=False)
                     iou = gr.Slider(.05, .95, value=.7, step=.01, label='NMS IoU 阈值')
                     image_size = gr.Dropdown([320, 640, 960, 1280], value=640, label='模型输入尺寸')
                     device = gr.Dropdown(['auto', 'cuda:0', 'cpu'], value='auto', label='计算设备')
@@ -189,8 +240,8 @@ def build_demo():
                             history_delete = gr.Button('删除任务')
                         history_status = gr.Markdown('选择一条历史任务。')
                 with gr.Group(elem_id='export-panel'):
-                    gr.Markdown('### 保存本次结果\n导出图片、掩膜、JSON 与数量对比，方便复核。')
-                    download = gr.File(label='下载当前结果（JSON、图片、掩膜与数量对比）', interactive=False)
+                    gr.Markdown('### 保存本次结果')
+                    download = gr.HTML('', elem_id='result-download')
                 gr.Markdown('支持八类：杯子、瓶子、书、橡皮、螺丝刀、螺丝、螺母、垫圈。'
                             '\n\nSAM 沿用检测类别；两路结果互不回写。耗时包含模型加载或网络请求，请人工核对识别结论。',
                             elem_id='workspace-note')
@@ -204,12 +255,17 @@ def build_demo():
         def decorate(local, remote):
             return overview(local, remote), remote_inventory(remote), route_badges(local, remote)
 
-        def update_image(state, *values):
+        def update_image(state, request: gr.Request, *values):
+            auth.callback_user(request)
+            checked_values(values)
             core.invalidate_session(state, values)
             return (*core.reset_input(values[0]), *decorate(None, None),
                     *(gr.update(interactive=bool(values[0])) for _ in buttons))
 
-        def update_local(state, remote, *values):
+        def update_local(state, remote, request: gr.Request, *values):
+            identity = auth.callback_user(request)
+            checked_values(values)
+            remote = owned_report(remote, 'deepseek', identity.user_id)
             core.invalidate_session(state, values)
             return (*core.reset_yolo(), '本地参数已修改，请重新运行本地路线。',
                     *decorate(None, remote))
@@ -217,7 +273,11 @@ def build_demo():
         image.change(update_image, [session, *yolo_inputs],
                      [preview, *outputs, *decorations, *buttons], queue=False,
                      show_progress='hidden', api_name='set_image')
-        example.click(lambda: str(EXAMPLE), outputs=image, queue=False, show_progress='hidden')
+        def load_example(request: gr.Request):
+            auth.callback_user(request)
+            return str(EXAMPLE)
+
+        example.click(load_example, outputs=image, queue=False, show_progress='hidden')
         mode.change(core.weights_for_mode, [mode], [weights], queue=False)
         for component in yolo_inputs[1:]:
             component.change(update_local, [session, vlm_json, *yolo_inputs],
@@ -225,7 +285,12 @@ def build_demo():
                               *decorations], queue=False, show_progress='hidden')
 
         for button, route in [(yolo_button, 'yolo'), (vlm_button, 'deepseek'), (both_button, 'both')]:
-            def run(state, local, remote, allow_cloud, *values, selected=route):
+            def run(state, local, remote, allow_cloud, request: gr.Request, *values,
+                    selected=route):
+                identity = auth.callback_user(request)
+                checked_values(values)
+                local = owned_report(local, 'yolo', identity.user_id)
+                remote = owned_report(remote, 'deepseek', identity.user_id)
                 if selected in ('deepseek', 'both') and not allow_cloud:
                     raise gr.Error('请先勾选云端调用确认；也可以只运行本地 YOLOv8 + SAM 2。')
                 running = list(gr.skip() for _ in outputs)
@@ -233,11 +298,15 @@ def build_demo():
                                'both': '正在运行两路识别，请稍候…'}[selected]
                 yield (*running, *(gr.skip() for _ in decorations),
                        *(gr.update(interactive=False) for _ in buttons))
-                result = run_confirmed(selected, allow_cloud, state, local, remote, *values)
+                identity = auth.callback_user(request)
+                result = run_confirmed(selected, allow_cloud, state, local, remote, *values,
+                                       owner_id=identity.user_id)
                 current_local = local if selected == 'deepseek' else result[2]
                 current_remote = remote if selected == 'yolo' else result[4]
                 stale = result[-1] == {'__type__': 'update'}
                 updated = (gr.skip(),) * 3 if stale else decorate(current_local, current_remote)
+                result = list(result)
+                result[6] = '' if stale else export_link(current_local, current_remote)
                 yield (*result, *updated, *(gr.update(interactive=bool(state['image'])) for _ in buttons))
 
             button.click(run, inputs=[session, yolo_json, vlm_json, allow_remote, *yolo_inputs],
@@ -246,46 +315,46 @@ def build_demo():
                          show_progress='minimal', show_progress_on=[status], trigger_mode='once',
                          api_name=f'run_{route}')
 
-        def refresh_history():
+        def refresh_history(request: gr.Request):
             from deskvision.history import history_rows
 
-            rows, ids = history_rows()
+            rows, ids = history_rows(auth.callback_user(request).user_id)
             return rows, gr.update(choices=ids, value=ids[0] if ids else None), \
                 '历史记录已刷新。' if ids else '还没有识别记录。'
 
-        def load_history(run_id):
+        def load_history(run_id, request: gr.Request):
             from deskvision.history import history_detail
 
             if not run_id:
                 raise gr.Error('请先选择一条历史任务。')
             try:
-                detail, note = history_detail(run_id)
+                detail, note = history_detail(run_id, auth.callback_user(request).user_id)
             except ValueError as error:
                 raise gr.Error(str(error)) from None
             return detail, note, '已加载历史详情。'
 
-        def save_history(run_id, note):
+        def save_history(run_id, note, request: gr.Request):
             from deskvision.history import update_history_note
 
             if not run_id:
                 raise gr.Error('请先选择一条历史任务。')
             try:
-                message = update_history_note(run_id, note)
+                message = update_history_note(run_id, note, auth.callback_user(request).user_id)
             except ValueError as error:
                 raise gr.Error(str(error)) from None
-            rows, choices, _ = refresh_history()
+            rows, choices, _ = refresh_history(request)
             return rows, choices, message
 
-        def remove_history(run_id):
+        def remove_history(run_id, request: gr.Request):
             from deskvision.history import delete_history
 
             if not run_id:
                 raise gr.Error('请先选择一条历史任务。')
             try:
-                message = delete_history(run_id)
+                message = delete_history(run_id, auth.callback_user(request).user_id)
             except ValueError as error:
                 raise gr.Error(str(error)) from None
-            rows, choices, _ = refresh_history()
+            rows, choices, _ = refresh_history(request)
             return rows, choices, None, '', message
 
         history_outputs = [history_table, history_id, history_status]

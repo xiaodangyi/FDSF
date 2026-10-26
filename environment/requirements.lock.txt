@@ -104,3 +104,9 @@ uvicorn==0.54.0
 websockets==15.0.1
 wheel==0.48.0
 zipp==4.1.0
+PyJWT==2.10.1
+pwdlib==0.3.0
+argon2-cffi==25.1.0
+argon2-cffi-bindings==26.1.0
+cffi==2.1.1
+pycparser==3.12
