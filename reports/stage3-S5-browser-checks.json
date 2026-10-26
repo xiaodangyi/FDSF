@@ -1,0 +1,20 @@
+{
+  "stage": "S5",
+  "status": "passed",
+  "started_at": "2026-10-26T14:17:42.950Z",
+  "scope": "Browser file input, preview, queued YOLO button, Timer result/gallery, private access and logout. Connected to real Redis/prefork with offline model functions; zero external model calls.",
+  "checks": [
+    "File input upload updates visible preview and enables button",
+    "Button returns queued status; Timer renders completed gallery and enables button",
+    "Result, ZIP and upload remain private to the logged-in owner",
+    "History survives completed action; logout revokes result access"
+  ],
+  "external_model_calls": 0,
+  "failed_responses": [],
+  "warnings": [
+    "Gradio polls upload_progress with undefined id after upload; 404, actual upload and preview continue."
+  ],
+  "browser": "156.0.4314.42",
+  "screenshot": "runs/stage3/S5/browser-1793024262949/completed.png",
+  "finished_at": "2026-10-26T14:17:53.590Z"
+}

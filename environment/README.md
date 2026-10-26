@@ -90,6 +90,8 @@ python -m pip check
 
 ## 按需重测与训练终端
 
+第三阶段 S5 新增依赖在 `requirements-s5.txt`，需安装到当前 Ubuntu 项目虚拟环境；Redis 服务通过系统包安装。正式队列使用 Linux prefork，不改现有 GPU 版 torch。当前启动请按 [S5 队列与恢复说明](../docs/第三阶段S5-队列与恢复说明.md) 分别启动 Redis、worker、Web；默认不再静默使用网页内后台任务。不要把本文件保留的第二阶段“第八阶段”误认为云部署阶段。
+
 加载环境后，`python environment/verify_environment.py` 会检查 GPU 运算并执行已有图片的 YOLOv8 到 SAM 2 推理，不训练。`python environment/verify_training.py` 会复制本机 COCO8 并做一轮训练自检；必须先打开可见终端让用户看到进度。第 1 阶段没有执行该训练脚本。正式项目训练另在第 4 阶段实现。
 
 脚本生成的 JSON、训练副本和日志默认忽略，不入库。仓库只保存复现说明和脚本；本地路径、旧安装快照、权重及缓存均不上传。

@@ -9,14 +9,14 @@ from . import ui as core
 from .config import ROOT
 from .database import get_database
 from .repository import RunRepository
-from .service import run_routes
+from . import queueing
 
 
 TASKS_ROOT = ROOT / 'runs/stage3-api'
 
 
-def execute_and_record(route: str, image_path, parameters: dict, *, owner_id: str) -> dict:
-    """Copy an original into managed storage, execute selected routes, and persist results."""
+def prepare_task(route: str, image_path, parameters: dict, *, owner_id: str) -> dict:
+    """Copy an original and commit the queued record before publishing anything."""
     database = get_database()
     database.initialize()
     repository = RunRepository(database.sessions)
@@ -37,19 +37,6 @@ def execute_and_record(route: str, image_path, parameters: dict, *, owner_id: st
         }
         repository.create(task, owner_id=owner_id)
         persisted = True
-        results = run_routes(
-            route, managed_image, parameters, output_root=run_dir / 'results',
-            expected_sha256=image_info['sha256'],
-            on_start=lambda: repository.mark_running(task['run_id'], _now()),
-        )
-        statuses = [report.get('status') for report in results.values()]
-        successful = statuses.count('ok')
-        status = ('succeeded' if successful == len(statuses) else
-                  'partial_failed' if successful else 'failed')
-        comparison = (core.format_count_diff(results.get('yolo'), results.get('deepseek'))
-                      if len(statuses) > 1 else None)
-        repository.finish(run_id, status=status, results=results, comparison=comparison,
-                          finished_at=_now())
         return repository.get(run_id, owner_id=owner_id)
     except Exception:
         if persisted:
@@ -58,6 +45,30 @@ def execute_and_record(route: str, image_path, parameters: dict, *, owner_id: st
         else:
             shutil.rmtree(run_dir, ignore_errors=True)
         raise
+
+
+def submit_task(route: str, image_path, parameters: dict, *, owner_id: str) -> dict:
+    if not queueing.is_celery():
+        raise RuntimeError('submit_task 需要 Celery 模式。')
+    task = prepare_task(route, image_path, parameters, owner_id=owner_id)
+    try:
+        queueing.enqueue(task['run_id'])
+    except Exception:
+        from .executor import repository
+        repository().delivery_uncertain(task['run_id'])
+        # The caller can poll this saved task even if broker acknowledgement was lost.
+        return repository().get(task['run_id'], owner_id=owner_id)
+    return task
+
+
+def execute_and_record(route: str, image_path, parameters: dict, *, owner_id: str) -> dict:
+    """Compatibility helper for explicitly selected inline development mode."""
+    from .executor import execute_run, repository
+    if queueing.is_celery():
+        raise RuntimeError('Celery 模式必须使用 submit_task，再按任务号轮询。')
+    task = prepare_task(route, image_path, parameters, owner_id=owner_id)
+    execute_run(task['run_id'])
+    return repository().get(task['run_id'], owner_id=owner_id)
 
 
 def _now() -> str:

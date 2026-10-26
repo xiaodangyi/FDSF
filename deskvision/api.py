@@ -22,6 +22,7 @@ from starlette.middleware import Middleware
 from . import ui as core
 from .artifacts import artifact_names as _artifact_names
 from . import auth
+from . import queueing
 from .config import ROOT
 from .database import get_database
 from .repository import RunRepository
@@ -40,7 +41,11 @@ logger = logging.getLogger(__name__)
 async def _lifespan(_app):
     get_database().initialize()
     auth.settings()
-    _repository().recover_incomplete(_now())
+    queueing.validate_configuration()
+    if queueing.is_celery():
+        _repository().recover_expired(_now())
+    else:
+        _repository().recover_incomplete(_now())
     yield
 
 
@@ -124,6 +129,8 @@ def _snapshot(task: dict) -> dict:
         'input': {key: task['input'][key] for key in
                   ('sha256', 'mime_type', 'bytes', 'width', 'height')},
         'parameters': task['parameters'], 'results': results,
+        'route_states': task.get('route_states', {
+            route: 'queued' for route in (('yolo', 'deepseek') if task['route'] == 'both' else (task['route'],))}),
         'comparison': task.get('comparison'), 'error': task.get('error'),
         'note': task.get('note', ''),
     }
@@ -140,26 +147,9 @@ def _run_routes(task: dict, image_path: Path, output_root: Path) -> dict:
 
 
 def _execute_run(run_id: str) -> None:
-    task = _repository().get(run_id)
-    if task is None:
-        return
-    try:
-        image_path = task['image_path']
-        output_root = task['run_dir'] / 'results'
-        results = _run_routes(task, image_path, output_root)
-        statuses = [report.get('status') for report in results.values()]
-        comparison = (core.format_count_diff(results.get('yolo'), results.get('deepseek'))
-                      if len(statuses) > 1 else None)
-        successful = statuses.count('ok')
-        status = ('succeeded' if successful == len(statuses) else
-                  'partial_failed' if successful else 'failed')
-        _repository().finish(run_id, status=status, results=results,
-                             comparison=comparison, finished_at=_now())
-    except Exception:
-        logger.exception('Task %s failed', run_id)
-        _repository().fail(run_id, {
-            'code': 'internal_error', 'message': '任务未能完成，请检查服务端运行日志。',
-        }, _now())
+    from .executor import execute_run
+
+    execute_run(run_id)
 
 
 @app.get('/health')
@@ -230,7 +220,20 @@ async def create_run(
         logger.exception('Could not create run %s in SQLite', run_id)
         shutil.rmtree(run_dir, ignore_errors=True)
         raise HTTPException(status_code=503, detail='任务记录暂时无法保存，请检查本地数据库。') from None
-    background_tasks.add_task(_execute_run, run_id)
+    if queueing.is_celery():
+        # Broker IO must not block FastAPI's event loop.
+        from starlette.concurrency import run_in_threadpool
+        try:
+            await run_in_threadpool(queueing.enqueue, run_id)
+        except Exception:
+            logger.exception('Queue delivery not confirmed for %s', run_id)
+            _repository().delivery_uncertain(run_id)
+            raise HTTPException(503, detail={
+                'run_id': run_id, 'code': 'delivery_uncertain',
+                'message': '任务已保存，队列投递未确认。请按任务号查询，不要重复提交。',
+            }) from None
+    else:
+        background_tasks.add_task(_execute_run, run_id)
     return _snapshot(task)
 
 
@@ -241,6 +244,8 @@ def list_runs(
     status: Literal['queued', 'running', 'succeeded', 'partial_failed', 'failed'] | None = None,
     identity: auth.Identity = Depends(auth.current_user),
 ) -> dict:
+    if queueing.is_celery():
+        _repository().recover_expired(_now())
     result = _repository().list(limit=limit, offset=offset, status=status,
                                 owner_id=identity.user_id)
     result['items'] = [_snapshot(item) for item in result['items']]
@@ -249,6 +254,8 @@ def list_runs(
 
 @app.get('/api/v1/runs/{run_id}')
 def get_run(run_id: str, identity: auth.Identity = Depends(auth.current_user)) -> dict:
+    if queueing.is_celery():
+        _repository().recover_expired(_now())
     try:
         normalized_id = str(UUID(run_id))
     except ValueError:

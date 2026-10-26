@@ -23,7 +23,7 @@ class TaskServiceTests(unittest.TestCase):
                     patch.object(task_service.RunRepository, 'create',
                                  side_effect=RuntimeError('database unavailable')):
                 with self.assertRaisesRegex(RuntimeError, 'database unavailable'):
-                    task_service.execute_and_record('yolo', source, {}, owner_id='test-owner')
+                    task_service.prepare_task('yolo', source, {}, owner_id='test-owner')
             self.assertEqual(list(root.iterdir()), [])
 
 

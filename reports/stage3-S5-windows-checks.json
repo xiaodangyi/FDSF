@@ -1,0 +1,14 @@
+{
+  "stage": "S5",
+  "system": "windows",
+  "started_at": "2026-10-26T14:27:06.270515+00:00",
+  "finished_at": "2026-10-26T14:27:34.287673+00:00",
+  "python": "3.12.15",
+  "exit_code": 0,
+  "tests_run": 116,
+  "duration_seconds": 17.292,
+  "skipped": 1,
+  "status": "passed",
+  "scope": "Offline regression and S5 queue/recovery contracts. Models mocked; actual Redis/prefork evidence is in the separate process report.",
+  "external_model_calls": 0
+}

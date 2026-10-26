@@ -11,7 +11,8 @@ logger = logging.getLogger(__name__)
 
 
 def run_routes(route: str, image_path, parameters: dict, *, output_root: Path | None = None,
-               expected_sha256: str | None = None, on_start=None) -> dict:
+               expected_sha256: str | None = None, on_start=None,
+               on_route_start=None, on_route_finished=None) -> dict:
     """Run independent routes on one original; preserve a successful sibling on failure."""
     from . import ui as core
 
@@ -23,6 +24,8 @@ def run_routes(route: str, image_path, parameters: dict, *, output_root: Path | 
                 'error': {'code': code, 'message': message}}
 
     def execute(selected):
+        if on_route_start is not None:
+            on_route_start(selected)
         try:
             if selected == 'yolo':
                 report = core.run_yolo_route(image_path, **parameters,
@@ -31,11 +34,20 @@ def run_routes(route: str, image_path, parameters: dict, *, output_root: Path | 
                 report = core.run_vlm_route(image_path, output_root=output_root)
             if (report.get('status') == 'ok' and
                     report.get('input', {}).get('sha256') != fingerprint):
-                return failed(selected, 'input_mismatch', '路线结果与上传原图的 SHA256 不一致，请重新核对。')
-            return report
+                report = failed(selected, 'input_mismatch', '路线结果与上传原图的 SHA256 不一致，请重新核对。')
         except Exception as error:
             logger.error('Route %s raised %s', selected, type(error).__name__)
-            return failed(selected, 'route_error', '该路线处理失败，请检查模型配置和本机运行日志。')
+            report = failed(selected, 'route_error', '该路线处理失败，请检查模型配置和本机运行日志。')
+        if (selected == 'deepseek' and report.get('status') != 'ok'
+                and report.get('error', {}).get('code') in ('timeout', 'connection')):
+            report = {**report, 'error': {
+                **report['error'], 'original_code': report['error']['code'],
+                'code': 'remote_result_unknown',
+                'message': 'DeepSeek 请求超时或连接中断，远端结果与用量待确认；没有自动重试。',
+            }}
+        if on_route_finished is not None:
+            on_route_finished(selected, report)
+        return report
 
     selected_routes = ('yolo', 'deepseek') if route == 'both' else (route,)
     with _execution_slot:

@@ -48,19 +48,31 @@ class WorkbenchGuard:
             raise HTTPException(403, '只接受当前账号上传的文件。')
         return str(Path(value).resolve())
 
-    def _check_files(self, value, bucket):
+    def _check_files(self, value, bucket, origin):
         if isinstance(value, dict):
             if 'path' in value:
                 if self._path(value['path']) not in bucket['files']:
                     raise HTTPException(403, '文件不属于当前登录，请重新上传。')
                 url = value.get('url')
-                if url and (url.startswith(('http:', 'https:', '//')) or 'file=' not in url):
-                    raise HTTPException(403, '不接受远程文件地址。')
+                if url:
+                    if not isinstance(url, str):
+                        raise HTTPException(403, '无效的文件地址。')
+                    try:
+                        parsed = urlsplit(url)
+                    except ValueError:
+                        raise HTTPException(403, '无效的文件地址。') from None
+                    url_origin = f'{parsed.scheme}://{parsed.netloc}' if parsed.netloc else origin
+                    prefix = '/ui/gradio_api/file='
+                    if (parsed.scheme not in ('', 'http', 'https')
+                            or url_origin != origin or parsed.query or parsed.fragment
+                            or not parsed.path.startswith(prefix)
+                            or self._path(unquote(parsed.path[len(prefix):])) != self._path(value['path'])):
+                        raise HTTPException(403, '不接受远程或不匹配的文件地址。')
             for child in value.values():
-                self._check_files(child, bucket)
+                self._check_files(child, bucket, origin)
         elif isinstance(value, list):
             for child in value:
-                self._check_files(child, bucket)
+                self._check_files(child, bucket, origin)
 
     def _capture(self, value, bucket, *, upload=False):
         if upload and isinstance(value, list):
@@ -120,7 +132,8 @@ class WorkbenchGuard:
             for kind in ('session_hash', 'event_id', 'upload_id'):
                 value = request.query_params.get(kind)
                 if value:
-                    self._bind(bucket, kind, value, create=kind == 'upload_id' and relative == 'upload')
+                    self._bind(bucket, kind, value, create=kind == 'upload_id' and
+                               relative in ('upload', 'upload_progress'))
             if relative.startswith('heartbeat/'):
                 self._bind(bucket, 'session_hash', relative.split('/')[1], create=True)
             if relative.startswith('call/') and request.method == 'GET':
@@ -140,7 +153,7 @@ class WorkbenchGuard:
                     payload = json.loads(body)
                 except (ValueError, UnicodeError):
                     raise HTTPException(400, '无效 JSON。') from None
-                self._check_files(payload, bucket)
+                self._check_files(payload, bucket, f'{request.url.scheme}://{request.url.netloc}')
                 if isinstance(payload, dict):
                     for kind in ('session_hash', 'event_id'):
                         if payload.get(kind):

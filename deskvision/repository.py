@@ -1,8 +1,9 @@
 """Transactional task history operations backed by SQLAlchemy."""
 
 from pathlib import Path
+from time import time
 
-from sqlalchemy import delete, func, select
+from sqlalchemy import delete, func, select, update
 from sqlalchemy.orm import Session, selectinload
 
 from .artifacts import artifact_names
@@ -37,16 +38,58 @@ class RunRepository:
                 record.status = 'running'
                 record.started_at = started_at
 
-    def finish(self, run_id: str, *, status: str, results: dict,
-               comparison: str | None, finished_at: str, error: dict | None = None) -> None:
+    def claim(self, run_id: str, started_at: str, execution_id: str) -> bool:
+        """Atomically claim a queued task; duplicate deliveries become no-ops."""
         with self.session_factory.begin() as session:
+            result = session.execute(update(RunRecord).where(
+                RunRecord.run_id == run_id, RunRecord.status == 'queued'
+            ).values(status='running', started_at=started_at, execution_id=execution_id,
+                     heartbeat_at=int(time()), started_routes=[], error=None))
+            return result.rowcount == 1
+
+    def heartbeat(self, run_id: str, execution_id: str) -> bool:
+        with self.session_factory.begin() as session:
+            result = session.execute(update(RunRecord).where(
+                RunRecord.run_id == run_id, RunRecord.status == 'running',
+                RunRecord.execution_id == execution_id).values(heartbeat_at=int(time())))
+            return result.rowcount == 1
+
+    def route_started(self, run_id: str, execution_id: str, route: str) -> None:
+        with self.session_factory.begin() as session:
+            if not self._fence(session, run_id, execution_id):
+                raise RuntimeError('Task execution has expired.')
+            record = session.get(RunRecord, run_id)
+            record.started_routes = sorted(set((record.started_routes or []) + [route]))
+
+    @staticmethod
+    def _fence(session, run_id, execution_id):
+        result = session.execute(update(RunRecord).where(
+            RunRecord.run_id == run_id, RunRecord.status == 'running',
+            RunRecord.execution_id == execution_id).values(heartbeat_at=int(time())))
+        return result.rowcount == 1
+
+    def delivery_uncertain(self, run_id: str) -> None:
+        with self.session_factory.begin() as session:
+            session.execute(update(RunRecord).where(
+                RunRecord.run_id == run_id, RunRecord.status == 'queued').values(error={
+                    'code': 'delivery_uncertain',
+                    'message': '队列投递未确认，任务已保存。请保留任务号并联系管理员检查；不要重复提交。',
+                }))
+
+    def finish(self, run_id: str, *, status: str, results: dict,
+               comparison: str | None, finished_at: str, error: dict | None = None,
+               execution_id: str | None = None, route_only: bool = False) -> None:
+        with self.session_factory.begin() as session:
+            if execution_id and not self._fence(session, run_id, execution_id):
+                return
             record = session.get(RunRecord, run_id)
             if record is None:
                 return
-            record.status = status
-            record.comparison = comparison
-            record.finished_at = finished_at
-            record.error = error
+            if not route_only:
+                record.status = status
+                record.comparison = comparison
+                record.finished_at = finished_at
+                record.error = error
             for route, report in results.items():
                 result_dir = report.get('result_dir')
                 safe_report = {key: value for key, value in report.items()
@@ -87,6 +130,36 @@ class RunRepository:
                     'message': '服务在任务完成前重启；为避免重复模型调用，本任务未自动重试。',
                 }
             return len(records)
+
+    def recover_expired(self, finished_at: str, *, lease_seconds: int = 120) -> int:
+        """End expired executions without ever resubmitting a model call."""
+        cutoff = int(time()) - lease_seconds
+        with self.session_factory.begin() as session:
+            # UPDATE obtains SQLite's writer lock before inspecting route results.
+            ids = session.scalars(update(RunRecord).where(
+                RunRecord.status == 'running',
+                (RunRecord.heartbeat_at < cutoff) | RunRecord.heartbeat_at.is_(None)
+            ).values(status='failed', finished_at=finished_at).returning(RunRecord.run_id)).all()
+            for run_id in ids:
+                record = session.get(RunRecord, run_id)
+                reports = session.scalars(select(RouteResultRecord).where(
+                    RouteResultRecord.run_id == run_id)).all()
+                known = {result.route: result for result in reports}
+                unknown = 'deepseek' in (record.started_routes or []) and 'deepseek' not in known
+                record.status = 'partial_failed' if any(r.status == 'ok' for r in reports) else 'failed'
+                record.error = {
+                    'code': 'remote_result_unknown' if unknown else 'worker_interrupted',
+                    'message': ('DeepSeek 已开始但未保存最终结果，用量与结果待确认；不会自动再次调用。'
+                                if unknown else 'worker 心跳已过期；已保存的路线结果保留，任务不自动重跑。'),
+                }
+                selected = ('yolo', 'deepseek') if record.route == 'both' else (record.route,)
+                for route in selected:
+                    if route not in known:
+                        error = (record.error if route == 'deepseek' and unknown else {
+                            'code': 'worker_interrupted', 'message': 'worker 中断，此路线未完成。'})
+                        session.add(RouteResultRecord(run_id=run_id, route=route, status='failed',
+                                                      report={'route': route, 'error': error}))
+            return len(ids)
 
     def get(self, run_id: str, *, owner_id=_ALL_OWNERS) -> dict | None:
         with self.session_factory() as session:
@@ -163,4 +236,11 @@ def _serialize(record: RunRecord) -> dict:
         item['result_dir'] = _absolute(result.result_dir) if result.result_dir else None
         item['artifacts'] = {artifact.name: artifact.name for artifact in result.artifacts}
         report['results'][result.route] = item
+    selected = ('yolo', 'deepseek') if record.route == 'both' else (record.route,)
+    report['route_states'] = {
+        route: (report['results'][route]['status'] if route in report['results'] else
+                'running' if route in (record.started_routes or []) and record.status == 'running' else
+                'failed' if record.status == 'failed' else 'queued')
+        for route in selected
+    }
     return report

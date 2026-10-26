@@ -10,7 +10,7 @@ from .db import DEFAULT_DATABASE, make_engine, make_session_factory
 from .models import Base, SchemaVersion
 
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 
 
 class Database:
@@ -38,6 +38,11 @@ class Database:
                     connection.execute(text('ALTER TABLE runs ADD COLUMN owner_id VARCHAR(36) '
                                             'REFERENCES users(id)'))
                 connection.execute(text('CREATE INDEX IF NOT EXISTS ix_runs_owner_id ON runs(owner_id)'))
+                columns = {col['name'] for col in inspect(connection).get_columns('runs')}
+                for name, kind in (('execution_id', 'VARCHAR(36)'),
+                                   ('heartbeat_at', 'INTEGER'), ('started_routes', 'JSON')):
+                    if name not in columns:
+                        connection.execute(text(f'ALTER TABLE runs ADD COLUMN {name} {kind}'))
                 if current < SCHEMA_VERSION:
                     connection.execute(SchemaVersion.__table__.insert().values(
                         version=SCHEMA_VERSION,

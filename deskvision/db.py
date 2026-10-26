@@ -1,6 +1,7 @@
 """SQLite engine and session configuration for the S3 history store."""
 
 from pathlib import Path
+import os
 
 from sqlalchemy import URL, create_engine, event
 from sqlalchemy.orm import sessionmaker
@@ -8,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from .config import ROOT
 
 
-DEFAULT_DATABASE = ROOT / 'runs/stage3.sqlite3'
+DEFAULT_DATABASE = Path(os.environ.get('DESKVISION_DATABASE', ROOT / 'runs/stage3.sqlite3'))
 
 
 def make_engine(path: str | Path = DEFAULT_DATABASE):

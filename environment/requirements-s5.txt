@@ -1,0 +1,3 @@
+# S5 only; install on the worker/API host before enabling DESKVISION_QUEUE_MODE=celery.
+celery[redis]==5.6.2
+redis==6.4.0

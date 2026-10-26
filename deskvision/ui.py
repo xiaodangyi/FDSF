@@ -336,7 +336,8 @@ def new_session():
 
 def invalidate_session(session, values):
     """快速记录当前输入；正在运行的旧任务可以结束，但不能覆盖新页面。"""
-    session.update(image=values[0], params=tuple(values[1:]), revision=session['revision'] + 1)
+    session.update(image=values[0], params=tuple(values[1:]), revision=session['revision'] + 1,
+                   pending=None)
 
 
 def run_session_ui(route, session, previous_yolo, previous_vlm, *values, owner_id: str):

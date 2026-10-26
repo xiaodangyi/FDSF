@@ -4,7 +4,7 @@ from html import escape
 from pathlib import Path
 from uuid import UUID
 
-from deskvision import auth, ui as core
+from deskvision import auth, queueing, ui as core
 
 
 ASSETS = Path(__file__).parent
@@ -293,6 +293,29 @@ def build_demo():
                 remote = owned_report(remote, 'deepseek', identity.user_id)
                 if selected in ('deepseek', 'both') and not allow_cloud:
                     raise gr.Error('请先勾选云端调用确认；也可以只运行本地 YOLOv8 + SAM 2。')
+                if queueing.is_celery():
+                    from deskvision.task_service import submit_task
+
+                    if state['image'] != values[0] or state['params'] != tuple(values[1:]):
+                        yield (*(gr.skip() for _ in [*outputs, *decorations, *buttons]),)
+                        return
+                    if state.get('pending'):
+                        raise gr.Error('当前任务仍在处理中，可在历史记录查看。')
+                    revision = state['revision']
+                    parameters = dict(mode=values[1], confidence=values[3], iou=values[4],
+                                      image_size=int(values[5]), device=values[6], segment=values[7])
+                    task = submit_task(selected, values[0], parameters, owner_id=identity.user_id)
+                    if state['revision'] != revision:
+                        yield (*(gr.skip() for _ in [*outputs, *decorations, *buttons]),)
+                        return
+                    state['pending'] = {'run_id': task['run_id'], 'revision': revision}
+                    result = list(gr.skip() for _ in outputs)
+                    result[-1] = f"任务 {task['run_id']} 已保存，正在排队。关闭网页后仍可从历史记录查询。"
+                    if task.get('error'):
+                        result[-1] += '\n\n' + task['error']['message']
+                    yield (*result, *(gr.skip() for _ in decorations),
+                           *(gr.update(interactive=False) for _ in buttons))
+                    return
                 running = list(gr.skip() for _ in outputs)
                 running[-1] = {'yolo': '正在运行本地检测与分割…', 'deepseek': '正在等待 DeepSeek 响应…',
                                'both': '正在运行两路识别，请稍候…'}[selected]
@@ -314,6 +337,51 @@ def build_demo():
                          concurrency_id='deskvision', concurrency_limit=1,
                          show_progress='minimal', show_progress_on=[status], trigger_mode='once',
                          api_name=f'run_{route}')
+
+        def poll(state, local, remote, request: gr.Request):
+            from deskvision.executor import recover_expired, repository
+
+            identity = auth.callback_user(request)
+            pending = state.get('pending')
+            if not pending or pending['revision'] != state['revision']:
+                return tuple(gr.skip() for _ in [*outputs, *decorations, *buttons])
+            recover_expired()
+            task = repository().get(pending['run_id'], owner_id=identity.user_id)
+            if task is None:
+                state['pending'] = None
+                raise gr.Error('任务不存在或不属于当前登录。')
+            local = owned_report(local, 'yolo', identity.user_id)
+            remote = owned_report(remote, 'deepseek', identity.user_id)
+            selected = ('yolo', 'deepseek') if task['route'] == 'both' else (task['route'],)
+            reports = task['results']
+            if 'yolo' in selected:
+                local = {**reports['yolo'], '_run_id': task['run_id']} if 'yolo' in reports else None
+            if 'deepseek' in selected:
+                remote = ({**reports['deepseek'], '_run_id': task['run_id']}
+                          if 'deepseek' in reports else None)
+            active = task['status'] in ('queued', 'running')
+            labels = {'queued': '排队中', 'running': '执行中', 'succeeded': '已完成',
+                      'partial_failed': '部分失败', 'failed': '失败'}
+            message = f"任务 {task['run_id']}：{labels[task['status']]}。"
+            if task.get('error'):
+                message += '\n\n' + task['error']['message']
+            # Input changes may happen while DB reads run in another thread.
+            if state.get('pending') != pending or pending['revision'] != state['revision']:
+                return tuple(gr.skip() for _ in [*outputs, *decorations, *buttons])
+            if not active:
+                state['pending'] = None
+            return (core._result_images(local) if local else [],
+                    core.format_yolo_result(local) if local else '等待本地路线结果。', local,
+                    core.format_vlm_result(remote) if remote else '等待 DeepSeek 路线结果。', remote,
+                    core.format_count_diff(local, remote), export_link(local, remote), message,
+                    *decorate(local, remote),
+                    *(gr.update(interactive=bool(state['image']) and not active) for _ in buttons))
+
+        if queueing.is_celery():
+            timer = gr.Timer(2)
+            timer.tick(poll, inputs=[session, yolo_json, vlm_json],
+                       outputs=[*outputs, *decorations, *buttons], queue=False,
+                       show_progress='hidden', api_name='poll_task')
 
         def refresh_history(request: gr.Request):
             from deskvision.history import history_rows

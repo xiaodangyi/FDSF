@@ -10,7 +10,12 @@ from .repository import RunRepository
 def _repository() -> RunRepository:
     database = get_database()
     database.initialize()
-    return RunRepository(database.sessions)
+    repo = RunRepository(database.sessions)
+    from . import queueing
+    if queueing.is_celery():
+        from .executor import now
+        repo.recover_expired(now())
+    return repo
 
 
 def history_rows(owner_id: str, limit: int = 100) -> tuple[list[list[str]], list[str]]:

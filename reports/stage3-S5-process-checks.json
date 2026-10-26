@@ -1,0 +1,199 @@
+{
+  "stage": "S5",
+  "status": "passed",
+  "started_at": "2026-10-26T14:15:12.303611+00:00",
+  "checks": [
+    {
+      "name": "Two HTTP tasks persist queued with worker stopped",
+      "status": "passed",
+      "run_ids": [
+        "1c353685-e773-4a20-bf68-fda783743b2f",
+        "e560514c-85da-41f4-8d1a-4e469a642143"
+      ]
+    },
+    {
+      "name": "Single prefork child executes sequentially after Web exits",
+      "status": "passed",
+      "producer_pid": 664,
+      "worker_parent_pid": 751,
+      "execution_pids": [
+        784
+      ],
+      "first_end": 1793024124.9127243,
+      "second_start": 1793024125.049638
+    },
+    {
+      "name": "Web restart can query completed task; duplicate delivery makes no model call",
+      "status": "passed"
+    },
+    {
+      "name": "Real child SIGKILL retains local result and remote unknown without paid retry",
+      "status": "passed",
+      "killed_child_pid": 784,
+      "task_status": "partial_failed",
+      "error": "remote_result_unknown"
+    },
+    {
+      "name": "Actual Celery soft/hard time limits stop blocked child and preserve sibling",
+      "status": "passed",
+      "soft_limit_seconds": 4,
+      "hard_limit_seconds": 6,
+      "task_status": "partial_failed"
+    },
+    {
+      "name": "Worker restarts and consumes a new task",
+      "status": "passed",
+      "worker_parent_pid": 916
+    },
+    {
+      "name": "Queued message survives Redis restart through AOF",
+      "status": "passed"
+    },
+    {
+      "name": "Broker outage returns 503 with saved id; same-id redelivery completes",
+      "status": "passed"
+    },
+    {
+      "name": "Actual browser file control, queue action, timer result, owner isolation and logout",
+      "status": "passed"
+    }
+  ],
+  "external_model_calls": 0,
+  "scope": "Actual Redis AOF, independent Web and prefork worker, offline models. Crash recovery uses an injected expired heartbeat after a real SIGKILL.",
+  "versions": {
+    "redis_server": "8.0.5",
+    "celery": "5.6.2",
+    "redis": "6.4.0",
+    "SQLAlchemy": "2.0.48"
+  },
+  "events": [
+    {
+      "run_id": "1c353685-e773-4a20-bf68-fda783743b2f",
+      "route": "yolo",
+      "pid": 784,
+      "time": 1793024121.8537037,
+      "event": "start"
+    },
+    {
+      "run_id": "1c353685-e773-4a20-bf68-fda783743b2f",
+      "route": "yolo",
+      "pid": 784,
+      "time": 1793024124.9127243,
+      "event": "end"
+    },
+    {
+      "run_id": "e560514c-85da-41f4-8d1a-4e469a642143",
+      "route": "yolo",
+      "pid": 784,
+      "time": 1793024125.049638,
+      "event": "start"
+    },
+    {
+      "run_id": "e560514c-85da-41f4-8d1a-4e469a642143",
+      "route": "yolo",
+      "pid": 784,
+      "time": 1793024128.0914538,
+      "event": "end"
+    },
+    {
+      "run_id": "e95b7e98-7b39-4da7-b59d-d7ee9e8d4788",
+      "route": "yolo",
+      "pid": 784,
+      "time": 1793024134.158324,
+      "event": "start"
+    },
+    {
+      "run_id": "e95b7e98-7b39-4da7-b59d-d7ee9e8d4788",
+      "route": "deepseek",
+      "pid": 784,
+      "time": 1793024134.169125,
+      "event": "start"
+    },
+    {
+      "run_id": "e95b7e98-7b39-4da7-b59d-d7ee9e8d4788",
+      "route": "yolo",
+      "pid": 784,
+      "time": 1793024137.1972065,
+      "event": "end"
+    },
+    {
+      "run_id": "407e110c-6c36-469c-a82e-826671cfd674",
+      "route": "yolo",
+      "pid": 910,
+      "time": 1793024141.9702842,
+      "event": "start"
+    },
+    {
+      "run_id": "407e110c-6c36-469c-a82e-826671cfd674",
+      "route": "deepseek",
+      "pid": 910,
+      "time": 1793024141.9802895,
+      "event": "start"
+    },
+    {
+      "run_id": "407e110c-6c36-469c-a82e-826671cfd674",
+      "route": "yolo",
+      "pid": 910,
+      "time": 1793024145.022901,
+      "event": "end"
+    },
+    {
+      "run_id": "d8a96c8b-fd68-47d2-b22a-e0fb90ad1ccf",
+      "route": "yolo",
+      "pid": 949,
+      "time": 1793024153.3381104,
+      "event": "start"
+    },
+    {
+      "run_id": "d8a96c8b-fd68-47d2-b22a-e0fb90ad1ccf",
+      "route": "yolo",
+      "pid": 949,
+      "time": 1793024156.3761964,
+      "event": "end"
+    },
+    {
+      "run_id": "43c8b1ab-7618-4d14-959c-a76b67b68486",
+      "route": "yolo",
+      "pid": 992,
+      "time": 1793024161.2688181,
+      "event": "start"
+    },
+    {
+      "run_id": "43c8b1ab-7618-4d14-959c-a76b67b68486",
+      "route": "yolo",
+      "pid": 992,
+      "time": 1793024164.341313,
+      "event": "end"
+    },
+    {
+      "run_id": "fec6cf57-7872-444c-bdbc-1bb6f98dae8e",
+      "route": "yolo",
+      "pid": 992,
+      "time": 1793024167.966223,
+      "event": "start"
+    },
+    {
+      "run_id": "fec6cf57-7872-444c-bdbc-1bb6f98dae8e",
+      "route": "yolo",
+      "pid": 992,
+      "time": 1793024171.0058923,
+      "event": "end"
+    },
+    {
+      "run_id": "91debc6f-2d61-4b1e-9acb-b9bce6019866",
+      "route": "yolo",
+      "pid": 992,
+      "time": 1793024267.4558182,
+      "event": "start"
+    },
+    {
+      "run_id": "91debc6f-2d61-4b1e-9acb-b9bce6019866",
+      "route": "yolo",
+      "pid": 992,
+      "time": 1793024270.588779,
+      "event": "end"
+    }
+  ],
+  "finished_at": "2026-10-26T14:17:56.430590+00:00",
+  "private_logs": ".local/s5-processes/b601d2e8383347ea8d8134d3c3cd1c3c"
+}

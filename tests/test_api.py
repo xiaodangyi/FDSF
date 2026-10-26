@@ -33,6 +33,7 @@ class ApiTests(unittest.TestCase):
         self.auth_patch = patch.dict('os.environ', {
             'DESKVISION_JWT_SECRET': 'test-secret-for-auth-tests-32-bytes-minimum',
             'DESKVISION_LOCAL_HTTP': 'true',
+            'DESKVISION_QUEUE_MODE': 'inline',
         })
         self.auth_patch.start()
         auth.settings.cache_clear()

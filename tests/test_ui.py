@@ -113,7 +113,8 @@ class UiTests(unittest.TestCase):
             image_info = {'sha256': 'original', 'mime_type': 'image/png',
                           'bytes': 14, 'width': 1, 'height': 1}
             try:
-                with patch.object(ui, 'run_yolo_route', return_value=yolo) as local, \
+                with patch.dict('os.environ', {'DESKVISION_QUEUE_MODE': 'inline'}), \
+                        patch.object(ui, 'run_yolo_route', return_value=yolo) as local, \
                         patch.object(ui, 'run_vlm_route', return_value=vlm) as remote, \
                         patch.object(ui, 'prepare_image', return_value=(b'original image', image_info)):
                     result = ui.run_both_ui(str(source), 'finetuned', '', .25, .7, 640, 'auto', True,

@@ -74,6 +74,21 @@ class WorkbenchAuthTests(TestCase):
                 'session_hash': payload['session_hash']}).status_code, 403)
             self.assertEqual(other.get('/ui/gradio_api/heartbeat/' + payload['session_hash']).status_code, 403)
 
+    def test_browser_filedata_allows_only_same_origin_matching_owned_file(self):
+        filename = self.upload_file()
+        payload = self.image_payload(filename)
+        value = payload['data'][1]
+        value['url'] = 'http://testserver/ui/gradio_api/file=' + quote(filename.replace('\\', '/'), safe='/:')
+        result = self.client.post('/ui/gradio_api/run/set_image', json=payload)
+        self.assertEqual(result.status_code, 200, result.text)
+        value['url'] = value['url'].replace('http://testserver', 'https://example.org')
+        self.assertEqual(self.client.post('/ui/gradio_api/run/set_image', json=payload).status_code, 403)
+        value['url'] = 'http://testserver/ui/gradio_api/file=/etc/passwd'
+        self.assertEqual(self.client.post('/ui/gradio_api/run/set_image', json=payload).status_code, 403)
+        for url in ({'invalid': True}, 'http://[', 'javascript:/ui/gradio_api/file=' + filename):
+            value['url'] = url
+            self.assertEqual(self.client.post('/ui/gradio_api/run/set_image', json=payload).status_code, 403)
+
     def test_queue_event_id_is_bound_to_login(self):
         api.create_app()
         config = self.client.get('/ui/config').json()
