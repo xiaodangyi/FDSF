@@ -1,0 +1,278 @@
+{
+  "stage": "S6",
+  "started_at": "2026-10-26T15:22:14.859434+00:00",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "All four services start healthy; Nginx login and unauthenticated rejection work",
+      "status": "passed"
+    },
+    {
+      "name": "GPU container executes CUDA arithmetic using GPU PyTorch",
+      "status": "passed",
+      "torch": "2.7.1+cu128",
+      "cuda_build": "12.8",
+      "available": true,
+      "device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+      "arithmetic_ok": true
+    },
+    {
+      "name": "Image excludes private data; nonroot apps use readonly models; only loopback gateway published",
+      "status": "passed"
+    },
+    {
+      "name": "Real fine-tuned YOLO and SAM run through Nginx/Redis/worker on GPU; result and ZIP remain private",
+      "status": "passed",
+      "run_id": "ca8dbb2c-ec42-45bf-ad5a-0200b1f68580",
+      "input_sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+      "prompts": 6
+    },
+    {
+      "name": "Unconsumed messages survive Redis container recreation; worker restart executes real GPU tasks sequentially",
+      "status": "passed",
+      "first_run": "dbbbed02-d304-41b9-be65-96d10c27df09",
+      "second_run": "368ea27e-603d-48ac-9a86-e44ba6ea68c4"
+    },
+    {
+      "name": "Redis outage returns saved run id; same-id redelivery recovers after Redis restart",
+      "status": "passed"
+    },
+    {
+      "name": "Recreating every container preserves authenticated session, history, original result and ZIP",
+      "status": "passed"
+    },
+    {
+      "name": "Actual browser file control, Gradio SSE and result polling work through Nginx",
+      "status": "passed"
+    },
+    {
+      "name": "One authorized real dual-route request succeeds on identical original bytes",
+      "status": "passed",
+      "run_id": "05d05a5a-ec9f-4aaa-80d9-59bf7cf3b145"
+    }
+  ],
+  "paid_task_submissions": 1,
+  "real_model_routes": [
+    {
+      "run_id": "ca8dbb2c-ec42-45bf-ad5a-0200b1f68580",
+      "route": "yolo",
+      "device": "cuda:0",
+      "segmentation_prompts": 6
+    }
+  ],
+  "scope": "Actual local GPU Compose stack, Nginx HTTP loopback entry, persistent volumes, worker/broker failure; no cloud deployment.",
+  "runtime_versions": {
+    "docker_server": "29.1.3",
+    "compose": "2.40.3+ds1-0ubuntu1",
+    "nvidia_container_toolkit": "NVIDIA Container Toolkit CLI version 1.20.1\ncommit: dffc40b4f820ce5c512633bac9e0418d0e05a2ee"
+  },
+  "gpu": {
+    "torch": "2.7.1+cu128",
+    "cuda_build": "12.8",
+    "available": true,
+    "device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "arithmetic_ok": true
+  },
+  "input_sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+  "paid_run": {
+    "run_id": "05d05a5a-ec9f-4aaa-80d9-59bf7cf3b145",
+    "status": "succeeded",
+    "results": {
+      "deepseek": {
+        "status": "ok",
+        "input": {
+          "file_name": "input.img",
+          "sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+          "mime_type": "image/png",
+          "bytes": 1461041,
+          "width": 1600,
+          "height": 1100,
+          "exif_orientation": 1,
+          "processing": "原文件字节，不裁剪、不缩放、不叠加检测框"
+        },
+        "summary": [
+          {
+            "category_id": 0,
+            "category_key": "cup",
+            "category_name": "杯子",
+            "count": 0,
+            "status": "reported",
+            "status_text": "大模型独立识别，待核对"
+          },
+          {
+            "category_id": 1,
+            "category_key": "bottle",
+            "category_name": "瓶子",
+            "count": 0,
+            "status": "reported",
+            "status_text": "大模型独立识别，待核对"
+          },
+          {
+            "category_id": 2,
+            "category_key": "book",
+            "category_name": "书",
+            "count": 0,
+            "status": "reported",
+            "status_text": "大模型独立识别，待核对"
+          },
+          {
+            "category_id": 3,
+            "category_key": "eraser",
+            "category_name": "橡皮",
+            "count": 0,
+            "status": "reported",
+            "status_text": "大模型独立识别，待核对"
+          },
+          {
+            "category_id": 4,
+            "category_key": "screwdriver",
+            "category_name": "螺丝刀",
+            "count": 0,
+            "status": "reported",
+            "status_text": "大模型独立识别，待核对"
+          },
+          {
+            "category_id": 5,
+            "category_key": "screw",
+            "category_name": "螺丝",
+            "count": 3,
+            "status": "reported",
+            "status_text": "大模型独立识别，待核对"
+          },
+          {
+            "category_id": 6,
+            "category_key": "nut",
+            "category_name": "螺母",
+            "count": 2,
+            "status": "reported",
+            "status_text": "大模型独立识别，待核对"
+          },
+          {
+            "category_id": 7,
+            "category_key": "washer",
+            "category_name": "垫圈",
+            "count": 2,
+            "status": "reported",
+            "status_text": "大模型独立识别，待核对"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1668,
+          "completion_tokens": 206,
+          "total_tokens": 1874
+        },
+        "error": null
+      },
+      "yolo": {
+        "status": "ok",
+        "input": {
+          "file_name": "input.img",
+          "sha256": "fe1621dd80467907ae1c61a31169c3e0544c9d81df977badf05382e6606c4640",
+          "mime_type": "image/png",
+          "bytes": 1461041,
+          "width": 1600,
+          "height": 1100,
+          "exif_orientation": 1,
+          "processing": "原文件字节，不裁剪、不缩放、不叠加检测框"
+        },
+        "summary": [
+          {
+            "category_id": 0,
+            "category_name": "杯子",
+            "status": "supported",
+            "status_text": "已微调，待验收",
+            "count": 0,
+            "category_key": "cup"
+          },
+          {
+            "category_id": 1,
+            "category_name": "瓶子",
+            "status": "supported",
+            "status_text": "已微调，待验收",
+            "count": 0,
+            "category_key": "bottle"
+          },
+          {
+            "category_id": 2,
+            "category_name": "书",
+            "status": "supported",
+            "status_text": "已微调，待验收",
+            "count": 0,
+            "category_key": "book"
+          },
+          {
+            "category_id": 3,
+            "category_name": "橡皮",
+            "status": "supported",
+            "status_text": "已微调，待验收",
+            "count": 0,
+            "category_key": "eraser"
+          },
+          {
+            "category_id": 4,
+            "category_name": "螺丝刀",
+            "status": "supported",
+            "status_text": "已微调，待验收",
+            "count": 0,
+            "category_key": "screwdriver"
+          },
+          {
+            "category_id": 5,
+            "category_name": "螺丝",
+            "status": "supported",
+            "status_text": "已微调，待验收",
+            "count": 2,
+            "category_key": "screw"
+          },
+          {
+            "category_id": 6,
+            "category_name": "螺母",
+            "status": "supported",
+            "status_text": "已微调，待验收",
+            "count": 2,
+            "category_key": "nut"
+          },
+          {
+            "category_id": 7,
+            "category_name": "垫圈",
+            "status": "supported",
+            "status_text": "已微调，待验收",
+            "count": 2,
+            "category_key": "washer"
+          }
+        ],
+        "usage": null,
+        "error": null
+      }
+    }
+  },
+  "services": [
+    {
+      "service": "nginx",
+      "state": "running",
+      "health": "healthy",
+      "image": "nginx:1.28.0-alpine"
+    },
+    {
+      "service": "redis",
+      "state": "running",
+      "health": "healthy",
+      "image": "redis:8.0.5-alpine"
+    },
+    {
+      "service": "web",
+      "state": "running",
+      "health": "healthy",
+      "image": "deskvision:s6"
+    },
+    {
+      "service": "worker",
+      "state": "running",
+      "health": "healthy",
+      "image": "deskvision:s6"
+    }
+  ],
+  "image_id": "sha256:37ef29d60042b49a25ee14e73901bd80081f6947c92c8865561d1d92230ca197",
+  "finished_at": "2026-10-26T15:24:54.335205+00:00",
+  "private_logs": ".local/s6/acceptance/20261026-152214"
+}

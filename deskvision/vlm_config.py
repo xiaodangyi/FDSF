@@ -57,7 +57,8 @@ class VlmSettings:
 def load_vlm_settings(config_path: Path | None = None, secret_path: Path | None = None) -> VlmSettings:
     """默认参数可直接用；自定义公开参数放 .local/vlm.json，密钥不混入该文件。"""
     config_path = config_path or ROOT / '.local/vlm.json'
-    secret_path = secret_path or ROOT / '.local/deepseek.env'
+    secret_path = secret_path or Path(os.environ.get(
+        'DESKVISION_DEEPSEEK_SECRET', ROOT / '.local/deepseek.env'))
     config = {}
     if config_path.exists():
         try:

@@ -1,0 +1,14 @@
+{
+  "stage": "S6",
+  "system": "windows",
+  "started_at": "2026-10-26T15:22:37.048061+00:00",
+  "finished_at": "2026-10-26T15:23:19.309157+00:00",
+  "python": "3.12.15",
+  "exit_code": 0,
+  "tests_run": 120,
+  "duration_seconds": 25.385,
+  "skipped": 1,
+  "status": "passed",
+  "scope": "Full offline regression and container configuration contracts; actual Docker/GPU/paid-call evidence is separate.",
+  "external_model_calls": 0
+}

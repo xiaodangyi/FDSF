@@ -12,11 +12,12 @@
 - [S2 API 接口说明](docs/第三阶段S2-API接口说明.md)：本地启动方式、请求字段、状态与当前限制。
 - [S4 登录与权限说明](docs/第三阶段S4-登录与权限说明.md)：管理员如何预建账号、本机密钥、退出和任务隔离。
 - [S5 队列与恢复说明](docs/第三阶段S5-队列与恢复说明.md)：Ubuntu 三个终端启动 Redis、worker、Web，排队/超时/补投规则及证据。
+- [S6 Docker 与容器说明](docs/第三阶段S6-Docker与容器说明.md)：GPU 镜像、Compose 启停、独立容器账号、命名卷和本机验收。
 - [第二阶段原项目说明](第二阶段项目说明.md)：已有模型、数据和实验的历史背景。
 
 ## 当前状态
 
-2026-10-26：S0～S5 本机实现完成。S5 Ubuntu 完整回归 116 项全部通过；Windows 116 项运行、115 项通过、1 项 symlink 权限跳过。真实 Redis、独立 Linux prefork worker 与 HTTP 服务的 9 组检查通过，实际浏览器文件选择/预览/入队/轮询结果/跨账号隔离/退出通过。识别用离线替身，S5 未发真实 DeepSeek 请求。S4 旧浏览器报告的控件链路证据边界已在 S5 文档纠正。Docker、Nginx、云端部署和真实双路联调仍待完成。
+2026-10-26：S0～S6 本机实现完成。S6 Ubuntu 完整回归 120 项全部通过；Windows 120 项运行、119 项通过、1 项 symlink 权限跳过。GPU Docker/Compose 实际构建启动、四服务健康、真实 YOLO/SAM、Redis/worker 故障恢复、整体重建保留历史与 ZIP、真实网页控件共 9 组容器检查通过。严格执行 1 次授权的 DeepSeek 双路请求，两路输入原图哈希一致，用量 1,874 tokens；YOLO 螺丝 2、螺母 2、垫圈 2，DeepSeek 螺丝 3、螺母 2、垫圈 2，差异保留，不代表精度验收。当前 Nginx 只供本机 HTTP 入口，S7 云端、HTTPS、异地访问和 S8 最终交付仍待完成。证据见 `reports/stage3-S6-*.json`。
 
 后续按 S0～S8 推进。S0 是本轮需求与代码基线整理；每阶段完成后报告改动、检查、限制和提交，再讲解下一阶段。
 
@@ -36,7 +37,20 @@ python environment/verify_stage3_baseline.py
 
 此命令运行已有离线检查，原始日志保存到忽略的 `runs/stage3/S0/`，摘要写入 `reports/stage3-S0-checks.json`。不启动训练、模型推理或真实 DeepSeek 请求。请使用自己的解释器，不把本机路径写进公开配置。
 
-S5 当前工作台启动（Ubuntu，同一个项目环境，分别开三个终端）：
+S6 容器工作台启动（Ubuntu，已按 S6 说明准备私有配置和已有模型）：
+
+```console
+sudo docker compose -f compose.yaml -f compose.gpu.yaml build web
+sudo docker compose -f compose.yaml -f compose.gpu.yaml up -d redis
+sudo docker compose -f compose.yaml -f compose.gpu.yaml run --rm --no-deps bootstrap
+sudo docker compose -f compose.yaml -f compose.gpu.yaml up -d --wait
+# 本机 WSL：保持此命令/Ubuntu 终端运行，防止发行版空闲退出。
+sudo docker compose -f compose.yaml -f compose.gpu.yaml up --no-color
+```
+
+登录 `http://127.0.0.1:8001/login`。最后一条命令保持前台连接并显示日志，Ctrl+C 会停止此 Compose 会话。容器使用独立数据库卷和 `.local/s6/accounts.json` 中的随机密码，旧本机密码/历史不自动迁入。详细准备、启停、故障恢复及本机代理边界见 S6 说明。只绑定本机，不代表已经云端部署。
+
+S5 原生工作台启动（Ubuntu，同一个项目环境，分别开三个终端；不要与容器同时占用 8001）：
 
 ```console
 python environment/start_stage3_s5.py redis

@@ -1,0 +1,219 @@
+test_all_failed_has_no_error_or_timing_estimate (test_acceptance.AcceptanceTests.test_all_failed_has_no_error_or_timing_estimate) ... ok
+test_failure_is_not_zero_and_denominator_is_all_images (test_acceptance.AcceptanceTests.test_failure_is_not_zero_and_denominator_is_all_images) ... ok
+test_invalid_success_and_wrong_image_are_rejected (test_acceptance.AcceptanceTests.test_invalid_success_and_wrong_image_are_rejected) ... ok
+test_resume_checks_protocol_sample_and_report_digest (test_acceptance.AcceptanceTests.test_resume_checks_protocol_sample_and_report_digest) ... ok
+test_started_entry_is_preserved_without_fake_result (test_acceptance.AcceptanceTests.test_started_entry_is_preserved_without_fake_result) ... ok
+test_admin_password_reset_revokes_old_sessions (test_api.ApiTests.test_admin_password_reset_revokes_old_sessions) ... ok
+test_anonymous_requests_are_rejected_and_login_cookie_is_http_only (test_api.ApiTests.test_anonymous_requests_are_rejected_and_login_cookie_is_http_only) ... <user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<python-env>/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+  prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+<python-env>/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  parse = parser.parseString(pattern)
+<python-env>/lib/python3.12/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  parser.resetCache()
+<python-env>/lib/python3.12/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+  ParserElement.enablePackrat()
+In <python-env>/lib/python3.12/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'parseString' deprecated - use 'parse_string'
+In <python-env>/lib/python3.12/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'resetCache' deprecated - use 'reset_cache'
+<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_application_restart_marks_incomplete_tasks_without_rerunning (test_api.ApiTests.test_application_restart_marks_incomplete_tasks_without_rerunning) ... ok
+test_both_routes_receive_the_same_original_and_result_hides_server_paths (test_api.ApiTests.test_both_routes_receive_the_same_original_and_result_hides_server_paths) ... ok
+test_default_route_is_local_only (test_api.ApiTests.test_default_route_is_local_only) ... ok
+test_empty_detection_is_success_and_distinct_from_failure (test_api.ApiTests.test_empty_detection_is_success_and_distinct_from_failure) ... ok
+test_expired_jwt_is_rejected (test_api.ApiTests.test_expired_jwt_is_rejected) ... ok
+test_forged_bearer_token_is_rejected (test_api.ApiTests.test_forged_bearer_token_is_rejected) ... ok
+test_health_does_not_run_inference (test_api.ApiTests.test_health_does_not_run_inference) ... ok
+test_internal_json_and_unlisted_files_are_not_downloadable (test_api.ApiTests.test_internal_json_and_unlisted_files_are_not_downloadable) ... ok
+test_invalid_image_is_rejected_without_creating_a_task (test_api.ApiTests.test_invalid_image_is_rejected_without_creating_a_task) ... ok
+test_invalid_parameters_are_rejected (test_api.ApiTests.test_invalid_parameters_are_rejected) ... ok
+test_listed_symlink_is_not_downloadable (test_api.ApiTests.test_listed_symlink_is_not_downloadable) ... ok
+test_local_route_never_calls_deepseek (test_api.ApiTests.test_local_route_never_calls_deepseek) ... ok
+test_login_rejects_wrong_password_and_inactive_account (test_api.ApiTests.test_login_rejects_wrong_password_and_inactive_account) ... ok
+test_page_and_api_share_one_application_without_inference (test_api.ApiTests.test_page_and_api_share_one_application_without_inference) ... ok
+test_paginated_history_note_update_and_delete (test_api.ApiTests.test_paginated_history_note_update_and_delete) ... ok
+test_partial_failure_preserves_the_successful_route (test_api.ApiTests.test_partial_failure_preserves_the_successful_route) ... ok
+test_queued_task_cannot_be_deleted (test_api.ApiTests.test_queued_task_cannot_be_deleted) ... ok
+test_remote_routes_require_explicit_consent (test_api.ApiTests.test_remote_routes_require_explicit_consent) ... ok
+test_restart_keeps_history_results_and_artifact_index (test_api.ApiTests.test_restart_keeps_history_results_and_artifact_index) ... <user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_run_history_and_artifacts_are_isolated_between_users (test_api.ApiTests.test_run_history_and_artifacts_are_isolated_between_users) ... ok
+test_unexpected_route_exception_keeps_successful_sibling (test_api.ApiTests.test_unexpected_route_exception_keeps_successful_sibling) ... Route deepseek raised RuntimeError
+ok
+test_unknown_run_and_artifact_paths_are_not_served (test_api.ApiTests.test_unknown_run_and_artifact_paths_are_not_served) ... ok
+test_upload_over_limit_is_rejected (test_api.ApiTests.test_upload_over_limit_is_rejected) ... ok
+test_wrong_image_hash_is_a_failure_instead_of_a_comparison (test_api.ApiTests.test_wrong_image_hash_is_a_failure_instead_of_a_comparison) ... ok
+test_clipped_box_stays_in_original_image_coordinates (test_baseline.BaselineContractTests.test_clipped_box_stays_in_original_image_coordinates) ... ok
+test_empty_result_keeps_untrained_categories_unknown (test_baseline.BaselineContractTests.test_empty_result_keeps_untrained_categories_unknown) ... ok
+test_finetuned_ids_are_project_ids_and_all_classes_have_counts (test_baseline.BaselineContractTests.test_finetuned_ids_are_project_ids_and_all_classes_have_counts) ... ok
+test_source_ids_map_to_project_ids_without_losing_precision (test_baseline.BaselineContractTests.test_source_ids_map_to_project_ids_without_losing_precision) ... ok
+test_unicode_path_and_invalid_image_are_distinguished (test_baseline.BaselineContractTests.test_unicode_path_and_invalid_image_are_distinguished) ... ok
+test_unrequested_or_invalid_model_output_is_rejected (test_baseline.BaselineContractTests.test_unrequested_or_invalid_model_output_is_rejected) ... ok
+test_gpu_access_is_confined_to_worker (test_container.ContainerTests.test_gpu_access_is_confined_to_worker) ... ok
+test_only_loopback_gateway_publishes_a_port (test_container.ContainerTests.test_only_loopback_gateway_publishes_a_port) ... ok
+test_preparation_is_idempotent_and_keeps_host_auth_and_existing_env (test_container.ContainerTests.test_preparation_is_idempotent_and_keeps_host_auth_and_existing_env) ... ok
+test_readonly_deepseek_secret_path_is_supported_without_leaking_key (test_container.ContainerTests.test_readonly_deepseek_secret_path_is_supported_without_leaking_key) ... ok
+test_invalid_classes_coordinates_and_empty_boxes_are_rejected (test_data.TrainingDataContractTests.test_invalid_classes_coordinates_and_empty_boxes_are_rejected) ... ok
+test_loco_needs_second_review_bound_to_image_and_final_labels (test_data.TrainingDataContractTests.test_loco_needs_second_review_bound_to_image_and_final_labels) ... ok
+test_only_known_yolo_split_caches_are_excluded_from_label_inventory (test_data.TrainingDataContractTests.test_only_known_yolo_split_caches_are_excluded_from_label_inventory) ... ok
+test_quarantined_source_cannot_be_approved (test_data.TrainingDataContractTests.test_quarantined_source_cannot_be_approved) ... ok
+test_same_group_or_image_cannot_cross_splits (test_data.TrainingDataContractTests.test_same_group_or_image_cannot_cross_splits) ... ok
+test_same_mug_hierarchy_box_is_counted_once (test_data.TrainingDataContractTests.test_same_mug_hierarchy_box_is_counted_once) ... ok
+test_self_consistent_export_must_match_current_approved_boxes (test_data.TrainingDataContractTests.test_self_consistent_export_must_match_current_approved_boxes) ... ok
+test_stale_review_is_rejected (test_data.TrainingDataContractTests.test_stale_review_is_rejected) ... ok
+test_unapproved_empty_annotation_cannot_be_used_as_negative (test_data.TrainingDataContractTests.test_unapproved_empty_annotation_cannot_be_used_as_negative) ... ok
+test_unready_dataset_cannot_enter_training (test_data.TrainingDataContractTests.test_unready_dataset_cannot_enter_training) ... ok
+test_database_refuses_a_schema_version_it_cannot_read (test_database.DatabaseTests.test_database_refuses_a_schema_version_it_cannot_read) ... ok
+test_initial_migration_is_idempotent_and_records_schema_version (test_database.DatabaseTests.test_initial_migration_is_idempotent_and_records_schema_version) ... ok
+test_upgrade_from_s3_schema_keeps_existing_tasks_unowned (test_database.DatabaseTests.test_upgrade_from_s3_schema_keeps_existing_tasks_unowned) ... ok
+test_broker_failure_retains_record_and_returns_queryable_id (test_queue.QueueTests.test_broker_failure_retains_record_and_returns_queryable_id) ... Queue delivery not confirmed for ad131162-4267-4aa5-9a6e-6075e2455b81
+Traceback (most recent call last):
+  File "<project>/deskvision/api.py", line 227, in create_run
+    await run_in_threadpool(queueing.enqueue, run_id)
+  File "<python-env>/lib/python3.12/site-packages/starlette/concurrency.py", line 32, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-env>/lib/python3.12/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-env>/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "<python-env>/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+ConnectionError: broker down
+ok
+test_claim_is_atomic_across_simultaneous_deliveries (test_queue.QueueTests.test_claim_is_atomic_across_simultaneous_deliveries) ... ok
+test_crash_preserves_success_and_marks_unfinished_remote_unknown (test_queue.QueueTests.test_crash_preserves_success_and_marks_unfinished_remote_unknown) ... ok
+test_duplicate_delivery_does_not_repeat_models (test_queue.QueueTests.test_duplicate_delivery_does_not_repeat_models) ... ok
+test_individual_route_state_is_visible_while_sibling_runs (test_queue.QueueTests.test_individual_route_state_is_visible_while_sibling_runs) ... ok
+test_invalid_queue_mode_is_rejected (test_queue.QueueTests.test_invalid_queue_mode_is_rejected) ... ok
+test_live_heartbeat_and_queued_work_do_not_expire (test_queue.QueueTests.test_live_heartbeat_and_queued_work_do_not_expire) ... ok
+test_local_crash_is_failed_without_remote_unknown (test_queue.QueueTests.test_local_crash_is_failed_without_remote_unknown) ... ok
+test_remote_transport_timeout_is_unknown_and_never_retried (test_queue.QueueTests.test_remote_transport_timeout_is_unknown_and_never_retried) ... ok
+test_web_restart_preserves_queued_and_live_running_tasks (test_queue.QueueTests.test_web_restart_preserves_queued_and_live_running_tasks) ... ok
+test_bad_model_output_fails_and_releases_image_features (test_segmentation.SegmentationContractTests.test_bad_model_output_fails_and_releases_image_features) ... ok
+test_cli_segmentation_failure_has_failed_status_and_preserves_detections (test_segmentation.SegmentationContractTests.test_cli_segmentation_failure_has_failed_status_and_preserves_detections) ... Updated password for teacher_one and revoked previous sessions.
+new /ui
+正在读取已有权重并执行检测；此命令不训练、不下载模型。
+正在按原图检测框生成 SAM 2 掩膜；分类与计数沿用 YOLO。
+处理失败（segmentation）：SAM 2 failure
+输出未完成，失败记录与部分产物位于：/tmp/tmpwf4dwd_4/cli/20261026-232316-270c5f8a
+ok
+test_contour_hierarchy_preserves_washer_hole (test_segmentation.SegmentationContractTests.test_contour_hierarchy_preserves_washer_hole) ... ok
+test_invalid_prompt_is_rejected_before_loading (test_segmentation.SegmentationContractTests.test_invalid_prompt_is_rejected_before_loading) ... ok
+test_no_detections_skips_model_and_keeps_counts (test_segmentation.SegmentationContractTests.test_no_detections_skips_model_and_keeps_counts) ... ok
+test_original_coordinates_rgb_instance_mapping_and_empty_mask (test_segmentation.SegmentationContractTests.test_original_coordinates_rgb_instance_mapping_and_empty_mask) ... ok
+test_same_model_can_encode_a_new_image_after_failure (test_segmentation.SegmentationContractTests.test_same_model_can_encode_a_new_image_after_failure) ... ok
+test_failed_database_insert_removes_untracked_run_directory (test_task_service.TaskServiceTests.test_failed_database_insert_removes_untracked_run_directory) ... ok
+test_best_checkpoint_validation_does_not_add_a_training_epoch (test_train.TrainingEntryTests.test_best_checkpoint_validation_does_not_add_a_training_epoch) ... ok
+test_full_training_is_explicit_and_does_not_change_pilot_scope (test_train.TrainingEntryTests.test_full_training_is_explicit_and_does_not_change_pilot_scope) ... ok
+test_full_training_rejects_missing_authorization_or_unbound_dataset (test_train.TrainingEntryTests.test_full_training_rejects_missing_authorization_or_unbound_dataset) ... ok
+test_pilot_config_rejects_invalid_or_unreviewed_parameters (test_train.TrainingEntryTests.test_pilot_config_rejects_invalid_or_unreviewed_parameters) ... ok
+test_training_requires_visible_terminal_marker (test_train.TrainingEntryTests.test_training_requires_visible_terminal_marker) ... ok
+test_unready_data_stops_before_environment_or_model_loading (test_train.TrainingEntryTests.test_unready_data_stops_before_environment_or_model_loading) ... ok
+test_count_diff_does_not_turn_unsupported_into_zero (test_ui.UiTests.test_count_diff_does_not_turn_unsupported_into_zero) ... ok
+test_gradio_demo_builds_without_loading_models (test_ui.UiTests.test_gradio_demo_builds_without_loading_models) ... <user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_import_does_not_load_model_frameworks (test_ui.UiTests.test_import_does_not_load_model_frameworks) ... ok
+test_input_changed_during_inference_discards_stale_outputs (test_ui.UiTests.test_input_changed_during_inference_discards_stale_outputs) ... ok
+test_mismatched_images_and_failures_are_never_compared (test_ui.UiTests.test_mismatched_images_and_failures_are_never_compared) ... ok
+test_new_input_resets_both_reports_and_mode_sets_correct_weights (test_ui.UiTests.test_new_input_resets_both_reports_and_mode_sets_correct_weights) ... ok
+test_one_route_failure_does_not_block_the_other_route (test_ui.UiTests.test_one_route_failure_does_not_block_the_other_route) ... ok
+test_queued_old_parameters_do_not_start_inference (test_ui.UiTests.test_queued_old_parameters_do_not_start_inference) ... ok
+test_route_writes_yolo_result_without_vlm (test_ui.UiTests.test_route_writes_yolo_result_without_vlm) ... ok
+test_segmentation_failure_keeps_detection_report_and_image (test_ui.UiTests.test_segmentation_failure_keeps_detection_report_and_image) ... ok
+test_vlm_route_receives_original_path_and_keeps_reports_separate (test_ui.UiTests.test_vlm_route_receives_original_path_and_keeps_reports_separate) ... ok
+test_zip_includes_masks_and_never_reads_files_outside_ui_runs (test_ui.UiTests.test_zip_includes_masks_and_never_reads_files_outside_ui_runs) ... ok
+test_api_errors_do_not_retry_leak_credentials_or_forge_zero_counts (test_vlm.VlmContractTests.test_api_errors_do_not_retry_leak_credentials_or_forge_zero_counts) ... ok
+test_cli_config_check_does_not_call_api_or_show_key (test_vlm.VlmContractTests.test_cli_config_check_does_not_call_api_or_show_key) ... ok
+test_cli_failures_return_nonzero_without_forging_success (test_vlm.VlmContractTests.test_cli_failures_return_nonzero_without_forging_success) ... ok
+test_invalid_types_unknown_classes_and_inconsistent_counts_fail (test_vlm.VlmContractTests.test_invalid_types_unknown_classes_and_inconsistent_counts_fail) ... ok
+test_local_config_separates_key_and_rejects_wrong_models_and_hosts (test_vlm.VlmContractTests.test_local_config_separates_key_and_rejects_wrong_models_and_hosts) ... ok
+test_original_file_bytes_and_real_mime_are_preserved (test_vlm.VlmContractTests.test_original_file_bytes_and_real_mime_are_preserved) ... ok
+test_real_sdk_serialization_and_saved_result_have_independent_counts (test_vlm.VlmContractTests.test_real_sdk_serialization_and_saved_result_have_independent_counts) ... ok
+test_request_contains_one_original_image_and_no_prior_results (test_vlm.VlmContractTests.test_request_contains_one_original_image_and_no_prior_results) ... ok
+test_timeout_fails_once_and_missing_image_never_sends (test_vlm.VlmContractTests.test_timeout_fails_once_and_missing_image_never_sends) ... ok
+test_truncation_refusal_empty_content_and_bad_json_are_failures (test_vlm.VlmContractTests.test_truncation_refusal_empty_content_and_bad_json_are_failures) ... ok
+test_valid_empty_and_nonempty_outputs_are_distinguished (test_vlm.VlmContractTests.test_valid_empty_and_nonempty_outputs_are_distinguished) ... ok
+test_cloud_action_without_consent_never_starts_inference (test_web.WorkbenchTests.test_cloud_action_without_consent_never_starts_inference) ... ok
+test_diff_counts_categories_instead_of_absolute_count_error (test_web.WorkbenchTests.test_diff_counts_categories_instead_of_absolute_count_error) ... ok
+test_empty_page_disables_inference_and_exposes_result_and_history_tabs (test_web.WorkbenchTests.test_empty_page_disables_inference_and_exposes_result_and_history_tabs) ... <user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+<user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_missing_and_failed_results_do_not_forge_zero_counts (test_web.WorkbenchTests.test_missing_and_failed_results_do_not_forge_zero_counts) ... ok
+test_remote_model_text_is_escaped_and_failure_is_visible (test_web.WorkbenchTests.test_remote_model_text_is_escaped_and_failure_is_visible) ... ok
+test_unknown_counts_and_different_images_cannot_produce_agreement (test_web.WorkbenchTests.test_unknown_counts_and_different_images_cannot_produce_agreement) ... ok
+test_browser_filedata_allows_only_same_origin_matching_owned_file (test_workbench_auth.WorkbenchAuthTests.test_browser_filedata_allows_only_same_origin_matching_owned_file) ... <user>/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:730: ResourceWarning: unclosed event loop <_UnixSelectorEventLoop running=False closed=False debug=False>
+  _warn(f"unclosed event loop {self!r}", ResourceWarning, source=self)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_cross_origin_cookie_mutation_and_remote_local_http_are_blocked (test_workbench_auth.WorkbenchAuthTests.test_cross_origin_cookie_mutation_and_remote_local_http_are_blocked) ... ok
+test_export_contains_sanitized_report_without_internal_paths (test_workbench_auth.WorkbenchAuthTests.test_export_contains_sanitized_report_without_internal_paths) ... ok
+test_forged_report_is_reloaded_from_owner_scoped_database (test_workbench_auth.WorkbenchAuthTests.test_forged_report_is_reloaded_from_owner_scoped_database) ... ok
+test_local_files_remote_urls_and_unused_routes_are_rejected (test_workbench_auth.WorkbenchAuthTests.test_local_files_remote_urls_and_unused_routes_are_rejected) ... ok
+test_logout_invalidates_uploaded_file_access (test_workbench_auth.WorkbenchAuthTests.test_logout_invalidates_uploaded_file_access) ... ok
+test_model_paths_are_fixed_and_separate_route_downloads_are_preserved (test_workbench_auth.WorkbenchAuthTests.test_model_paths_are_fixed_and_separate_route_downloads_are_preserved) ... ok
+test_production_cookie_is_secure_and_all_launchers_use_loopback (test_workbench_auth.WorkbenchAuthTests.test_production_cookie_is_secure_and_all_launchers_use_loopback) ... ok
+test_queue_event_id_is_bound_to_login (test_workbench_auth.WorkbenchAuthTests.test_queue_event_id_is_bound_to_login) ... <python-env>/lib/python3.12/site-packages/gradio/routes.py:1341: DeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+  return await queue_join_helper(body, request, username)
+ok
+test_queued_callback_rechecks_revoked_login (test_workbench_auth.WorkbenchAuthTests.test_queued_callback_rechecks_revoked_login) ... ok
+test_real_queue_callback_and_sse_gallery_keep_owner_isolation (test_workbench_auth.WorkbenchAuthTests.test_real_queue_callback_and_sse_gallery_keep_owner_isolation) ... <python-env>/lib/python3.12/site-packages/gradio/routes.py:1341: DeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+  return await queue_join_helper(body, request, username)
+ok
+test_stolen_session_hash_cannot_reuse_state_or_read_queue (test_workbench_auth.WorkbenchAuthTests.test_stolen_session_hash_cannot_reuse_state_or_read_queue) ... ok
+test_uploaded_file_and_preview_are_private_to_login (test_workbench_auth.WorkbenchAuthTests.test_uploaded_file_and_preview_are_private_to_login) ... ok
+
+----------------------------------------------------------------------
+Ran 120 tests in 38.583s
+
+OK

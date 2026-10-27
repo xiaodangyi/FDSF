@@ -1,0 +1,12 @@
+# Only the worker receives GPU access. The web process does not load GPU models.
+services:
+  worker:
+    environment:
+      DESKVISION_REQUIRE_CUDA: "true"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

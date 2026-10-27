@@ -6,6 +6,7 @@ import argparse
 from datetime import datetime
 from importlib import metadata
 import json
+import os
 from pathlib import Path
 from threading import Lock
 from time import perf_counter
@@ -20,7 +21,8 @@ from .vision_language import prepare_image, recognize
 from .vlm_config import VlmError, load_vlm_settings
 
 
-DEFAULT_FINETUNED_WEIGHTS = ROOT / 'runs/train/desk8-full-20261023-204546/weights/best.pt'
+DEFAULT_FINETUNED_WEIGHTS = Path(os.environ.get(
+    'DESKVISION_FINETUNED_WEIGHTS', ROOT / 'runs/train/desk8-full-20261023-204546/weights/best.pt'))
 UI_OUTPUT_ROOT = ROOT / 'runs/ui'
 # Gradio 队列与锁共同避免多会话同时使用同一个 GPU。
 LOCAL_MODEL_LOCK = Lock()

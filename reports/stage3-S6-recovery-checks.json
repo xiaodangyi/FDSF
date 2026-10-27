@@ -1,0 +1,35 @@
+{
+  "stage": "S6",
+  "status": "passed",
+  "started_at": "2026-10-27T04:40:19.118139+00:00",
+  "scope": "Windows loopback requests with a foreground WSL Compose process; checks original paid-task data without resubmitting it.",
+  "new_inference_tasks": 0,
+  "external_model_calls": 0,
+  "observation_seconds": 61.17,
+  "health_samples": [
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200,
+    200
+  ],
+  "stable_wsl_boot": true,
+  "service_restart_counts": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "all_services_healthy": true,
+  "existing_dual_run_id": "05d05a5a-ec9f-4aaa-80d9-59bf7cf3b145",
+  "existing_result_and_zip_preserved": true,
+  "finished_at": "2026-10-27T04:41:21.783956+00:00"
+}

@@ -1,0 +1,20 @@
+{
+  "stage": "S6",
+  "status": "passed",
+  "started_at": "2026-10-26T15:24:27.559Z",
+  "scope": "Browser file input, preview, queued YOLO button, Timer result/gallery, private access and logout. Real GPU models in Docker via Redis/prefork and Nginx; zero external model calls.",
+  "checks": [
+    "File input upload updates visible preview and enables button",
+    "Button returns queued status; Timer renders completed gallery and enables button",
+    "Result, ZIP and upload remain private to the logged-in owner",
+    "History survives completed action; logout revokes result access"
+  ],
+  "external_model_calls": 0,
+  "failed_responses": [],
+  "warnings": [
+    "Gradio polls upload_progress with undefined id after upload; 404, actual upload and preview continue."
+  ],
+  "browser": "156.0.4314.42",
+  "screenshot": "runs/stage3/S6/browser-1793028267558/completed.png",
+  "finished_at": "2026-10-26T15:24:45.737Z"
+}

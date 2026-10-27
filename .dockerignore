@@ -1,0 +1,18 @@
+# Allow only public source and required dependency/entrypoint files.
+**
+!Dockerfile
+!.dockerignore
+!deskvision/
+!deskvision/**
+!configs/
+!configs/**
+!environment/
+!environment/requirements.txt
+!environment/requirements-s5.txt
+!environment/constraints.txt
+!environment/container_entrypoint.py
+!environment/manage_queue.py
+!environment/manage_users.py
+!environment/migrate_stage3_db.py
+**/__pycache__
+**/*.py[cod]
